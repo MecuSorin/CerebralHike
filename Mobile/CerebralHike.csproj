@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{4C9321B6-9B3E-480E-8860-196FEC96AC01}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <Content Include="www\css\ionic.app.css" />
+    <Content Include="www\css\ionic.app.min.css" />
+    <Content Include="www\css\style.css" />
+    <Content Include="www\img\ionic.png" />
+    <Content Include="www\index.html" />
+    <Content Include="www\js\0_typings\cordova\.gitignore" />
+    <Content Include="www\js\app.js" />
+    <Content Include="www\lib\angular-animate\angular-animate.js" />
+    <Content Include="www\lib\angular-animate\angular-animate.min.js" />
+    <Content Include="www\lib\angular-animate\index.js" />
+    <Content Include="www\lib\angular-sanitize\angular-sanitize.js" />
+    <Content Include="www\lib\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="www\lib\angular-sanitize\index.js" />
+    <Content Include="www\lib\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="www\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="www\lib\angular-ui-router\src\common.js" />
+    <Content Include="www\lib\angular-ui-router\src\resolve.js" />
+    <Content Include="www\lib\angular-ui-router\src\state.js" />
+    <Content Include="www\lib\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="www\lib\angular-ui-router\src\stateFilters.js" />
+    <Content Include="www\lib\angular-ui-router\src\templateFactory.js" />
+    <Content Include="www\lib\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="www\lib\angular-ui-router\src\urlRouter.js" />
+    <Content Include="www\lib\angular-ui-router\src\view.js" />
+    <Content Include="www\lib\angular-ui-router\src\viewDirective.js" />
+    <Content Include="www\lib\angular-ui-router\src\viewScroll.js" />
+    <Content Include="www\lib\angular\angular-csp.css" />
+    <Content Include="www\lib\angular\angular.js" />
+    <Content Include="www\lib\angular\angular.min.js" />
+    <Content Include="www\lib\angular\index.js" />
+    <Content Include="www\lib\ionic\css\ionic.css" />
+    <Content Include="www\lib\ionic\css\ionic.min.css" />
+    <Content Include="www\lib\ionic\fonts\ionicons.svg" />
+    <Content Include="www\lib\ionic\js\ionic-angular.js" />
+    <Content Include="www\lib\ionic\js\ionic-angular.min.js" />
+    <Content Include="www\lib\ionic\js\ionic.bundle.js" />
+    <Content Include="www\lib\ionic\js\ionic.bundle.min.js" />
+    <Content Include="www\lib\ionic\js\ionic.js" />
+    <Content Include="www\lib\ionic\js\ionic.min.js" />
+    <Content Include="www\templates\learn_feature.html" />
+    <Content Include="www\templates\learn_list.html" />
+    <Content Include="www\templates\menu.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <Content Include="www\lib\angular-animate\.bower.json" />
+    <Content Include="www\lib\angular-animate\angular-animate.min.js.map" />
+    <Content Include="www\lib\angular-animate\bower.json" />
+    <Content Include="www\lib\angular-animate\package.json" />
+    <Content Include="www\lib\angular-animate\README.md" />
+    <Content Include="www\lib\angular-sanitize\.bower.json" />
+    <Content Include="www\lib\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="www\lib\angular-sanitize\bower.json" />
+    <Content Include="www\lib\angular-sanitize\package.json" />
+    <Content Include="www\lib\angular-sanitize\README.md" />
+    <Content Include="www\lib\angular-ui-router\.bower.json" />
+    <Content Include="www\lib\angular-ui-router\bower.json" />
+    <Content Include="www\lib\angular-ui-router\CHANGELOG.md" />
+    <Content Include="www\lib\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="www\lib\angular-ui-router\LICENSE" />
+    <Content Include="www\lib\angular-ui-router\README.md" />
+    <Content Include="www\lib\angular\.bower.json" />
+    <Content Include="www\lib\angular\angular.min.js.gzip" />
+    <Content Include="www\lib\angular\angular.min.js.map" />
+    <Content Include="www\lib\angular\bower.json" />
+    <Content Include="www\lib\angular\package.json" />
+    <Content Include="www\lib\angular\README.md" />
+    <Content Include="www\lib\ionic\.bower.json" />
+    <Content Include="www\lib\ionic\bower.json" />
+    <Content Include="www\lib\ionic\fonts\ionicons.eot" />
+    <Content Include="www\lib\ionic\fonts\ionicons.ttf" />
+    <Content Include="www\lib\ionic\fonts\ionicons.woff" />
+    <Content Include="www\lib\ionic\README.md" />
+    <Content Include="www\lib\ionic\scss\ionic.scss" />
+    <Content Include="www\lib\ionic\scss\ionicons\ionicons.scss" />
+    <Content Include="www\lib\ionic\scss\ionicons\_ionicons-animation.scss" />
+    <Content Include="www\lib\ionic\scss\ionicons\_ionicons-font.scss" />
+    <Content Include="www\lib\ionic\scss\ionicons\_ionicons-icons.scss" />
+    <Content Include="www\lib\ionic\scss\ionicons\_ionicons-variables.scss" />
+    <Content Include="www\lib\ionic\scss\_action-sheet.scss" />
+    <Content Include="www\lib\ionic\scss\_animations.scss" />
+    <Content Include="www\lib\ionic\scss\_backdrop.scss" />
+    <Content Include="www\lib\ionic\scss\_badge.scss" />
+    <Content Include="www\lib\ionic\scss\_bar.scss" />
+    <Content Include="www\lib\ionic\scss\_button-bar.scss" />
+    <Content Include="www\lib\ionic\scss\_button.scss" />
+    <Content Include="www\lib\ionic\scss\_checkbox.scss" />
+    <Content Include="www\lib\ionic\scss\_form.scss" />
+    <Content Include="www\lib\ionic\scss\_grid.scss" />
+    <Content Include="www\lib\ionic\scss\_items.scss" />
+    <Content Include="www\lib\ionic\scss\_list.scss" />
+    <Content Include="www\lib\ionic\scss\_loaders.scss" />
+    <Content Include="www\lib\ionic\scss\_loading.scss" />
+    <Content Include="www\lib\ionic\scss\_menu.scss" />
+    <Content Include="www\lib\ionic\scss\_mixins.scss" />
+    <Content Include="www\lib\ionic\scss\_modal.scss" />
+    <Content Include="www\lib\ionic\scss\_platform.scss" />
+    <Content Include="www\lib\ionic\scss\_popover.scss" />
+    <Content Include="www\lib\ionic\scss\_popup.scss" />
+    <Content Include="www\lib\ionic\scss\_progress.scss" />
+    <Content Include="www\lib\ionic\scss\_radio.scss" />
+    <Content Include="www\lib\ionic\scss\_range.scss" />
+    <Content Include="www\lib\ionic\scss\_refresher.scss" />
+    <Content Include="www\lib\ionic\scss\_reset.scss" />
+    <Content Include="www\lib\ionic\scss\_scaffolding.scss" />
+    <Content Include="www\lib\ionic\scss\_select.scss" />
+    <Content Include="www\lib\ionic\scss\_slide-box.scss" />
+    <Content Include="www\lib\ionic\scss\_spinner.scss" />
+    <Content Include="www\lib\ionic\scss\_split-pane.scss" />
+    <Content Include="www\lib\ionic\scss\_tabs.scss" />
+    <Content Include="www\lib\ionic\scss\_toggle.scss" />
+    <Content Include="www\lib\ionic\scss\_transitions.scss" />
+    <Content Include="www\lib\ionic\scss\_type.scss" />
+    <Content Include="www\lib\ionic\scss\_util.scss" />
+    <Content Include="www\lib\ionic\scss\_variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-animate.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-cookies.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-mocks.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-sanitize.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\cordova.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\BatteryStatus.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Camera.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Contacts.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Device.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\DeviceMotion.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\DeviceOrientation.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Dialogs.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\FileSystem.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\FileTransfer.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Globalization.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\InAppBrowser.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Media.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\MediaCapture.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\NetworkInformation.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Push.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Splashscreen.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\StatusBar.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\Vibration.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\cordova\plugins\WebSQL.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\ionic\ionic.d.ts" />
+    <TypeScriptCompile Include="www\js\0_typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="www\js\1_Bootstrap\app.bootstrap.ts" />
+    <TypeScriptCompile Include="www\js\1_Bootstrap\interfaces.d.ts" />
+    <TypeScriptCompile Include="www\js\2_Services\ApiFactory.ts" />
+    <TypeScriptCompile Include="www\js\2_Services\ErrorsService.ts" />
+    <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\FeatureDetailController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\FeatureListController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\ErrorController.ts" />
+    <TypeScriptCompile Include="www\lib\angular-ui-router\api\angular-ui-router.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="www\js\generated\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>CerebralHike</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64339</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/akd</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>None</TypeScriptModuleKind>
+    <TypeScriptOutFile>www\js\generated\cerebralhike.js</TypeScriptOutFile>
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>

@@ -1,0 +1,24 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{FeatureDetailCtrl.Feature.Id}}. {{FeatureDetailCtrl.Feature.Japan}}" style="background-color: azure;">
+  <ion-content class="padding">
+    <h2>{{FeatureDetailCtrl.Feature.Ro}}</h2>
+      <img src="{{FeatureDetailCtrl.ImageSrcMain}}" ng-click="FeatureDetailCtrl.PlayClipMain()"  width="252"  border="3"/>
+      <img src="{{FeatureDetailCtrl.ImageSrcExtra}}" ng-click="FeatureDetailCtrl.PlayClipExtra()"  width="252"  border="5"/>
+
+      <!--<video controls>
+        <source src="{{FeatureDetailCtrl.Feature.ClipMain}}" type="video/mp4">
+        <a href="{{FeatureDetailCtrl.Feature.ClipMain}}">Open</a> the video clip
+      </video>
+      <video controls>
+          <source src="{{FeatureDetailCtrl.Feature.ClipExtra}}" type="video/mp4">
+          <a href="{{FeatureDetailCtrl.Feature.ClipExtra}}">Open</a> the video clip
+      </video>
+
+      <button ng-click="FeatureDetailCtrl.PlayClipMain()">Play main clip</button>-->
+  </ion-content>
+</ion-view>
