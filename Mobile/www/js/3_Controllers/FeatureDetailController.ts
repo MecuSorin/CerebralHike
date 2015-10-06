@@ -16,12 +16,13 @@ module cerebralhike {
         public ImageSrcExtra: string;
 
         public PlayClipMain = () => {
-            //this.playClip(this.Feature.ClipMain);
-            this.playClip("file:///android_asset/www/appdata/ikkajo_001_m.mp4");
+            var clipLocation = (this.Feature.ClipMainLocal) ? this.Feature.ClipMainLocal : this.Feature.ClipMainCloud;
+            this.playClip(clipLocation);
         }
 
         public PlayClipExtra = () => {
-            this.playClip("https://www.youtube.com/watch?v=en_sVVjWFKk");
+            var clipLocation = (this.Feature.ClipExtraLocal) ? this.Feature.ClipExtraLocal : this.Feature.ClipExtraCloud;
+            this.playClip(clipLocation);
         }
 
         private playClip(clipLocation: string) {

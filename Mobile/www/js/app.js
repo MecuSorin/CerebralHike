@@ -12,6 +12,7 @@ cerebralhikeApp
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 })
 
@@ -38,6 +39,15 @@ cerebralhikeApp
             'menuContent': {
                 templateUrl: 'templates/learn_feature.html',
                 controller: 'FeatureDetailController as FeatureDetailCtrl'
+            }
+        }
+    })
+    .state('app.download', {
+        url: '/download',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/download.html',
+                controller: 'DownloadController as DownloadCtrl'
             }
         }
     })
@@ -79,5 +89,11 @@ cerebralhikeApp
   //})
 ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/learn');
+  //$urlRouterProvider.otherwise('/app/learn');
+  $urlRouterProvider.otherwise('/app/download');
+});
+window.ionic.Platform.ready(function () {
+    var ddddoc = document.getElementsByTagName('body')[0];
+    console.log('Ionic is ready, bootstraping on ' + ddddoc.outerHTML);
+    angular.bootstrap(ddddoc, ['starter'])
 });

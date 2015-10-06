@@ -4,10 +4,15 @@ module cerebralhike {
 		public static Alias = "FeatureService";
 		//public static $inject = ['$q', ErrorsService.Alias, DeviceStatusService.Alias, '$timeout'];
 
-        constructor(public apiFactory: ApiFactory, public $q: angular.Enhanced.IQService)
+        constructor(public downloadService: DownloadService, public $q: angular.Enhanced.IQService)
 		{ }
 
-        public Features: IFeature[] = null;
+        public LoadFeatures = (): angular.IPromise<IFeature[]> => {
+            return this.downloadService.LoadLegend()
+                .then(n=> this.$q.when(this.downloadService.Files));
+        }
+
+        //public Features: IFeature[] = null;
 
         //public LoadFeatures(): angular.IPromise<void> {
         //    if (this.Features) {
@@ -36,32 +41,34 @@ module cerebralhike {
         //}
 
 
-        public LoadFeatures(): angular.IPromise<void> {
-            if (this.Features) {
-                return this.$q.when();
-            }
-            var deferred = this.$q.defer<void>();
-            this.apiFactory.GetFeaturesList()
-                .then(features=> {
-                    this.Features = features;
-                    var videoPathComposer = this.apiFactory.GetVideoPathComposer();
-                    var featureUpdater = (feature: IFeature, index:number) => {
-                        feature.Id = index;
-                        feature.ClipMain = videoPathComposer(feature.ClipMain);
-                        feature.ClipExtra = videoPathComposer(feature.ClipExtra);
-                    }
-                    this.Features.forEach((feature, index) => featureUpdater(feature, index + 1));
-                    deferred.resolve();
-                })
-                .catch(reason=> deferred.reject(reason));
-            return deferred.promise;
-        }
+        //public LoadFeatures(): angular.IPromise<void> {
+        //    if (this.Features) {
+        //        return this.$q.when();
+        //    }
+        //    var deferred = this.$q.defer<void>();
+        //    this.apiFactory.GetFeaturesList()
+        //        .then(features=> {
+
+        //            throw 'Not implemented';
+        //            //this.Features = features;
+        //            //var videoPathComposer = this.apiFactory.GetVideoPathComposer();
+        //            //var featureUpdater = (feature: IFeature, index:number) => {
+        //            //    feature.Id = index;
+        //            //    feature.ClipMain = videoPathComposer(feature.ClipMain);
+        //            //    feature.ClipExtra = videoPathComposer(feature.ClipExtra);
+        //            }
+        //            this.Features.forEach((feature, index) => featureUpdater(feature, index + 1));
+        //            deferred.resolve();
+        //        })
+        //        .catch(reason=> deferred.reject(reason));
+        //    return deferred.promise;
+        //}
 
         public GetFeature(featureId: string): IFeature {
-            if (!this.Features) throw "No features loaded yet";
-            for (var i = 0, lngth = this.Features.length; i < lngth; i++) {
-                if (this.Features[i].Id === parseInt(featureId)) {
-                    return this.Features[i];
+            if (!this.downloadService.Files) throw "No features loaded yet";
+            for (var i = 0, lngth = this.downloadService.Files.length; i < lngth; i++) {
+                if (this.downloadService.Files[i].Id === parseInt(featureId)) {
+                    return this.downloadService.Files[i][i];
                 }
             }
             throw "Couldn't find feature with id: " + featureId;

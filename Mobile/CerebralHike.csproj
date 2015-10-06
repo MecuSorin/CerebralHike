@@ -62,7 +62,12 @@
     <Content Include="www\lib\ionic\js\ionic.bundle.min.js" />
     <Content Include="www\lib\ionic\js\ionic.js" />
     <Content Include="www\lib\ionic\js\ionic.min.js" />
+    <Content Include="www\lib\ngCordova\dist\ng-cordova-mocks.js" />
+    <Content Include="www\lib\ngCordova\dist\ng-cordova-mocks.min.js" />
+    <Content Include="www\lib\ngCordova\dist\ng-cordova.js" />
+    <Content Include="www\lib\ngCordova\dist\ng-cordova.min.js" />
     <Content Include="www\templates\learn_feature.html" />
+    <Content Include="www\templates\download.html" />
     <Content Include="www\templates\learn_list.html" />
     <Content Include="www\templates\menu.html" />
   </ItemGroup>
@@ -143,6 +148,12 @@
     <Content Include="www\lib\ionic\scss\_type.scss" />
     <Content Include="www\lib\ionic\scss\_util.scss" />
     <Content Include="www\lib\ionic\scss\_variables.scss" />
+    <Content Include="www\lib\ngCordova\.bower.json" />
+    <Content Include="www\lib\ngCordova\bower.json" />
+    <Content Include="www\lib\ngCordova\CHANGELOG.md" />
+    <Content Include="www\lib\ngCordova\LICENSE" />
+    <Content Include="www\lib\ngCordova\package.json" />
+    <Content Include="www\lib\ngCordova\README.md" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="www\js\0_typings\angularjs\angular-animate.d.ts" />
@@ -178,10 +189,13 @@
     <TypeScriptCompile Include="www\js\1_Bootstrap\interfaces.d.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ApiFactory.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ErrorsService.ts" />
+    <TypeScriptCompile Include="www\js\2_Services\DownloadService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureDetailController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\DownloadController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureListController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\ErrorController.ts" />
+    <TypeScriptCompile Include="www\js\4_Models\Feature.ts" />
     <TypeScriptCompile Include="www\lib\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>
   <ItemGroup>

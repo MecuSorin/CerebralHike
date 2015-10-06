@@ -1,1 +1,20 @@
-/* Empty. Add your own CSS if you like */
+
+.icon-sized {
+    font-size: 32px;
+}
+
+.icon-pushable {
+    color: blue;
+}
+
+.item-spaced {
+    display: table-cell;
+    margin-left: 4em;
+    min-width: 40px;
+    vertical-align: middle;
+}
+
+.item-row {
+    display: table-row;
+    min-height: 45px;
+}

@@ -25,13 +25,20 @@ module cerebralhike {
         }
 
         private ShowFeatures = () => {
-            this.Features = this.FeatureService.Features;
-            if (0 == this.Features.length) {
-                this.FailedToLoadFeatures = "Data is not available";
-            }
-            else {
-                this.FailedToLoadFeatures = ""; //= "Found " + this.Features.length;
-            }
+            this.FeatureService.LoadFeatures()
+                .then(features => {
+                    this.Features = features;
+                    if (0 == this.Features.length) {
+                        this.FailedToLoadFeatures = "Data is not available";
+                    }
+                    else {
+                        this.FailedToLoadFeatures = ""; //= "Found " + this.Features.length;
+                    }
+                })
+                .catch(reason=> {
+                    this.Features = [];
+                    this.FailedToLoadFeatures = reason;
+                });
         }
 	}
 

@@ -1,6 +1,7 @@
 ﻿/// <reference path="../1_Bootstrap/app.bootstrap.ts" />
 /// <reference path="../0_typings/ionic/ionic.d.ts" />
 /// <reference path="../0_typings/jquery/jquery.d.ts" />
+/// <reference path="../0_typings/cordova/plugins/filesystem.d.ts" />
 
 module cerebralhike {
 
@@ -8,6 +9,7 @@ module cerebralhike {
         private static root = 'appdata/';
         private static images = "img/";
         public static FeaturesList = "legend.json";
+        public static LegendSource = "https://www.dropbox.com/s/b6nglf3fo770auy/legend.json?dl=1";
 
         public static GetRoot(): string {
             var url = ApiVerbs.root;
@@ -18,7 +20,7 @@ module cerebralhike {
         }
 
         public static GetImagesRoot(): string {
-            var url = ApiVerbs.root;
+            var url = ApiVerbs.images;
             if (ionic.Platform.isAndroid()) {
                 url = "/android_asset/www/" + ApiVerbs.images;
             }
@@ -26,10 +28,33 @@ module cerebralhike {
         }
     }
 
+    export class LocalVerbs {
+        public static GetStorage(): string { return cordova.file.externalDataDirectory; }//cordova.file.dataDirectory;// 'externalDataDirectory'; 
+        public static legend = 'legend.json';
+    }
+
+    export class Utils {
+        public static ToJson<T>(source: T): string {
+            var jsonOutput = angular.toJson(source);
+            console.log('Serialized object to: ' + jsonOutput);
+            return jsonOutput;
+        }
+    }
+
     export class ApiFactory {
         public static Alias = "apiFactory";
         constructor(public $http: angular.IHttpService, public $q: angular.Enhanced.IQService, public ErrorsService: ErrorsService) {
         }
+
+      
+        public GetOriginalLegend(): angular.IPromise<ICloudFeature[]> {
+            return this.GetResponse<ICloudFeature[]>(ApiVerbs.LegendSource);
+        }
+
+        public GetLegend(filePath: string): angular.IPromise<IFeature[]> {
+            return this.GetResponse<IFeature[]>(filePath);
+        }
+
 
         public GetFeaturesList = (): angular.IPromise<IFeature[]> => {
             return this.GetResponse<IFeature[]>(ApiVerbs.GetRoot()+"legend.json");
@@ -41,7 +66,7 @@ module cerebralhike {
 
         public GetResponse<T>(url: string): angular.IPromise<T> {
             var result = this.$http.get<T>(url);
-            console.log(url);
+            console.log('Request made for: ' +url);
             return this.WrapResponse<T>(result);
         }
 
@@ -65,6 +90,7 @@ module cerebralhike {
         }
 
         public static ExtractContent(html: string, elementId: string): string {
+            console.log('Extracting json from: ' + html);
             return jQuery(html).filter(elementId).html();
         }
     }

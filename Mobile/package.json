@@ -23,7 +23,9 @@
     {
       "locator": "https://github.com/dawsonloudon/VideoPlayer.git",
       "id": "com.dawsonloudon.videoplayer"
-    }
+    },
+    "org.apache.cordova.file",
+    "org.apache.cordova.file-transfer"
   ],
   "cordovaPlatforms": [
     "android"

@@ -6,7 +6,7 @@ declare var ionic: any;
 
 declare module angular.Enhanced {
     interface IQService extends angular.IQService {
-        Reject<T>(reason?: any): angular.IPromise<T> | T
+        Reject<Tp>(reason?: any): angular.IPromise<Tp>; //|Tp nu mai merge ???
     }
 }
 
@@ -15,13 +15,31 @@ declare module cerebralhike {
 		Id: string;
 	}
 
-    interface IFeature {
-        Id: number;
-		Japan: string;
-		Ro: string;
+    interface ICloudFeature {
+        Japan: string;
+        Book: string;
+        Ro: string;
 		ClipMain: string;
 		ClipExtra: string;
-	}
+    }
+
+    interface IFeature {
+        Id: number;
+        Book: string;
+        Japan: string;
+        Ro: string;
+        ClipMainCloud: string;
+        ClipMainLocal: string;
+        ClipExtraCloud: string;
+        ClipExtraLocal: string;
+        ToBeDownloaded: boolean;
+        ToBeDeleted: boolean;
+        ToHide: boolean;
+    }
+
+    interface IFeatureVerifier {
+        UpdateLocalClipsStatus(feature: IFeature);
+    }
 }
 
 declare module cerebralhike.mocks {
@@ -29,3 +47,29 @@ declare module cerebralhike.mocks {
 
 //declare var bluetoothSerial: blueclient.mocks.IBluetoothSerialMock;
 //declare var myVeryOwnDebuggingSpace: any;
+
+
+declare module ngCordova {
+
+    interface RemovedItem<T> {
+        success: boolean;
+        fileRemoved: T;
+    }
+
+
+
+    interface File {
+        getFreeDiskSpace(): angular.IPromise<number>;
+        checkDir(path: string, dir: string): angular.IPromise<Entry>;   //
+        checkFile(path: string, fileName: string): angular.IPromise<Entry>; //
+        createDir(path: string, dirName: string, replaceBool: boolean): angular.IPromise<DirectoryEntry>;
+        createFile(path: string, fileName: string, replaceBool: boolean): angular.IPromise<FileEntry>;
+        removeDir(path: string, dir: string): angular.IPromise<RemovedItem<DirectoryEntry>>;
+        removeFile(path: string, fileName: string): angular.IPromise<RemovedItem<FileEntry>>;
+        removeRecursively(path: string, dir: string): angular.IPromise<RemovedItem<DirectoryEntry>>;
+        writeFile(path: string, fileName: string, text: string, replaceBool: boolean): angular.IPromise<ProgressEvent>;
+        writeExistingFile(path: string, fileName: string, text: string): angular.IPromise<ProgressEvent>;
+        readAsText(path: string, fileName: string): angular.IPromise<string>; //?
+        readAsDataURL(path: string, fileName: string): angular.IPromise<string>; //?
+    }
+}

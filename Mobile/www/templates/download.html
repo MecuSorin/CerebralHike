@@ -1,0 +1,17 @@
+<ion-view view-title="All files">
+    <ion-content>
+        <p>Mark all files to be downloaded for optimal performance and to lower the costs!</p>
+        <ion-list ng-show="DownloadCtrl.FailedToLoad == ''">
+            <ion-item class="item-row" ng-repeat="file in DownloadCtrl.Files" 
+                      type="item-text-wrap" >
+                <i class="icon {{DownloadCtrl.GetIconIsLocal(file)}} item-spaced icon-sized"></i>
+                <i class="icon {{DownloadCtrl.GetIconMarkedForDownload(file)}} item-spaced icon-sized icon-pushable"
+                   ng-click="DownloadCtrl.ChangeToDownload(file)"
+                   ng-show="DownloadCtrl.IsDownloadButtonVisible(file)"></i>
+                <div class="item-spaced">{{file.Book}} - {{file.Japan}}</div>
+                
+            </ion-item>
+        </ion-list>
+        <h2 ng-show="DownloadCtrl.FailedToLoad != ''">{{DownloadCtrl.FailedToLoad}}</h2>
+    </ion-content>
+</ion-view>
