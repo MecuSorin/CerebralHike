@@ -1,34 +1,35 @@
-1	L	Ippon-dori	Prinderea unui brat	5:29	5:38	5:50	6:08
-1	L	Gyaku-ude-dori	Prinderea inversa a bratului	6:23	6:30	6:40	6:51	6:57	7:10
-1	L	Hiji-gaeshi	Rasucirea cotului	7:24	7:28	7:45	7:50
-1	L	Kuruma-daoshi	Rasturnarea in roata	8:06	8:12	8:28	8:37
-1	L	Shime-gaeshi	Rasucire la strangulare	8:52	8:59	9:11	9:21	9:23	9:32
-1	L	Daki-jime	Imbratisarea bratului la strangulare	9:47	9:52	10:07	10:17
-1	L	Karami-nage	Aruncarea infasurata	10:33	10:39	10:54	11:08
-1	L	Kote-gaeshi	Rasucirea incheieturii mainii	11:24	11:29	11:44	11:54
-1	L	Nukite-dori	Prinderea mainii intinse	12:09	12:17	12:31	12:49	12:51	13:01
-1	L	Hiza-jime	Strangularea cu genunchii	13:16	13:20	13:30	13:38
-1	M	Hanmi-nage	Aruncarea cu bustul	13:54	14:00	14:18	14:29	14:31	14:40	14:42	14:52
-1	M	Ura-otoshi	Aruncarea pe spate	15:01	15:05	15:23	15:31
-1	M	Izori	Rasturnarea peste umar din fata in spate	15:44	15:47	15:58	16:03
-1	M	Kata-otoshi	Aruncarea peste umar din fata in spate	16:13	16:17	16:32	16:37
-1	M	Irimi-nage	Aruncarea prin intrare cu corpul	16:49	16:57	17:14	17:24
-1	H	Ippon-dori	Prinderea unui brat	17:39	17:44	17:59	18:28
-1	H	Kuruma-daoshi	Rasturnarea in roata	18:36	18:41	18:54	19:01
-1	H	Gyaku-ude-dori	Prinderea inversa a bratului	19:11	19:18	19:32	20:01
-1	H	Koshi-guruma	Rotirea peste sold	20:12	20:17	20:31	20:39
-1	H	Karami-nage	Aruncarea infasurata	20:51	20:56	21:08	21:17
-1	H	Ura-otoshi	Aruncarea pe spate	21:26	21:30	21:44	21:50
-1	H	Obi-otoshi	Aruncarea de la centura	22:01	22:05	22:16	22:22
-1	H	Kiri-gaeshi	Taiere/intrare si rasucire/aruncare	22:33	22:37	22:48	22:55
-1	H	Kote-gaeshi	Rasucirea incheieturii mainii	23:04	23:09	23:23	23:31
-1	H	Shiho-nage	Aruncarea in patru directii	23:41	23:46	24:00	24:07
-1	H	Shiho-nage ura	Aruncarea in patru directii - spate	24:17	24:22	24:31	24:40
-1	HB	Tachi-Eri-dori	Prinderea de guler din spate	24:55	25:00	25:15	25:25
-1	HB	Ryo-Kata-hineri	Insurubarea cu ambii umeri	25:34	25:37	25:54	26:00
-1	HB	Ryo-Hiji-gaeshi	Rasucirea cu ambele coate	26:10	26:14	26:28	26:35
-1	HB	Daki-jime-dori	Prinderea la strangulare prin imbratisare	26:44	26:50	27:07	27:18
-1	HB	Kata-otoshi	Aruncarea peste umar din spate in fata	27:27	27:30	27:43	27:49
+Ikka-Jo		Front	Suwari-Waza	Ippon-dori	Prinderea unui brat	5:29	5:38	5:50	6:08
+Ikka-Jo		Front	Suwari-Waza	Gyaku-ude-dori	Prinderea inversa a bratului	6:23	6:30	6:40	6:51	6:57	7:10
+Ikka-Jo		Front	Suwari-Waza	Hiji-gaeshi	Rasucirea cotului	7:24	7:28	7:45	7:50
+Ikka-Jo		Front	Suwari-Waza	Kuruma-daoshi	Rasturnarea in roata	8:06	8:12	8:28	8:37
+Ikka-Jo		Front	Suwari-Waza	Shime-gaeshi	Rasucire la strangulare	8:52	8:59	9:11	9:21	9:23	9:32
+Ikka-Jo		Front	Suwari-Waza	Daki-jime	Imbratisarea bratului la strangulare	9:47	9:52	10:07	10:17
+Ikka-Jo		Front	Suwari-Waza	Karami-nage	Aruncarea infasurata	10:33	10:39	10:54	11:08
+Ikka-Jo		Front	Suwari-Waza	Kote-gaeshi	Rasucirea incheieturii mainii	11:24	11:29	11:44	11:54
+Ikka-Jo		Front	Suwari-Waza	Nukite-dori	Prinderea mainii intinse	12:09	12:17	12:31	12:49	12:51	13:01
+Ikka-Jo		Front	Suwari-Waza	Hiza-jime	Strangularea cu genunchii	13:16	13:20	13:30	13:38
+Ikka-Jo		Front	Hanmi Handachi Waza	Hanmi-nage	Aruncarea cu bustul	13:54	14:00	14:18	14:29	14:31	14:40	14:42	14:52
+Ikka-Jo		Front	Hanmi Handachi Waza	Ura-otoshi	Aruncarea pe spate	15:01	15:05	15:23	15:31
+Ikka-Jo		Front	Hanmi Handachi Waza	Izori	Rasturnarea peste umar din fata in spate	15:44	15:47	15:58	16:03
+Ikka-Jo		Front	Hanmi Handachi Waza	Kata-otoshi	Aruncarea peste umar din fata in spate	16:13	16:17	16:32	16:37
+Ikka-Jo		Front	Hanmi Handachi Waza	Irimi-nage	Aruncarea prin intrare cu corpul	16:49	16:57	17:14	17:24
+Ikka-Jo		Front	Tachi-Waza	Ippon-dori	Prinderea unui brat	17:39	17:44	17:59	18:28
+Ikka-Jo		Front	Tachi-Waza	Kuruma-daoshi	Rasturnarea in roata	18:36	18:41	18:54	19:01
+Ikka-Jo		Front	Tachi-Waza	Gyaku-ude-dori	Prinderea inversa a bratului	19:11	19:18	19:32	20:01
+Ikka-Jo		Front	Tachi-Waza	Koshi-guruma	Rotirea peste sold	20:12	20:17	20:31	20:39
+Ikka-Jo		Front	Tachi-Waza	Karami-nage	Aruncarea infasurata	20:51	20:56	21:08	21:17
+Ikka-Jo		Front	Tachi-Waza	Ura-otoshi	Aruncarea pe spate	21:26	21:30	21:44	21:50
+Ikka-Jo		Front	Tachi-Waza	Obi-otoshi	Aruncarea de la centura	22:01	22:05	22:16	22:22
+Ikka-Jo		Front	Tachi-Waza	Kiri-gaeshi	Taiere/intrare si rasucire/aruncare	22:33	22:37	22:48	22:55
+Ikka-Jo		Front	Tachi-Waza	Kote-gaeshi	Rasucirea incheieturii mainii	23:04	23:09	23:23	23:31
+Ikka-Jo		Front	Tachi-Waza	Shiho-nage	Aruncarea in patru directii	23:41	23:46	24:00	24:07
+Ikka-Jo		Front	Tachi-Waza	Shiho-nage ura	Aruncarea in patru directii - spate	24:17	24:22	24:31	24:40
+Ikka-Jo		Back	Tachi-Waza	Tachi-Eri-dori	Prinderea de guler din spate	24:55	25:00	25:15	25:25
+Ikka-Jo		Back	Tachi-Waza	Ryo-Kata-hineri	Insurubarea cu ambii umeri	25:34	25:37	25:54	26:00
+Ikka-Jo		Back	Tachi-Waza	Ryo-Hiji-gaeshi	Rasucirea cu ambele coate	26:10	26:14	26:28	26:35
+Ikka-Jo		Back	Tachi-Waza	Daki-jime-dori	Prinderea la strangulare prin imbratisare	26:44	26:50	27:07	27:18
+Ikka-Jo		Back	Tachi-Waza	Kata-otoshi	Aruncarea peste umar din spate in fata	27:27	27:30	27:43	27:49
+Ikka-Jo	Shomenuchi	Back	Tachi-Waza	Kata-otoshi	Aruncarea peste umar din spate in fata	27:27	27:30	27:43	27:49
 
 
 

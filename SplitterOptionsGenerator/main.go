@@ -15,24 +15,38 @@ import (
 
 var (
 	markers    *string = flag.String("markers", "Markers.txt", "Path to the markers file")
-	outputName *string = flag.String("outputName", "clip_%03d_{suffix}.mp4", "Name of the output files something like clip_%03_{suffix}.mp4 will generate clip_003_m.mp4")
+	outputName *string = flag.String("outputName", "{book}_%03d_{suffix}.mp4", "Name of the output files something like clip_%03_{suffix}_{book}_{technique}.mp4 will generate clip_003_m_ikkajo_ippondori.mp4")
 	//movieFile *string = flag.String("movieFile", "~/Downloads/Hidden MOkuroku Ikka-jo + Nika-jo  MP4.mp4", "Path to the video file")
 )
 
 const (
-	ColJapan = 2
-	ColRo	 = 3
-	ColStart = 4
-	ColEnd	 = 5
+	//_ = iota
+	ColBook = iota
+	ColAttack
+	ColFront
+	ColPosition
+	ColJapan
+	ColRo
+	ColStart
+	ColEnd
 )
 
 type move struct {
+	Book			  string
+	Attack			  string
+	Front			  string
+	Position		  string
 	Japan			  string
 	Ro				  string
 	Marker			  FileMarker
 	AdditionalMarkers []FileMarker
 }
+
 type jsonMove struct {
+	Book	  string
+	Attack	  string
+	Front	  string
+	Position  string
 	Japan	  string
 	Ro		  string
 	ClipMain  string
@@ -48,7 +62,7 @@ func (m move) GetClips() (string, string) {
 	return "," + mainClip, "," + additionals[2:]
 }
 
-func NewMove(japan, ro, start, end string, additionalMarkers ...string) move {
+func NewMove(book, attack, front, position, japan, ro, start, end string, additionalMarkers ...string) move {
 	if 0 != len(additionalMarkers)%2 {
 		log.Fatal("Invalid additional markers count for: " + japan)
 	}
@@ -57,7 +71,7 @@ func NewMove(japan, ro, start, end string, additionalMarkers ...string) move {
 		marker := NewFileMarker(additionalMarkers[i], additionalMarkers[i+1])
 		markers = append(markers, marker)
 	}
-	return move{japan, ro, NewFileMarker(start, end), markers}
+	return move{Book: book, Attack: attack, Front: front, Position: position, Japan: japan, Ro: ro, Marker: NewFileMarker(start, end), AdditionalMarkers: markers}
 }
 
 type FileMarker struct {
@@ -101,8 +115,13 @@ func getProperHour(time string) string {
 	}
 }
 
-func getClipName(suffix string, index int) string {
-	return fmt.Sprintf(strings.Replace(*outputName, "{suffix}", suffix, 1), index)
+func (m move) getClipName(suffix string, index int) string {
+	book := clean(m.Book)
+	technique := clean(m.Japan)
+	name := strings.Replace(*outputName, "{suffix}", suffix, 1)
+	name = strings.Replace(name, "{book}", book, 1)
+	name = strings.Replace(name, "{technique}", technique, 1)
+	return fmt.Sprintf(name, index)
 }
 
 func saveOptionsFile(partsText, suffix string) {
@@ -181,7 +200,7 @@ func main() {
 	}
 	allMoves := make([]move, len(rows))
 	for i, each := range rows {
-		m := NewMove(each[ColJapan], each[ColRo], each[ColStart], each[ColEnd], each[ColEnd+1:]...)
+		m := NewMove(each[ColBook], each[ColAttack], each[ColFront], each[ColPosition], each[ColJapan], each[ColRo], each[ColStart], each[ColEnd], each[ColEnd+1:]...)
 		allMoves[i] = m
 	}
 	jsonOutput := make([]jsonMove, len(allMoves))
@@ -190,7 +209,7 @@ func main() {
 		mainOpt, extraOpt := each.GetClips()
 		splittingOptionsMain = splittingOptionsMain + mainOpt
 		splittingOptionsExtra = splittingOptionsExtra + extraOpt
-		jsonOutput[i] = jsonMove{each.Japan, each.Ro, getClipName("m", i+1), getClipName("e", i+1)}
+		jsonOutput[i] = jsonMove{each.Book, each.Attack, each.Front, each.Position, each.Japan, each.Ro, each.getClipName("m", i+1), each.getClipName("e", i+1)}
 		//		fmt.Printf("%s \t %s %d %d", each.Japan, each.Ro, each.Marker.start, each.Marker.end)
 		//cmd := exec.Command("vlc", "--start-time", each.Marker.start, "--stop-time", each.Marker.end, *movieFile)
 		//err = cmd.Run()
@@ -202,4 +221,8 @@ func main() {
 	saveOptionsFile(splittingOptionsExtra[1:], "e")
 	saveDataToJSON(jsonOutput)
 	log.Println("Generated the options file")
+}
+
+func clean(text string) string {
+	return strings.Replace(strings.Replace(text, " ", "", -1), "-", "", -1)
 }

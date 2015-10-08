@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"regexp"
 	"strings"
 
@@ -17,6 +19,7 @@ var (
 	parentTag		   = flag.String("parentTag", "ol", "Type of the parent tag")
 	tags			   = flag.String("tags", "a,img", "Tags with relevant info")
 	tagsAttribute	   = flag.String("tagsAttribute", "href,src", "The attributes with relevat data for the specified tags")
+	jsonOut			   = flag.String("out", "out.json", "The output json file")
 	splittedTags	   []string
 	splittedAttributes []string
 	clips			   = make([]Clip, 0)
@@ -53,8 +56,28 @@ func main() {
 	if len(splittedTags) != len(splittedAttributes) {
 		log.Fatal("Invalid arguments for child tags and attributes, the count doesn't match")
 	}
-
-	ProcessNode(doc, nil)
+	// accumulator
+	clipsChan := make(chan Clip)
+	generatedClips := []Clip{}
+	// processor
+	go func(clipsCh chan Clip) {
+		defer close(clipsCh)
+		ProcessNode(doc, nil, clipsChan)
+	}(clipsChan)
+	for clip := range clipsChan {
+		generatedClips = append(generatedClips, clip)
+	}
+	// serialize output
+	outFile, err := os.Create(*jsonOut)
+	if nil != err {
+		fmt.Println("Failed to create the output file")
+		fmt.Println(generatedClips)
+		return
+	}
+	defer outFile.Close()
+	encoder := json.NewEncoder(outFile)
+	encoder.Encode(generatedClips)
+	fmt.Println("Done")
 }
 
 func min(a, b int) int {
@@ -69,7 +92,7 @@ func show(text string) {
 	}
 }
 
-func ProcessNode(node *html.Node, parent *html.Node) {
+func ProcessNode(node *html.Node, parent *html.Node, clipsCh chan Clip) {
 	findedParent := parent
 	if nil != parent {
 		if node.Type == html.ElementNode {
@@ -77,7 +100,7 @@ func ProcessNode(node *html.Node, parent *html.Node) {
 				if node.Data == tag {
 					for _, attr := range node.Attr {
 						if attr.Key == splittedAttributes[tagIndex] {
-							process(parent, node, attr.Val, tagIndex)
+							process(parent, node, attr.Val, tagIndex, clipsCh)
 							break
 						}
 					}
@@ -91,11 +114,11 @@ func ProcessNode(node *html.Node, parent *html.Node) {
 		}
 	}
 	for child := node.FirstChild; child != nil; child = child.NextSibling {
-		ProcessNode(child, findedParent)
+		ProcessNode(child, findedParent, clipsCh)
 	}
 }
 
-func process(parent, node *html.Node, attributeValue string, childTabIndex int) {
+func process(parent, node *html.Node, attributeValue string, childTabIndex int, clipsCh chan Clip) {
 	//fmt.Printf("Parent: %s	Child: %s\tAttribute: %s\n", parent.Data, node.Data, attributeValue)
 	// asssume that childTabIndex == 0 will genereate a new Clip - the order of tags and attributes is important
 	switch childTabIndex {
@@ -107,7 +130,8 @@ func process(parent, node *html.Node, attributeValue string, childTabIndex int) 
 	case 1:
 		clip := clips[-1+len(clips)]
 		clip.Thumbnail = attributeValue
-		fmt.Println(clip)
+		//		fmt.Println(clip)
+		clipsCh <- clip
 	}
 
 }

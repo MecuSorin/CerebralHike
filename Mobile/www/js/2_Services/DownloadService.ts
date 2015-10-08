@@ -13,7 +13,7 @@ module cerebralhike {
         public Files: IFeature[] = [];
 
         public LoadLegend = (): angular.IPromise<void> => {
-            if (this.Files) {
+            if (this.Files.length >0 ) {
                 return this.$q.when();
             }
             var remotePromise = this.apiFactory.GetOriginalLegend();
