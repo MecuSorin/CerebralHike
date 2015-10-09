@@ -1,6 +1,6 @@
 <ion-view view-title="All files">
     <ion-content>
-        <p>Mark all files to be downloaded for optimal performance and to lower the costs!</p>
+        <p ng-click="DownloadCtrl.DownloadFiles()">Tap this text to download the files!</p>
         <ion-list ng-show="DownloadCtrl.FailedToLoad == ''">
             <ion-item class="item-row" ng-repeat="file in DownloadCtrl.Files" 
                       type="item-text-wrap" >

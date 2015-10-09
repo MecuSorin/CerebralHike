@@ -15,6 +15,10 @@ module cerebralhike {
                 .finally(()=>this.RefreshScope());
         }
 
+        public DownloadFiles = () => {
+            this.downloadService.DownloadFiles();
+        }
+
         private ShowErrorLoadingLegend = reason=> {
             this.Files = [];
             this.FailedToLoad = "Failed to load: " + reason.toString();

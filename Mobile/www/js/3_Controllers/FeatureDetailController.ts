@@ -8,20 +8,25 @@ module cerebralhike {
 
         constructor(public $scope: angular.IScope, FeatureService: FeatureService, $stateParams) {
             this.Feature = FeatureService.GetFeature($stateParams.featureId);
-            this.ImageSrcMain = ApiVerbs.GetImagesRoot() + "funny.png";
+            console.log("Using feature: " + this.Feature.Japan);
+            //this.ImageSrcMain = Utils.GetSafe(this.Feature.ThumbMainLocal, Utils.GetSafe(this.Feature.ThumbMainCloud, ApiVerbs.GetImagesRoot() + "funny.png"));
+            //this.ImageSrcExtra = Utils.GetSafe(this.Feature.ThumbExtraLocal, Utils.GetSafe(this.Feature.ThumbExtraCloud, ApiVerbs.GetImagesRoot() + "flow.png"));
+
+            this.ImageSrcMain =  ApiVerbs.GetImagesRoot() + "funny.png";
             this.ImageSrcExtra = ApiVerbs.GetImagesRoot() + "flow.png";
+
         }
 
         public ImageSrcMain: string;
         public ImageSrcExtra: string;
 
         public PlayClipMain = () => {
-            var clipLocation = (this.Feature.ClipMainLocal) ? this.Feature.ClipMainLocal : this.Feature.ClipMainCloud;
+            var clipLocation = Utils.GetSafe(this.Feature.ClipMainLocal, this.Feature.ClipMainCloud);
             this.playClip(clipLocation);
         }
 
         public PlayClipExtra = () => {
-            var clipLocation = (this.Feature.ClipExtraLocal) ? this.Feature.ClipExtraLocal : this.Feature.ClipExtraCloud;
+            var clipLocation = Utils.GetSafe(this.Feature.ClipExtraLocal, this.Feature.ClipExtraCloud);
             this.playClip(clipLocation);
         }
 

@@ -4,6 +4,16 @@ declare var cerebralhikeApp: angular.IModule;
 declare var VideoPlayer: any;
 declare var ionic: any;
 
+//declare var bluetoothSerial: blueclient.mocks.IBluetoothSerialMock;
+//declare var myVeryOwnDebuggingSpace: any;
+//declare var cordova:Cordova;
+
+declare module cerebralhike.mocks {
+
+}
+
+
+
 declare module angular.Enhanced {
     interface IQService extends angular.IQService {
         Reject<Tp>(reason?: any): angular.IPromise<Tp>; //|Tp nu mai merge ???
@@ -16,22 +26,34 @@ declare module cerebralhike {
 	}
 
     interface ICloudFeature {
-        Japan: string;
         Book: string;
+        Attack: string;
+        Front: string;
+        Position: string;
+        Japan: string;
         Ro: string;
-		ClipMain: string;
-		ClipExtra: string;
+        ClipMain: string;
+        ClipExtra: string;
+        ThumbMain: string;
+        ThumbExtra: string;
     }
 
     interface IFeature {
         Id: number;
         Book: string;
+        Attack: string;
+        Front: string;
+        Position: string;
         Japan: string;
         Ro: string;
         ClipMainCloud: string;
+        ThumbMainCloud: string;
         ClipMainLocal: string;
+        ThumbMainLocal: string;
         ClipExtraCloud: string;
+        ThumbExtraCloud: string;
         ClipExtraLocal: string;
+        ThumbExtraLocal: string;
         ToBeDownloaded: boolean;
         ToBeDeleted: boolean;
         ToHide: boolean;
@@ -41,12 +63,6 @@ declare module cerebralhike {
         UpdateLocalClipsStatus(feature: IFeature);
     }
 }
-
-declare module cerebralhike.mocks {
-}
-
-//declare var bluetoothSerial: blueclient.mocks.IBluetoothSerialMock;
-//declare var myVeryOwnDebuggingSpace: any;
 
 
 declare module ngCordova {
@@ -58,7 +74,7 @@ declare module ngCordova {
 
 
 
-    interface File {
+    interface IFile {
         getFreeDiskSpace(): angular.IPromise<number>;
         checkDir(path: string, dir: string): angular.IPromise<Entry>;   //
         checkFile(path: string, fileName: string): angular.IPromise<Entry>; //
@@ -71,5 +87,9 @@ declare module ngCordova {
         writeExistingFile(path: string, fileName: string, text: string): angular.IPromise<ProgressEvent>;
         readAsText(path: string, fileName: string): angular.IPromise<string>; //?
         readAsDataURL(path: string, fileName: string): angular.IPromise<string>; //?
+    }
+
+    interface IFileTransfer {
+        download(source: string, filePath: string, options: any, trustAllHosts: boolean): angular.IPromise<FileEntry>;
     }
 }

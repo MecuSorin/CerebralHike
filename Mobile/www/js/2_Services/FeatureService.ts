@@ -64,11 +64,14 @@ module cerebralhike {
         //    return deferred.promise;
         //}
 
-        public GetFeature(featureId: string): IFeature {
+        public GetFeature = (featureId: string): IFeature => {
+            console.log("Searching for feature with id: " + featureId);
             if (!this.downloadService.Files) throw "No features loaded yet";
             for (var i = 0, lngth = this.downloadService.Files.length; i < lngth; i++) {
-                if (this.downloadService.Files[i].Id === parseInt(featureId)) {
-                    return this.downloadService.Files[i][i];
+                var feature = this.downloadService.Files[i];
+                if (feature.Id === parseInt(featureId)) {
+                    console.log("Found feature: " + feature.Japan);
+                    return feature;
                 }
             }
             throw "Couldn't find feature with id: " + featureId;

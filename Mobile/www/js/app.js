@@ -1,6 +1,6 @@
 cerebralhikeApp
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function( $http) {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -89,11 +89,22 @@ cerebralhikeApp
   //})
 ;
   // if none of the above states are matched, use this as the fallback
-  //$urlRouterProvider.otherwise('/app/learn');
-  $urlRouterProvider.otherwise('/app/download');
+  $urlRouterProvider.otherwise('/app/learn');
+  //$urlRouterProvider.otherwise('/app/download');
 });
+
+function testJquery(http) {
+    var url = "https://www.dropbox.com/sh/zkfic58fepffr1k/AADCQvTbgtODplwWdbE84ph-a?dl=1";
+    http.get(url)
+        .then(function (r) { console.log(r.data) })
+        .catch(function (e) { console.log(e) });
+}
+
 window.ionic.Platform.ready(function () {
+  
+
+
     var ddddoc = document.getElementsByTagName('body')[0];
     console.log('Ionic is ready, bootstraping on ' + ddddoc.outerHTML);
-    angular.bootstrap(ddddoc, ['starter'])
+    angular.bootstrap(ddddoc, ['mocker', 'starter'])
 });

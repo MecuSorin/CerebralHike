@@ -187,6 +187,7 @@
     <TypeScriptCompile Include="www\js\0_typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="www\js\1_Bootstrap\app.bootstrap.ts" />
     <TypeScriptCompile Include="www\js\1_Bootstrap\interfaces.d.ts" />
+    <TypeScriptCompile Include="www\js\1_Bootstrap\mocks.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ApiFactory.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ErrorsService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\DownloadService.ts" />
@@ -196,6 +197,7 @@
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureListController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\ErrorController.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Feature.ts" />
+    <TypeScriptCompile Include="www\js\4_Models\Utils.ts" />
     <TypeScriptCompile Include="www\lib\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>
   <ItemGroup>

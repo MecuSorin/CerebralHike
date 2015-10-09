@@ -124,8 +124,8 @@ func process(parent, node *html.Node, attributeValue string, childTabIndex int, 
 	switch childTabIndex {
 	case 0:
 		originalName := getOriginalName(attributeValue, regexPattern)
-		newClip := Clip{OriginalName: originalName,
-			Url: attributeValue}
+		url := strings.Replace(attributeValue, "?dl=0", "?dl=1", 1)
+		newClip := Clip{OriginalName: originalName, Url: url}
 		clips = append(clips, newClip)
 	case 1:
 		clip := clips[-1+len(clips)]

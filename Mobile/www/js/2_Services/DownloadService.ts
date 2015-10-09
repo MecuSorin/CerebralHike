@@ -4,13 +4,15 @@ module cerebralhike {
     export class DownloadService implements IFeatureVerifier {
 		public static Alias = "downloadService";
 
-        constructor(public apiFactory: ApiFactory, public $q: angular.Enhanced.IQService, public $cordovaFileTransfer, public $cordovaFile: ngCordova.File)
+        constructor(public apiFactory: ApiFactory, public $q: angular.Enhanced.IQService, public $cordovaFileTransfer: ngCordova.IFileTransfer, public $cordovaFile: ngCordova.IFile)
         {
             this.RootDirEntryPromise = this.GetRootDirPromise();
         }
         private RootDirEntryPromise: angular.IPromise<string>;
         private LegendFilePath: string = null;
         public Files: IFeature[] = [];
+        private DownloadFilesInProgress: boolean = false;
+
 
         public LoadLegend = (): angular.IPromise<void> => {
             if (this.Files.length >0 ) {
@@ -78,13 +80,16 @@ module cerebralhike {
             this.$cordovaFile.writeFile(LocalVerbs.GetStorage(), LocalVerbs.legend, Utils.ToJson(this.Files), true)
                 .then(progress=> saveDeferrer.resolve())
                 .catch(failCreateFile=> saveDeferrer.reject(failCreateFile));
+            saveDeferrer.promise
+                .then(() => console.log("Saved the legend.json"))
+                .catch(reason=> console.log("Failed to save the legend.json"));
             return saveDeferrer.promise;
         }
 
 
         private UpdateLocalLegend = (cloudLegend: IFeature[]): angular.IPromise<void> => {
             console.log("local have " + this.Files.length);
-            console.log("remove has " + cloudLegend.length);
+            console.log("cloud have " + cloudLegend.length);
 
             for (var c = 0, clngth = cloudLegend.length; c < clngth; c++) {
                 var newFeatureFound = true;
@@ -107,6 +112,63 @@ module cerebralhike {
             this.$cordovaFile.checkFile(feature.ClipMainLocal, '').catch(reason => feature.ClipMainLocal = null);
             this.$cordovaFile.checkFile(feature.ClipExtraLocal, '').catch(reason => feature.ClipExtraLocal = null);
         }
+
+        public DownloadFiles = () => {
+            if (this.DownloadFilesInProgress) {
+                this.DownloadFilesInProgress = false;
+                return;
+            }
+            this.DownloadFilesInProgress = true;
+            var downloadCounts = 0;
+            for (var i = 0, lngth = this.Files.length; i < lngth; i++) {
+                if (!this.DownloadFilesInProgress) {        //sequencial javascript -- has no sense
+                    return;
+                }
+                var feature = this.Files[i];
+                if (4 < downloadCounts) break;
+                if (!feature.ToBeDownloaded) continue;
+                downloadCounts += 1;
+                var someChange = false;
+                if (!feature.ClipMainLocal) {
+                    this.DownloadFile(feature.ClipMainCloud).then(localPath=> this.Files[i].ClipMainLocal = localPath);
+                    someChange = true;
+                }
+                if (!feature.ClipExtraLocal) {
+                    this.DownloadFile(feature.ClipExtraCloud).then(localPath=> this.Files[i].ClipExtraLocal = localPath);
+                    someChange = true;
+                }
+
+                if (feature.ClipMainLocal && feature.ClipExtraLocal) {
+                    this.Files[i].ToBeDownloaded = false;
+                    someChange = true;
+                }
+                if (someChange) {
+                    this.SaveLocalLegend();
+                }
+            }
+        }
+
+        private DownloadFile = (remotePath: string): angular.IPromise<string> => {
+            var suggestedName = DownloadService.GetRandomNameForLocalFile(remotePath);
+            var localName = LocalVerbs.GetNewFile(suggestedName);
+            return this.$cordovaFileTransfer
+                .download(remotePath, localName, null, true)
+                .then(savedFile=> this.$q.when(savedFile.nativeURL));
+            //return this.$q.reject("disabled download");
+        }
+
+        private static GetRandomNameForLocalFile(url: string): string {
+            try {
+                var results = /\b([\w.]+).dl=/gi.exec(url);
+                var suggestedName = results[1].replace(/(.*)\.(\w+)/gi, "$1" + Utils.GetDateMarker() + ".$2");
+                return suggestedName;
+            }
+            catch (eeee) {
+                return "unknownSource" + Utils.GetDateMarker();
+            }
+        }
+
+
 	}
 
 	cerebralhikeServices.service(DownloadService.Alias, DownloadService);

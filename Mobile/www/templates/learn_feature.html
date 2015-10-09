@@ -7,6 +7,9 @@
 <ion-view view-title="{{FeatureDetailCtrl.Feature.Id}}. {{FeatureDetailCtrl.Feature.Japan}}" style="background-color: azure;">
   <ion-content class="padding">
     <h2>{{FeatureDetailCtrl.Feature.Ro}}</h2>
+      <p>{{FeatureDetailCtrl.Feature.Position}}</p>
+      <p>{{FeatureDetailCtrl.Feature.Attack}}  </p>
+      <p>{{FeatureDetailCtrl.Feature.Front}}   </p>
       <img src="{{FeatureDetailCtrl.ImageSrcMain}}" ng-click="FeatureDetailCtrl.PlayClipMain()"  width="128" height="128" />
       <img src="{{FeatureDetailCtrl.ImageSrcExtra}}" ng-click="FeatureDetailCtrl.PlayClipExtra()"  width="128" height="128" />
 

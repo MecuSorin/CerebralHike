@@ -10,7 +10,6 @@ module cerebralhike {
         private static images = "img/";
         public static FeaturesList = "legend.json";
         public static LegendSource = "https://www.dropbox.com/s/b6nglf3fo770auy/legend.json?dl=1";
-
         public static GetRoot(): string {
             var url = ApiVerbs.root;
             if (ionic.Platform.isAndroid()) {
@@ -31,13 +30,11 @@ module cerebralhike {
     export class LocalVerbs {
         public static GetStorage(): string { return cordova.file.externalDataDirectory; }//cordova.file.dataDirectory;// 'externalDataDirectory'; 
         public static legend = 'legend.json';
-    }
 
-    export class Utils {
-        public static ToJson<T>(source: T): string {
-            var jsonOutput = angular.toJson(source);
-            console.log('Serialized object to: ' + jsonOutput);
-            return jsonOutput;
+        public static GetNewFile(suggestedName: string): string {
+            var name = LocalVerbs.GetStorage() + suggestedName;
+            console.log("Creating file: " + name);
+            return name;
         }
     }
 
