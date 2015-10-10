@@ -16,7 +16,7 @@ module cerebralhike {
         }
 
         public DownloadFiles = () => {
-            this.downloadService.DownloadFiles();
+            this.downloadService.DownloadAllFiles();
         }
 
         private ShowErrorLoadingLegend = reason=> {

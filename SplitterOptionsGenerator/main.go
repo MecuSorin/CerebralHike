@@ -16,6 +16,7 @@ import (
 var (
 	markers    *string = flag.String("markers", "Markers.txt", "Path to the markers file")
 	outputName *string = flag.String("outputName", "{book}_%03d_{suffix}.mp4", "Name of the output files something like clip_%03_{suffix}_{book}_{technique}.mp4 will generate clip_003_m_ikkajo_ippondori.mp4")
+	cleanNames *bool   = flag.Bool("cleanNames", false, "Use it for clean book or tehnique names from spaces or dashes")
 	//movieFile *string = flag.String("movieFile", "~/Downloads/Hidden MOkuroku Ikka-jo + Nika-jo  MP4.mp4", "Path to the video file")
 )
 
@@ -116,8 +117,14 @@ func getProperHour(time string) string {
 }
 
 func (m move) getClipName(suffix string, index int) string {
-	book := clean(m.Book)
+	book := m.Book
+	if *cleanNames {
+		book = clean(m.Book)
+	}
 	technique := clean(m.Japan)
+	if *cleanNames {
+		technique = clean(m.Japan)
+	}
 	name := strings.Replace(*outputName, "{suffix}", suffix, 1)
 	name = strings.Replace(name, "{book}", book, 1)
 	name = strings.Replace(name, "{technique}", technique, 1)

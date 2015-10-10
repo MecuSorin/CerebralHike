@@ -49,7 +49,6 @@
             if (first.ClipMainCloud != second.ClipMainCloud) {
                 console.log('updated [' + first.Japan + '] main clip url from:' + first.ClipMainCloud + ' to:' + second.ClipMainCloud);
             }
-
             first.ClipMainCloud = second.ClipMainCloud;
             first.ClipExtraCloud = second.ClipExtraCloud;
             first.ThumbMainCloud = second.ThumbMainCloud;
@@ -58,8 +57,6 @@
             first.Attack = second.Attack;
             first.Front = second.Front;
             first.Position = second.Position;
-
-            
         }
 
         private static FromLocal(source: IFeature, featureVerifier: IFeatureVerifier) {
@@ -105,6 +102,14 @@
             result.ToBeDeleted = false;
             result.ToHide = false;
             return result;
+        }
+
+        public static UpdateToDownloadAfterResourceDownload(feature: IFeature) {
+            feature.ToBeDownloaded = (feature.ClipMainLocal && feature.ClipExtraLocal) ? true : false;
+            if (!feature.ToBeDownloaded) {
+                console.log("Feature " + feature.Japan + " have both clips now");
+            }
+
         }
     }
 }

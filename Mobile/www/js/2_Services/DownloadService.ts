@@ -11,8 +11,6 @@ module cerebralhike {
         private RootDirEntryPromise: angular.IPromise<string>;
         private LegendFilePath: string = null;
         public Files: IFeature[] = [];
-        private DownloadFilesInProgress: boolean = false;
-
 
         public LoadLegend = (): angular.IPromise<void> => {
             if (this.Files.length >0 ) {
@@ -109,50 +107,61 @@ module cerebralhike {
         }
 
         public UpdateLocalClipsStatus = (feature: IFeature) => {
-            this.$cordovaFile.checkFile(feature.ClipMainLocal, '').catch(reason => feature.ClipMainLocal = null);
-            this.$cordovaFile.checkFile(feature.ClipExtraLocal, '').catch(reason => feature.ClipExtraLocal = null);
+            if (feature.ClipMainLocal) {
+                this.$cordovaFile.checkFile(feature.ClipMainLocal, '').catch(reason => feature.ClipMainLocal = null);
+            }
+            if (feature.ClipExtraLocal) {
+                this.$cordovaFile.checkFile(feature.ClipExtraLocal, '').catch(reason => feature.ClipExtraLocal = null);
+            }
         }
 
-        public DownloadFiles = () => {
-            if (this.DownloadFilesInProgress) {
-                this.DownloadFilesInProgress = false;
-                return;
+        private DownloadFeatureResources = (feature: IFeature): angular.IPromise<void> => {
+            if (!feature.ToBeDownloaded) {
+                return this.$q.when();
             }
-            this.DownloadFilesInProgress = true;
-            var downloadCounts = 0;
-            for (var i = 0, lngth = this.Files.length; i < lngth; i++) {
-                if (!this.DownloadFilesInProgress) {        //sequencial javascript -- has no sense
-                    return;
-                }
-                var feature = this.Files[i];
-                if (4 < downloadCounts) break;
-                if (!feature.ToBeDownloaded) continue;
-                downloadCounts += 1;
-                var someChange = false;
-                if (!feature.ClipMainLocal) {
-                    this.DownloadFile(feature.ClipMainCloud).then(localPath=> this.Files[i].ClipMainLocal = localPath);
-                    someChange = true;
-                }
-                if (!feature.ClipExtraLocal) {
-                    this.DownloadFile(feature.ClipExtraCloud).then(localPath=> this.Files[i].ClipExtraLocal = localPath);
-                    someChange = true;
-                }
+            var resourceDownloadDeferrer = this.$q.defer<void>();
+            var mainPromise = this.$q.when();
+            if (!feature.ClipMainLocal) {
+                mainPromise = this.DownloadFile(feature.ClipMainCloud).then(localPath=> {
+                    feature.ClipMainLocal = localPath;
+                    Feature.UpdateToDownloadAfterResourceDownload(feature);
+                    return this.SaveLocalLegend();
+                });
+            }
+            var extraPromise = this.$q.when();
+            if (!feature.ClipExtraLocal) {
+                extraPromise = this.DownloadFile(feature.ClipExtraCloud).then(localPath=> {
+                    feature.ClipExtraLocal = localPath;
+                    Feature.UpdateToDownloadAfterResourceDownload(feature);
+                    return this.SaveLocalLegend();
+                });
+            }
+            this.$q.all([mainPromise, extraPromise])
+                .then(() => resourceDownloadDeferrer.resolve())
+                .catch(reason=> resourceDownloadDeferrer.reject(reason));
+            return resourceDownloadDeferrer.promise;
+        }
 
-                if (feature.ClipMainLocal && feature.ClipExtraLocal) {
-                    this.Files[i].ToBeDownloaded = false;
-                    someChange = true;
-                }
-                if (someChange) {
-                    this.SaveLocalLegend();
-                }
+        public DownloadAllFiles = () => {
+            this.DownloadFiles(0);
+        }
+
+
+        public DownloadFiles = (featureIndex: number): angular.IPromise<void> => {
+            if (featureIndex >= this.Files.length) {
+                return this.$q.reject("Work done");
             }
+            return this.DownloadFeatureResources(this.Files[featureIndex])
+                .then(() => this.DownloadFiles(featureIndex + 1));
         }
 
         private DownloadFile = (remotePath: string): angular.IPromise<string> => {
             var suggestedName = DownloadService.GetRandomNameForLocalFile(remotePath);
             var localName = LocalVerbs.GetNewFile(suggestedName);
+            var noOptions = null;
+            var ignoreCertificateIssues = true;
             return this.$cordovaFileTransfer
-                .download(remotePath, localName, null, true)
+                .download(remotePath, localName, noOptions, ignoreCertificateIssues)
                 .then(savedFile=> this.$q.when(savedFile.nativeURL));
             //return this.$q.reject("disabled download");
         }
