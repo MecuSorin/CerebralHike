@@ -4,9 +4,9 @@ module cerebralhike {
 	export class TestGlossaryController {
         public static Alias = "TestGlossaryController";
 
-        private static NumberOfAnswers : number = 9;
+        private static NumberOfAnswers : number = 10;
 
-        constructor(public $scope: angular.IScope, public downloadService: DownloadService) {
+        constructor(public downloadService: DownloadService, public scoreService: ScoreService) {
             this.downloadService.LoadLegend().then(() => this.PrepaireQuestion());
         }
 
@@ -15,8 +15,7 @@ module cerebralhike {
         public Answers: Answer[] = [];
         public LastQuestionText: string = '';
         public IsJapanQuestion: boolean = true;
-        public CorrectAnswers: number = 0;
-        public QuestionsMade: number = 0;
+
         public ShowNextQuestionButtonVisible: boolean = true;
 
         public PrepaireQuestion = () => {
@@ -27,18 +26,18 @@ module cerebralhike {
             this.LastQuestionText = this.Question;
             this.Answers = [];
             this.Question = '';
-            this.QuestionsMade = 1 + this.QuestionsMade;
+            this.scoreService.NewQuestionWasMade();
 
             var chosenFeatures = Utils.GetRandomItems(this.downloadService.Files, TestGlossaryController.NumberOfAnswers);
             var questionIndex: number = -1;
             do {
                 questionIndex = Utils.GetRandom(chosenFeatures.length);
-                this.Question = new Answer(chosenFeatures[questionIndex], !this.IsJapanQuestion, true).Text;
+                this.Question = new GlossaryAnswer(chosenFeatures[questionIndex], !this.IsJapanQuestion, true).Text;
             }
             while (this.Question == this.LastQuestionText);
             var answers = [];
             for (var i = 0, lngth = chosenFeatures.length; i < lngth; i++) {
-                var answer = new Answer(chosenFeatures[i], this.IsJapanQuestion, questionIndex == i);
+                var answer = new GlossaryAnswer(chosenFeatures[i], this.IsJapanQuestion, questionIndex == i);
                 answers.push(answer);
             }
             this.Answers = answers;
@@ -51,7 +50,7 @@ module cerebralhike {
             console.log("User chosed the answer: " + answer.Text);
             var success = answer.Chose();
             if (success) {
-                this.CorrectAnswers = 1 + this.CorrectAnswers;
+                this.scoreService.NewCorrectAnswer();
             }
             this.ShowNextQuestionButtonVisible = true;
         }

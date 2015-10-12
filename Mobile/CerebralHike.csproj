@@ -191,6 +191,7 @@
     <TypeScriptCompile Include="www\js\1_Bootstrap\interfaces.d.ts" />
     <TypeScriptCompile Include="www\js\1_Bootstrap\mocks.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ApiFactory.ts" />
+    <TypeScriptCompile Include="www\js\2_Services\ScoreService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ErrorsService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\DownloadService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />

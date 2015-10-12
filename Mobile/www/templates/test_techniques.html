@@ -1,5 +1,25 @@
 <ion-view view-title="Teste tehnici">
+    <ion-nav-buttons side="right">
+        {{TestTechniquesCtrl.scoreService.CorrectAnswers}}/{{TestTechniquesCtrl.scoreService.QuestionsMade-1}}
+    </ion-nav-buttons>
     <ion-content>
-        <p>Neimplementat</p>
+        <img src="{{TestTechniquesCtrl.QuestionImage}}" ng-click="TestTechniquesCtrl.PlayClip()" width="128" height="128" />
+        <ul>
+            <li ng-repeat="answer in TestTechniquesCtrl.Answers"
+                class="answer {{answer.Class}}"
+                ng-click="TestTechniquesCtrl.SelectedAnswer(answer)">{{answer.Text}}</li>
+        </ul>
     </ion-content>
+    <ion-footer-bar class="bar-stable">
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-help"
+                    ng-show="TestTechniquesCtrl.QuestionWasUsed"
+                    ng-click="TestTechniquesCtrl.RevealCorrectAnswer();"></button>
+        </div>
+        <div class="buttons pull-right">
+            <a class="button icon-right ion-chevron-right button-calm"
+               ng-show="TestTechniquesCtrl.ShowNextQuestionButtonVisible"
+               ng-click="TestTechniquesCtrl.PrepaireQuestion();">Urmatoarea intrebare</a>
+        </div>
+    </ion-footer-bar>
 </ion-view>

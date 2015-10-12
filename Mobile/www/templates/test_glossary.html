@@ -3,7 +3,7 @@
         <button class="button button-icon button-clear ion-chatbubbles"
                 ng-class="{enabledBlue: TestGlossaryCtrl.IsJapanQuestion, disabledGray: !TestGlossaryCtrl.IsJapanQuestion}"
                 ng-click="TestGlossaryCtrl.IsJapanQuestion = !TestGlossaryCtrl.IsJapanQuestion;"></button>
-        {{TestGlossaryCtrl.CorrectAnswers}}/{{TestGlossaryCtrl.QuestionsMade-1}}
+        {{TestGlossaryCtrl.scoreService.CorrectAnswers}}/{{TestGlossaryCtrl.scoreService.QuestionsMade-1}}
     </ion-nav-buttons>
     <ion-content>
         <div class="card">
