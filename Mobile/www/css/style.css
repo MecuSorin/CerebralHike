@@ -18,3 +18,25 @@
     display: table-row;
     min-height: 45px;
 }
+
+.unusedAnswer {
+    background-color: white;
+}
+.correctAnswer {
+    background-color: #33cd5f;
+}
+.invalidAnswer {
+    background-color: #ffc900;
+}
+
+.answer {
+    margin:0.7em;
+}
+
+.enabledBlue {
+    color: #11c1f3 !important;
+}
+
+.disabledGray {
+    color: gray !important;
+}

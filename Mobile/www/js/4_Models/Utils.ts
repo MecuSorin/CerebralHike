@@ -38,6 +38,29 @@
             return text;
         }
 
+        public static GetRandom(upToValue: number): number {
+            return Math.floor(Math.random() * Math.abs(upToValue));
+        }
+
+        public static GetRandomItems<T>(collection: T[], numberOfItemsToTake: number): T[] {
+            if (collection.length < numberOfItemsToTake) {
+                return collection;
+            }
+            var set = new Set();
+            var lngth = collection.length;
+            var result: T[] = [];
+            for (var i = Math.abs(numberOfItemsToTake); i > 0; i--) {
+                var newItem = false;
+                var chosen: number = -1;
+                do {
+                    chosen = Utils.GetRandom(lngth);
+                    newItem = set.Add(chosen);
+                }
+                while (!newItem);
+                result.push(collection[chosen]);
+            }
+            return result;
+        }
     }
 
 } 
