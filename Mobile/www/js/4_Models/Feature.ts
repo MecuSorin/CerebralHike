@@ -109,7 +109,14 @@
             if (!feature.ToBeDownloaded) {
                 console.log("Feature " + feature.Japan + " have both clips now");
             }
+        }
 
+        public static HasLocalMainClip(feature: IFeature): boolean {
+            return feature.ClipMainLocal ? true : false;
+        }
+
+        public static HasLocalExtraClip(feature: IFeature): boolean {
+            return feature.ClipExtraLocal ? true : false;
         }
     }
 }

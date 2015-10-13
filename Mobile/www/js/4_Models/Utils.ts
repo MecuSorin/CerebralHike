@@ -1,4 +1,6 @@
-﻿module cerebralhike {
+﻿/// <reference path="../1_bootstrap/interfaces.d.ts" />
+
+module cerebralhike {
     export class Utils {
         public static ToJson<T>(source: T): string {
             var jsonOutput = angular.toJson(source);
@@ -6,13 +8,14 @@
             return jsonOutput;
         }
 
-        public static GetSafe(text: string, defaultValue: string): string {
-            if (!text) {
-                console.log("Fallback to: " + defaultValue);
-                return defaultValue;
+        public static PlayClip(clipLocation: string) {
+            if (clipLocation && clipLocation.length > 1) {
+                console.log("Play clip: " + clipLocation)
+                var host: any = window.plugins;
+                host.videoPlayer.play(clipLocation);
+            } else {
+                console.log("No clip to play");
             }
-            console.log("--------- using: [" + text + "]");
-            return text;
         }
 
         public static GetDateMarker(): string {
@@ -61,6 +64,14 @@
             }
             return result;
         }
-    }
 
+        public static HaveAnyNetworkConnection(network: ngCordova.INetworkService): boolean {
+            return network.getNetwork().type != Connection.NONE;
+        }
+
+        public static HaveCheapNetworkConnection(network: ngCordova.INetworkService): boolean {
+            var networkType = network.getNetwork().type;
+            return (networkType == Connection.WIFI) || (networkType == Connection.ETHERNET);
+        }
+    }
 } 

@@ -26,7 +26,6 @@ module cerebralhike {
             this.LastQuestionText = this.Question;
             this.Answers = [];
             this.Question = '';
-            this.scoreService.NewQuestionWasMade();
 
             var chosenFeatures = Utils.GetRandomItems(this.downloadService.Files, TestGlossaryController.NumberOfAnswers);
             var questionIndex: number = -1;
@@ -49,6 +48,7 @@ module cerebralhike {
 
             console.log("User chosed the answer: " + answer.Text);
             var success = answer.Chose();
+            this.scoreService.NewQuestionWasAnsweredTo();
             if (success) {
                 this.scoreService.NewCorrectAnswer();
             }

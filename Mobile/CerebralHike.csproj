@@ -26,7 +26,6 @@
     <Content Include="www\css\ionic.app.css" />
     <Content Include="www\css\ionic.app.min.css" />
     <Content Include="www\css\style.css" />
-    <Content Include="www\img\ionic.png" />
     <Content Include="www\index.html" />
     <Content Include="www\js\0_typings\cordova\.gitignore" />
     <Content Include="www\js\app.js" />
@@ -209,6 +208,7 @@
     <TypeScriptCompile Include="www\lib\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="www\img\" />
     <Folder Include="www\js\generated\" />
   </ItemGroup>
   <PropertyGroup>

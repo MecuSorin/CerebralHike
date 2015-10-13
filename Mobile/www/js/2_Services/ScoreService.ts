@@ -5,10 +5,10 @@ module cerebralhike {
 		public static Alias = "scoreService";
     
         public CorrectAnswers: number = 0;
-        public QuestionsMade: number = 0;
+        public QuestionsAnswered: number = 0;
 
-        public NewQuestionWasMade = () => {
-            this.QuestionsMade = 1 + this.QuestionsMade;
+        public NewQuestionWasAnsweredTo = () => {
+            this.QuestionsAnswered = 1 + this.QuestionsAnswered;
         }
 
         public NewCorrectAnswer = () => {

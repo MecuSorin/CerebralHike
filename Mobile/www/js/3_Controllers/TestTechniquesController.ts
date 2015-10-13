@@ -20,12 +20,10 @@ module cerebralhike {
         public PlayClip = () => {
             if (!this.Question) return;
 
-            var clipLocation = Utils.GetSafe(this.Question.ClipMainLocal, this.Question.ClipMainCloud);
-            console.log("Play clip: " + clipLocation)
-            var host: any = window.plugins;
-            host.videoPlayer.play(clipLocation);
+            this.downloadService
+                .GetClipSafe(this.Question.ClipMainLocal, this.Question.ClipMainCloud)
+                .then(clipLocation => Utils.PlayClip(clipLocation));
         }
-
 
         public PrepaireQuestion = () => {
             if (!this.ShowNextQuestionButtonVisible) return;
@@ -35,7 +33,6 @@ module cerebralhike {
             this.LastQuestionId = (this.Question ? this.Question.Id : -1);
             this.Answers = [];
             this.Question = null;
-            this.scoreService.NewQuestionWasMade();
 
             var chosenFeatures = Utils.GetRandomItems(this.downloadService.Files, TestTechniquesController.NumberOfAnswers);
             var questionIndex: number = -1;
@@ -60,6 +57,7 @@ module cerebralhike {
 
             console.log("User chosed the answer: " + answer.Text);
             var success = answer.Chose();
+            this.scoreService.NewQuestionWasAnsweredTo();
             if (success) {
                 this.scoreService.NewCorrectAnswer();
             }

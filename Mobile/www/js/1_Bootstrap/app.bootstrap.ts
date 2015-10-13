@@ -5,7 +5,7 @@
 module cerebralhike {
     var dependinces = [];
     if (ionic.Platform.isAndroid()) {
-        dependinces = ['mocker', 'ngCordova', 'ngCordova.plugins.file', 'ngCordova.plugins.fileTransfer'];
+        dependinces = ['mocker', 'ngCordova', 'ngCordova.plugins.file', 'ngCordova.plugins.fileTransfer', 'ngCordova.plugins.network'];
     }
 
     export var cerebralhikeServices = angular.module('cerebralhike.services', dependinces);

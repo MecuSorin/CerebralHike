@@ -1,4 +1,3 @@
-
 .icon-sized {
     font-size: 32px;
 }
@@ -39,4 +38,9 @@
 
 .disabledGray {
     color: gray !important;
+}
+
+.menuDark {
+    color:white!important;
+    background-color:darkgray!important;
 }

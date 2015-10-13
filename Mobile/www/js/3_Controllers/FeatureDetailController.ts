@@ -3,50 +3,32 @@
 module cerebralhike {
 	export class FeatureDetailController {
         public static Alias ="FeatureDetailController";
-        public static $inject=['$scope', FeatureService.Alias, '$stateParams'];
         public Feature: IFeature = null;
 
-        constructor(public $scope: angular.IScope, FeatureService: FeatureService, $stateParams) {
+        constructor(public downloadService: DownloadService, FeatureService: FeatureService, $stateParams) {
+            console.log('Searching for feature with id:' + $stateParams.featureId);
             this.Feature = FeatureService.GetFeature($stateParams.featureId);
             console.log("Using feature: " + this.Feature.Japan);
             //this.ImageSrcMain = Utils.GetSafe(this.Feature.ThumbMainLocal, Utils.GetSafe(this.Feature.ThumbMainCloud, ApiVerbs.GetImagesRoot() + "funny.png"));
             //this.ImageSrcExtra = Utils.GetSafe(this.Feature.ThumbExtraLocal, Utils.GetSafe(this.Feature.ThumbExtraCloud, ApiVerbs.GetImagesRoot() + "flow.png"));
-
             this.ImageSrcMain =  ApiVerbs.GetImagesRoot() + "funny.png";
             this.ImageSrcExtra = ApiVerbs.GetImagesRoot() + "flow.png";
-
         }
 
         public ImageSrcMain: string;
         public ImageSrcExtra: string;
 
         public PlayClipMain = () => {
-            var clipLocation = Utils.GetSafe(this.Feature.ClipMainLocal, this.Feature.ClipMainCloud);
-            this.playClip(clipLocation);
+            this.downloadService.GetClipSafe(this.Feature.ClipMainLocal, this.Feature.ClipMainCloud)
+                .then(clipLocation => Utils.PlayClip(clipLocation));
         }
 
         public PlayClipExtra = () => {
-            var clipLocation = Utils.GetSafe(this.Feature.ClipExtraLocal, this.Feature.ClipExtraCloud);
-            this.playClip(clipLocation);
+            this.downloadService.GetClipSafe(this.Feature.ClipExtraLocal, this.Feature.ClipExtraCloud)
+                .then(clipLocation => Utils.PlayClip(clipLocation));
         }
 
-        private playClip(clipLocation: string) {
-            console.log("Play clip: " + clipLocation)
-            var host: any = window.plugins;
-            host.videoPlayer.play(clipLocation);
-            /*, {
-                    volume: 0.5,
-                    scalingMode: VideoPlayer.SCALING_MODE.SCALE_TO_FIT_WITH_CROPPING
-                },
-                function () {
-                    console.log("video completed");
-                },
-                function (err) {
-                    console.log(err);
-                }
-            );
-            */
-        }
+        
     }
     //https://github.com/moust/cordova-plugin-videoplayer
     //https://github.com/dawsonloudon/VideoPlayer

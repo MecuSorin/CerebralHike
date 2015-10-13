@@ -92,4 +92,8 @@ declare module ngCordova {
     interface IFileTransfer {
         download(source: string, filePath: string, options: any, trustAllHosts: boolean): angular.IPromise<FileEntry>;
     }
+
+    interface INetworkService {
+        getNetwork(): Connection;
+    }
 }

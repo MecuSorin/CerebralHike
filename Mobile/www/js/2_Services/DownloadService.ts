@@ -4,19 +4,28 @@ module cerebralhike {
     export class DownloadService implements IFeatureVerifier {
 		public static Alias = "downloadService";
 
-        constructor(public apiFactory: ApiFactory, public $q: angular.Enhanced.IQService, public $cordovaFileTransfer: ngCordova.IFileTransfer, public $cordovaFile: ngCordova.IFile)
+        constructor(public apiFactory: ApiFactory
+            , public $q: angular.Enhanced.IQService
+            , public $cordovaFileTransfer: ngCordova.IFileTransfer
+            , public $cordovaFile: ngCordova.IFile
+            , public $ionicPopup: ionic.popup.IonicPopupService
+            , public $cordovaNetwork: ngCordova.INetworkService)
         {
             this.RootDirEntryPromise = this.GetRootDirPromise();
         }
         private RootDirEntryPromise: angular.IPromise<string>;
         private LegendFilePath: string = null;
         public Files: IFeature[] = [];
+        public IgnoreNetworkCosts: boolean = false;
 
         public LoadLegend = (): angular.IPromise<void> => {
             if (this.Files.length >0 ) {
                 return this.$q.when();
             }
-            var remotePromise = this.apiFactory.GetOriginalLegend();
+            var remotePromise: angular.IPromise<ICloudFeature[]> = this.$q.when<ICloudFeature[]>([]);
+            if (Utils.HaveAnyNetworkConnection(this.$cordovaNetwork)) {
+                remotePromise = this.apiFactory.GetOriginalLegend();
+            } 
             var localPromise = this.CreateLocalLegendIfNotExists().then(() => this.ReadLocalLegend());
             return this.$q.all([localPromise, remotePromise])
                 .then(() => {
@@ -26,23 +35,6 @@ module cerebralhike {
                         .then(files=> this.UpdateLocalLegend(files))
                 });
         }
-
-        //private ExitOnNoConnection() {
-        //    if (window.Connection) {
-        //        if (navigator.connection.type == Connection.NONE) {
-        //            $ionicPopup.confirm({
-        //                title: "Internet Disconnected",
-        //                content: "The internet is disconnected on your device."
-        //            })
-        //                .then(function (result) {
-        //                    if (!result) {
-        //                        ionic.Platform.exitApp();
-        //                    }
-        //                });
-        //        }
-        //    }
-        //}
-
 
         private ReadLocalLegend = (): angular.IPromise<IFeature[]> => {
             return this.RootDirEntryPromise
@@ -124,10 +116,10 @@ module cerebralhike {
         }
 
         public UpdateLocalClipsStatus = (feature: IFeature) => {
-            if (feature.ClipMainLocal) {
+            if (Feature.HasLocalMainClip(feature)) {
                 this.$cordovaFile.checkFile(feature.ClipMainLocal, '').catch(reason => feature.ClipMainLocal = null);
             }
-            if (feature.ClipExtraLocal) {
+            if (Feature.HasLocalExtraClip(feature)) {
                 this.$cordovaFile.checkFile(feature.ClipExtraLocal, '').catch(reason => feature.ClipExtraLocal = null);
             }
         }
@@ -138,7 +130,7 @@ module cerebralhike {
             }
             var resourceDownloadDeferrer = this.$q.defer<void>();
             var mainPromise = this.$q.when();
-            if (!feature.ClipMainLocal) {
+            if (!Feature.HasLocalMainClip(feature)) {
                 mainPromise = this.DownloadFile(feature.ClipMainCloud).then(localPath=> {
                     feature.ClipMainLocal = localPath;
                     Feature.UpdateToDownloadAfterResourceDownload(feature);
@@ -146,7 +138,7 @@ module cerebralhike {
                 });
             }
             var extraPromise = this.$q.when();
-            if (!feature.ClipExtraLocal) {
+            if (!Feature.HasLocalExtraClip(feature)) {
                 extraPromise = this.DownloadFile(feature.ClipExtraCloud).then(localPath=> {
                     feature.ClipExtraLocal = localPath;
                     Feature.UpdateToDownloadAfterResourceDownload(feature);
@@ -159,7 +151,28 @@ module cerebralhike {
             return resourceDownloadDeferrer.promise;
         }
 
+        public GetClipSafe = (local: string, remote: string): angular.IPromise<string> => {
+            if (local) return this.$q.when(local);
+            if (Utils.HaveCheapNetworkConnection(this.$cordovaNetwork) || this.IgnoreNetworkCosts) return this.$q.when(remote);
+            return this.$ionicPopup.confirm({
+                title: 'Conexiunea poate genera costuri',
+                template: 'Continui redarea acestui film si a celorlate (viitoare din aceasta sesiune), in ciuda posibilitatii de a cauza costuri suplimentare?'
+            }).then(response=> {
+                if (response) {
+                    this.IgnoreNetworkCosts = true;
+                    return this.$q.when(remote);
+                } else {
+                    this.IgnoreNetworkCosts = false;
+                    return "";
+                }
+            });
+        }
+
         public DownloadAllFiles = () => {
+            //if (!Utils.HaveCheapNetworkConnection(this.$cordovaNetwork)) {
+            //    this.$ionicPopup.alert({ title: "Retea costisitoare", template: "Conectati-va la un WiFi inainte de a descarca filmele (volumul mare de date va genera costuri)" });
+            //    return;
+            //}
             this.DownloadFiles(0);
         }
 
@@ -183,9 +196,49 @@ module cerebralhike {
             //return this.$q.reject("disabled download");
         }
 
+        public RemoveLocalFiles = (feature: IFeature): angular.IPromise<any> => {
+            var mainPromise = this.$q.when();
+            if (Feature.HasLocalMainClip(feature)) {
+                mainPromise = this.GetRemoveFilePromise(feature.ClipMainLocal)
+                    .then(_ => {
+                        console.log("main deleted");
+                        feature.ClipMainLocal = '';
+                        Feature.UpdateToDownloadAfterResourceDownload(feature);
+                        return this.SaveLocalLegend();
+                    });
+            }
+            var extraPromise = this.$q.when();
+            if (Feature.HasLocalExtraClip(feature)) {
+                extraPromise = this.GetRemoveFilePromise(feature.ClipExtraLocal)
+                    .then(_ => {
+                        console.log("extra deleted");
+                        feature.ClipMainLocal = '';
+                        Feature.UpdateToDownloadAfterResourceDownload(feature);
+                        return this.SaveLocalLegend();
+                    });
+            }
+            return this.$q.all([mainPromise, extraPromise]);
+        }
+
+        private GetRemoveFilePromise = (url: string): angular.IPromise<any> => {
+            var fileExistsPromise = this.$cordovaFile.checkFile(url, '');
+            fileExistsPromise.then(abbbbbb => {
+                console.log('File about to be removed: ' + url);
+            });
+            var deleteFilePromise = fileExistsPromise.then(entry=> {
+                //this.$cordovaFile.removeFile(url, '')     this doesn't work
+                var removedFileDeferrer = this.$q.defer();
+                entry.remove(() => removedFileDeferrer.resolve(), reason=> removedFileDeferrer.reject(reason));
+                return removedFileDeferrer.promise;
+            });
+            deleteFilePromise.then(caaaaaa => console.log('File deleted: ' + url));
+            return deleteFilePromise;
+        }
+
         private static GetRandomNameForLocalFile(url: string): string {
             try {
-                var results = /\b([\w.]+).dl=/gi.exec(url);
+                var results = /\b([\w\._-]+).dl=/gi.exec(url);
+                console.log(results[1]);
                 var suggestedName = results[1].replace(/(.*)\.(\w+)/gi, "$1" + Utils.GetDateMarker() + ".$2");
                 return suggestedName;
             }
