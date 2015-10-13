@@ -26,7 +26,7 @@
 ## Mobile
 	The ionic mobile app. Is not a commercial app! Is used by a limited number of peopleon android devices with external SD.
 
-
+Latest Android build can be downloaded from here: https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=WKPS2DT7CNBBQ&lc=RO&item_name=Encourages%20further%20development%20of%20application%20CerebralHike&item_number=open%2dsource%20CerebralHike&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">
 <img src="https://camo.githubusercontent.com/bce14c8e2e39ba0464551b34602b4c60c182526b/68747470733a2f2f7777772e70617970616c6f626a656374732e636f6d2f656e5f55532f692f62746e2f62746e5f646f6e6174655f4c472e676966" alt="[paypal]" data-canonical-src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="max-width:100%;">

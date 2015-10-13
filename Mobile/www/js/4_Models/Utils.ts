@@ -71,6 +71,7 @@ module cerebralhike {
 
         public static HaveCheapNetworkConnection(network: ngCordova.INetworkService): boolean {
             var networkType = network.getNetwork().type;
+            console.log('Network type is:' + networkType);
             return (networkType == Connection.WIFI) || (networkType == Connection.ETHERNET);
         }
     }
