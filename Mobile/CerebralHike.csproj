@@ -65,8 +65,8 @@
     <Content Include="www\lib\ngCordova\dist\ng-cordova-mocks.min.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.min.js" />
-    <Content Include="www\templates\test_glossary.html" />
-    <Content Include="www\templates\test_techniques.html" />
+    <Content Include="www\templates\quiz_glossary.html" />
+    <Content Include="www\templates\quiz_techniques.html" />
     <Content Include="www\templates\learn_feature.html" />
     <Content Include="www\templates\download.html" />
     <Content Include="www\templates\learn_list.html" />
@@ -195,8 +195,9 @@
     <TypeScriptCompile Include="www\js\2_Services\DownloadService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\MenuController.ts" />
-    <TypeScriptCompile Include="www\js\3_Controllers\TestTechniquesController.ts" />
-    <TypeScriptCompile Include="www\js\3_Controllers\TestGlossaryController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\QuizBaseController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\QuizTechniquesController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\QuizGlossaryController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureDetailController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\DownloadController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureListController.ts" />

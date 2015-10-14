@@ -1,45 +1,45 @@
 /// <reference path="../1_Bootstrap/app.bootstrap.ts" />
 
 module cerebralhike {
-	export class TestGlossaryController {
-        public static Alias = "TestGlossaryController";
-
-        private static NumberOfAnswers : number = 10;
+	export class QuizBaseController {
+        private static DefaultNumberOfAnswers : number = 10;
 
         constructor(public downloadService: DownloadService, public scoreService: ScoreService) {
             this.downloadService.LoadLegend().then(() => this.PrepaireQuestion());
         }
 
-        public Question: string = '';
         public QuestionWasUsed: boolean = false;
         public Answers: Answer[] = [];
-        public LastQuestionText: string = '';
-        public IsJapanQuestion: boolean = true;
-
         public ShowNextQuestionButtonVisible: boolean = true;
+        // to be implemented by inheritors
+        public ResetQuestion = (): void => { };
+        public GetNumberOfAnswers(): number { return QuizBaseController.DefaultNumberOfAnswers; }
+        public CreateQuestion = (feature: IFeature): void => { };
+        public IsSameQuestion = (): boolean => { return false; };
+        public CreateAnswerAndAppend = (answers: Answer[], feature: IFeature, isCorrect: boolean): void => { };
+        public SetupQuestion = (): void => { };
 
         public PrepaireQuestion = () => {
             if (!this.ShowNextQuestionButtonVisible) return;
             console.log('Prepaire next question');
             this.ShowNextQuestionButtonVisible = false;
             this.QuestionWasUsed = false;
-            this.LastQuestionText = this.Question;
             this.Answers = [];
-            this.Question = '';
+            this.ResetQuestion();
 
-            var chosenFeatures = Utils.GetRandomItems(this.downloadService.Files, TestGlossaryController.NumberOfAnswers);
+            var chosenFeatures = Utils.GetRandomItems(this.downloadService.Files, this.GetNumberOfAnswers());
             var questionIndex: number = -1;
             do {
                 questionIndex = Utils.GetRandom(chosenFeatures.length);
-                this.Question = new GlossaryAnswer(chosenFeatures[questionIndex], !this.IsJapanQuestion, true).Text;
+                this.CreateQuestion(chosenFeatures[questionIndex]);
             }
-            while (this.Question == this.LastQuestionText);
+            while (this.IsSameQuestion());
             var answers = [];
             for (var i = 0, lngth = chosenFeatures.length; i < lngth; i++) {
-                var answer = new GlossaryAnswer(chosenFeatures[i], this.IsJapanQuestion, questionIndex == i);
-                answers.push(answer);
+                this.CreateAnswerAndAppend(answers, chosenFeatures[i], i == questionIndex);
             }
             this.Answers = answers;
+            this.SetupQuestion();
         }
 
         public SelectedAnswer = (answer: Answer) => {
@@ -63,6 +63,4 @@ module cerebralhike {
             }
         }
 	}
-
-	cerebralhikeControllers.controller(TestGlossaryController.Alias, TestGlossaryController);
 }

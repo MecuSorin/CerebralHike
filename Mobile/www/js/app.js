@@ -53,8 +53,8 @@ cerebralhikeApp
             url: '/testglossary',
             views: {
                 'menuContent': {
-                    templateUrl: 'templates/test_glossary.html',
-                    controller: 'TestGlossaryController as TestGlossaryCtrl'
+                    templateUrl: 'templates/quiz_glossary.html',
+                    controller: 'QuizGlossaryController as QuizGlossaryCtrl'
                 }
             }
         })
@@ -62,51 +62,16 @@ cerebralhikeApp
             url: '/testtechniques',
             views: {
                 'menuContent': {
-                    templateUrl: 'templates/test_techniques.html',
-                    controller: 'TestTechniquesController as TestTechniquesCtrl'
+                    templateUrl: 'templates/quiz_techniques.html',
+                    controller: 'QuizTechniquesController as QuizTechniquesCtrl'
             }
         }
     })
-    //.state('app.search', {
-    //  url: '/search',
-    //  views: {
-    //    'menuContent': {
-    //      templateUrl: 'templates/search.html'
-    //    }
-    //  }
-    //})
 
-    //.state('app.browse', {
-    //    url: '/browse',
-    //    views: {
-    //      'menuContent': {
-    //        templateUrl: 'templates/browse.html'
-    //      }
-    //    }
-    //  })
-    //  .state('app.playlists', {
-    //    url: '/playlists',
-    //    views: {
-    //      'menuContent': {
-    //        templateUrl: 'templates/playlists.html',
-    //        controller: 'PlaylistsCtrl'
-    //      }
-    //    }
-    //  })
 
-    //.state('app.single', {
-    //  url: '/playlists/:playlistId',
-    //  views: {
-    //    'menuContent': {
-    //      templateUrl: 'templates/playlist.html',
-    //      controller: 'PlaylistCtrl'
-    //    }
-    //  }
-    //})
     ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/testglossary');
-    //$urlRouterProvider.otherwise('/app/download');
 });
 
 window.ionic.Platform.ready(function () {

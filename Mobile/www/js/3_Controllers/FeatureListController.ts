@@ -1,4 +1,5 @@
 /// <reference path="../1_Bootstrap/app.bootstrap.ts" />
+
 module cerebralhike {
 	export class FeatureListController {
         public static Alias ="FeatureListController";

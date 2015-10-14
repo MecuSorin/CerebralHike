@@ -1,4 +1,5 @@
 ﻿/// <reference path="../1_bootstrap/interfaces.d.ts" />
+/// <reference path="set.ts" />
 
 module cerebralhike {
     export class Utils {

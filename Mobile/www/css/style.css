@@ -44,3 +44,7 @@
     color:white!important;
     background-color:darkgray!important;
 }
+
+.spaced-left {
+    margin-left: 2em;
+}

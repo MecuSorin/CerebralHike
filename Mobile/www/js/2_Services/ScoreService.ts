@@ -1,4 +1,5 @@
 ﻿/// <reference path="../1_Bootstrap/app.bootstrap.ts" />
+/// <reference path="../4_models/answer.ts" />
 
 module cerebralhike {
     export class ScoreService {

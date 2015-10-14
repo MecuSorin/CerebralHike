@@ -1,4 +1,6 @@
 ﻿/// <reference path="../1_Bootstrap/app.bootstrap.ts" />
+/// <reference path="../4_models/feature.ts" />
+/// <reference path="../4_models/utils.ts" />
 
 module cerebralhike {
     export class DownloadService implements IFeatureVerifier {
