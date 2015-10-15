@@ -1,0 +1,14 @@
+﻿- ##!!!GASIT AJUTOARE PT CONTINUT !!!##
+	- continut ... adaugat si corectate descrierile
+- ~~listare tehnici cu video aferente~~
+- ~~quiz de glosar aikido~~
+- ~~quiz de glosar tehnici~~
+- ~~quiz de tehnici~~
+- ~~adaugare link-uri catre SolDaito, project page, last version~~
+- ~~buton de play in quiz tehnici~~
+- ~~buton de navigat la ecranul de invatare al tehnicii~~
+- de ascuns tehnici
+- mecanism de actualizare
+- persistent score for Stefan -  to think at a prize system
+- de accentuat impresia ca imaginile sunt defapt butoane de play pe care se poate apasa (sa nu uit sa pun si culoarea de activ folosita in restul aplicatiei)
+- de vazut cum pot salva frame-uri din video pentru imaginile butoanelor de play
