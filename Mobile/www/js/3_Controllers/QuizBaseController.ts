@@ -12,7 +12,9 @@ module cerebralhike {
         public ShowNextQuestionButtonVisible: boolean = true;
         // to be implemented by inheritors
         public Setup = (): void => { this.downloadService.LoadLegend().then(() => this.PrepaireQuestion()); };
-        public GetData = (): IFeature[] => { return this.downloadService.Files; };
+        public GetData = (): IFeature[] => {
+            return this.downloadService.Files.filter(feature=> !feature.ToHide);
+        };
         public ResetQuestion = (): void => { };
         public GetNumberOfAnswers(): number { return QuizBaseController.DefaultNumberOfAnswers; }
         public CreateQuestion = (feature: IFeature): void => { };

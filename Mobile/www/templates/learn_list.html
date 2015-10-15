@@ -1,11 +1,18 @@
 <ion-view view-title="Invata">
     <ion-content>
         <ion-list ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="feature in FeatureListCtrl.Features" 
+            <ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="feature in FeatureListCtrl.Features" 
                       type="item-text-wrap" 
-                      href="{{::FeatureListCtrl.GetLearnFeatureAppPath(feature, true)}}">
-                <h2>{{::feature.Id}}. {{::feature.Japan}}</h2>
-                <p>{{::feature.Ro}}</p>
+                      href="#/app/learn/{{::feature.Id}}">
+
+                <i class="icon ion-eye{{(feature.ToHide) ? '-disabled':''}} enabledBlue"
+                   ng-click="FeatureListCtrl.HideFeature(feature);"
+                   onclick="return false;"></i>
+                <div class="item-body font-footer">
+                        {{::feature.Book}}
+                        <div class="font-header">{{::feature.Japan}}</div>
+                        {{::feature.Ro}}
+                </div>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>

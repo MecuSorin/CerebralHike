@@ -7,7 +7,7 @@
 - ~~adaugare link-uri catre SolDaito, project page, last version~~
 - ~~buton de play in quiz tehnici~~
 - ~~buton de navigat la ecranul de invatare al tehnicii~~
-- de ascuns tehnici
+- ~~de ascuns tehnici~~
 - mecanism de actualizare
 - persistent score for Stefan -  to think at a prize system
 - de accentuat impresia ca imaginile sunt defapt butoane de play pe care se poate apasa (sa nu uit sa pun si culoarea de activ folosita in restul aplicatiei)

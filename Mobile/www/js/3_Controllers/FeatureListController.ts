@@ -42,6 +42,11 @@ module cerebralhike {
                 });
         }
 
+        public HideFeature(feature: IFeature): void {
+            feature.ToHide = !feature.ToHide;
+            this.FeatureService.downloadService.SaveLocalLegend();
+        }
+
         public static GetLearnFeatureAppPath(feature: IFeature, appendRoot?: boolean): string {
             return ((appendRoot) ? '#' : '') + '/app/learn/' + feature.Id;
         }

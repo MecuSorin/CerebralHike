@@ -59,3 +59,12 @@ ul.logs, ul.logs li {
     font-size: xx-small !important;
     margin-bottom: 0.8em;
 }
+
+.font-header {
+    font-size: 15px;
+    font-weight:600;
+}
+
+.font-footer {
+    font-size: 8px;
+}
