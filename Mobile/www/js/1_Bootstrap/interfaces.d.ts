@@ -25,6 +25,11 @@ declare module cerebralhike {
 		Id: string;
 	}
 
+    interface IDictionaryEntry {
+        Japan: string;
+        Ro: string;
+    }
+
     interface ICloudFeature {
         Book: string;
         Attack: string;
@@ -95,5 +100,6 @@ declare module ngCordova {
 
     interface INetworkService {
         getNetwork(): Connection;
+        isOnline(): boolean;
     }
 }

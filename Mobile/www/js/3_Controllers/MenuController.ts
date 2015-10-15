@@ -5,9 +5,17 @@ module cerebralhike {
         constructor() {
         }
 
+        public IsLogVisible: boolean = false;
+
         public ExitApp = () => {
-            console.log("Exit application");
+            chLogger.log("Exit application");
             ionic.Platform.exitApp();
+        }
+
+        public ShowLogs = () => {
+            this.IsLogVisible = true;
+            console.log((<ErrorsService>angular.injector(['cerebralhike.services']).get(ErrorsService.Alias)).Errors.length);
+
         }
 	}
 

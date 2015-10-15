@@ -22,7 +22,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ToDo.txt" />
     <Content Include="web.config" />
+    <Content Include="www\appdata\dictionary.txt" />
     <Content Include="www\css\ionic.app.css" />
     <Content Include="www\css\ionic.app.min.css" />
     <Content Include="www\css\style.css" />
@@ -65,6 +67,8 @@
     <Content Include="www\lib\ngCordova\dist\ng-cordova-mocks.min.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.min.js" />
+    <Content Include="www\templates\log.html" />
+    <Content Include="www\templates\quiz_japanese.html" />
     <Content Include="www\templates\quiz_glossary.html" />
     <Content Include="www\templates\quiz_techniques.html" />
     <Content Include="www\templates\learn_feature.html" />
@@ -196,6 +200,7 @@
     <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\MenuController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizBaseController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\QuizJapaneseController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizTechniquesController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizGlossaryController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureDetailController.ts" />
@@ -205,6 +210,7 @@
     <TypeScriptCompile Include="www\js\4_Models\Answer.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Feature.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Set.ts" />
+    <TypeScriptCompile Include="www\js\4_Models\Logger.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Utils.ts" />
     <TypeScriptCompile Include="www\lib\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>

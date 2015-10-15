@@ -43,38 +43,38 @@ module cerebralhike {
                 .then(root=> this.$cordovaFile.checkFile(root, LocalVerbs.legend)
                     .then(file=> {
                         var legendPath = file.nativeURL;
-                        console.log('legend path: ' + legendPath);
+                        chLogger.log('legend path: ' + legendPath);
                         return this.apiFactory.GetLegend(legendPath).then(legend=> this.$q.when(Feature.ToLocalInstance(legend, this)));
                     }));
         }
 
         private GetRootDirPromise = (): angular.IPromise<string> => {
-            console.log('CheckForRootDir:' + cordova.file.externalDataDirectory);
+            chLogger.log('CheckForRootDir:' + cordova.file.externalDataDirectory);
             var deferrer = this.$q.defer<string>();
             this.$cordovaFile.checkDir(LocalVerbs.GetStorage(), "")
                 .then(entry=> {
-                    console.log("Using " + LocalVerbs.GetStorage());
+                    chLogger.log("Using " + LocalVerbs.GetStorage());
                     deferrer.resolve(LocalVerbs.GetStorage())
                 })
                 .catch(reason=> {
-                    console.log("Cannot find root folder");
+                    chLogger.log("Cannot find root folder");
                     deferrer.reject(reason)
                 });
             return deferrer.promise;
         }
 
         public CreateLocalLegendIfNotExists = (): angular.IPromise<void> => {
-            console.log('CreateLocalLegendIfNotExists');
+            chLogger.log('CreateLocalLegendIfNotExists');
             var createFileDeferrer = this.$q.defer<void>();
             this.RootDirEntryPromise
                 .then(dirEntry=> this.$cordovaFile.checkFile(dirEntry, LocalVerbs.legend)
                     .then(fe=> {
                         this.LegendFilePath = fe.nativeURL;
-                        console.log('Found local legend file:');
+                        chLogger.log('Found local legend file:');
                         createFileDeferrer.resolve()
                     })
                     .catch(reason=> {
-                        console.log('Initiate local legend file');
+                        chLogger.log('Initiate local legend file');
                         this.$cordovaFile.writeFile(dirEntry, LocalVerbs.legend, "[]", false)
                             .then(progress=> createFileDeferrer.resolve())
                             .catch(failCreateFile=> createFileDeferrer.reject(failCreateFile))
@@ -90,15 +90,15 @@ module cerebralhike {
                 .then(progress=> saveDeferrer.resolve())
                 .catch(failCreateFile=> saveDeferrer.reject(failCreateFile));
             saveDeferrer.promise
-                .then(() => console.log("Saved the legend.json"))
-                .catch(reason=> console.log("Failed to save the legend.json"));
+                .then(() => chLogger.log("Saved the legend.json"))
+                .catch(reason=> chLogger.log("Failed to save the legend.json"));
             return saveDeferrer.promise;
         }
 
 
         private UpdateLocalLegend = (cloudLegend: IFeature[]): angular.IPromise<void> => {
-            console.log("local have " + this.Files.length);
-            console.log("cloud have " + cloudLegend.length);
+            chLogger.log("local have " + this.Files.length);
+            chLogger.log("cloud have " + cloudLegend.length);
 
             for (var c = 0, clngth = cloudLegend.length; c < clngth; c++) {
                 var newFeatureFound = true;
@@ -155,7 +155,8 @@ module cerebralhike {
 
         public GetClipSafe = (local: string, remote: string): angular.IPromise<string> => {
             if (local) return this.$q.when(local);
-            if (Utils.HaveCheapNetworkConnection(this.$cordovaNetwork) || this.IgnoreNetworkCosts) return this.$q.when(remote);
+            if (!Utils.HaveAnyNetworkConnection(this.$cordovaNetwork)) return this.$q.when("");
+            if (this.IgnoreNetworkCosts || Utils.HaveCheapNetworkConnection(this.$cordovaNetwork) ) return this.$q.when(remote);
             return this.$ionicPopup.confirm({
                 title: 'Conexiunea poate genera costuri',
                 template: 'Continui redarea acestui film si a celorlate (viitoare din aceasta sesiune), in ciuda posibilitatii de a cauza costuri suplimentare?'
@@ -203,7 +204,7 @@ module cerebralhike {
             if (Feature.HasLocalMainClip(feature)) {
                 mainPromise = this.GetRemoveFilePromise(feature.ClipMainLocal)
                     .then(_ => {
-                        console.log("main deleted");
+                        chLogger.log("main deleted");
                         feature.ClipMainLocal = '';
                         Feature.UpdateToDownloadAfterResourceDownload(feature);
                         return this.SaveLocalLegend();
@@ -213,7 +214,7 @@ module cerebralhike {
             if (Feature.HasLocalExtraClip(feature)) {
                 extraPromise = this.GetRemoveFilePromise(feature.ClipExtraLocal)
                     .then(_ => {
-                        console.log("extra deleted");
+                        chLogger.log("extra deleted");
                         feature.ClipMainLocal = '';
                         Feature.UpdateToDownloadAfterResourceDownload(feature);
                         return this.SaveLocalLegend();
@@ -225,7 +226,7 @@ module cerebralhike {
         private GetRemoveFilePromise = (url: string): angular.IPromise<any> => {
             var fileExistsPromise = this.$cordovaFile.checkFile(url, '');
             fileExistsPromise.then(abbbbbb => {
-                console.log('File about to be removed: ' + url);
+                chLogger.log('File about to be removed: ' + url);
             });
             var deleteFilePromise = fileExistsPromise.then(entry=> {
                 //this.$cordovaFile.removeFile(url, '')     this doesn't work
@@ -233,14 +234,14 @@ module cerebralhike {
                 entry.remove(() => removedFileDeferrer.resolve(), reason=> removedFileDeferrer.reject(reason));
                 return removedFileDeferrer.promise;
             });
-            deleteFilePromise.then(caaaaaa => console.log('File deleted: ' + url));
+            deleteFilePromise.then(caaaaaa => chLogger.log('File deleted: ' + url));
             return deleteFilePromise;
         }
 
         private static GetRandomNameForLocalFile(url: string): string {
             try {
                 var results = /\b([\w\._-]+).dl=/gi.exec(url);
-                console.log(results[1]);
+                chLogger.log(results[1]);
                 var suggestedName = results[1].replace(/(.*)\.(\w+)/gi, "$1" + Utils.GetDateMarker() + ".$2");
                 return suggestedName;
             }
@@ -249,7 +250,13 @@ module cerebralhike {
             }
         }
 
-
+        public ReadDictionary(): angular.IPromise<IDictionaryEntry[]> {
+            var entriesPromise = this.apiFactory.GetDictionary()
+                .then(text=> this.$q.when(Utils.ParseTSV(text, Utils.ParseDictionaryEntry)));
+            entriesPromise.then(entries=> chLogger.log("Found entries in dictionary:" + entries.length))
+                .catch(reason=> chLogger.log("Failed to read entries from the dictionary because " + chLogger.Plain(reason)));
+            return entriesPromise;
+        }
 	}
 
 	cerebralhikeServices.service(DownloadService.Alias, DownloadService);

@@ -1,22 +1,9 @@
 /// <reference path="../1_Bootstrap/app.bootstrap.ts" />
-module blueclient {
-	export class ErrCtrl {
-		public static Alias="ErrCtrl";
-		constructor($scope, ErrorsService) {
-    		$scope.Refresh = function() { 
-    			$scope.Errors = [];
-    			$scope.Errors = ErrorsService.Errors; 
-                $scope.DebuggingSpace = [];
-                //$scope.DebuggingSpace = myVeryOwnDebuggingSpace; 
-    		}
-            $scope.ClearLogs = function() {
-                ErrorsService.Errors = [];
-                //myVeryOwnDebuggingSpace = [];
-                this.Refresh();
-            }
 
-    		$scope.Refresh();
-    	}
+module cerebralhike {
+	export class ErrController {
+        public static Alias = "ErrController";
+        constructor(public ErrorsService: ErrorsService) { }
 	}
-	//blueclientControllers.controller(ErrCtrl.Alias, ErrCtrl);
+    cerebralhikeControllers.controller(ErrController.Alias, ErrController);
 }

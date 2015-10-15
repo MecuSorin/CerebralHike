@@ -1,7 +1,7 @@
 ﻿module cerebralhike.mocks {
     export class CordovaFile {
         constructor(public $q) {
-            console.log('Mocked the $cordovaFile')
+            chLogger.log('Mocked the $cordovaFile')
             cordova = <Cordova> {
                 file: { externalDataDirectory: '' }
             };
@@ -14,7 +14,7 @@
 
     export class CordovaFileTransfer {
         constructor() {
-            console.log('Mocked the $cordovaFileTransfer')
+            chLogger.log('Mocked the $cordovaFileTransfer')
         }
     }
 

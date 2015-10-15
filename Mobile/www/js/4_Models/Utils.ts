@@ -5,17 +5,17 @@ module cerebralhike {
     export class Utils {
         public static ToJson<T>(source: T): string {
             var jsonOutput = angular.toJson(source);
-            console.log('Serialized object to: ' + jsonOutput);
+            //chLogger.log('Serialized object to: ' + jsonOutput);
             return jsonOutput;
         }
 
         public static PlayClip(clipLocation: string) {
             if (clipLocation && clipLocation.length > 1) {
-                console.log("Play clip: " + clipLocation)
+                chLogger.log("Play clip: " + clipLocation)
                 var host: any = window.plugins;
                 host.videoPlayer.play(clipLocation);
             } else {
-                console.log("No clip to play");
+                chLogger.log("No clip to play");
             }
         }
 
@@ -67,13 +67,38 @@ module cerebralhike {
         }
 
         public static HaveAnyNetworkConnection(network: ngCordova.INetworkService): boolean {
-            return network.getNetwork().type != Connection.NONE;
+            chLogger.log("Connection check: " + network.isOnline() + " type: "+ network.getNetwork().type);
+            return network.isOnline();
         }
 
         public static HaveCheapNetworkConnection(network: ngCordova.INetworkService): boolean {
             var networkType = network.getNetwork().type;
-            console.log('Network type is:' + networkType);
+            chLogger.log('Network type is:' + networkType);
             return (networkType == Connection.WIFI) || (networkType == Connection.ETHERNET);
+        }
+
+        public static ParseTSV<T>(input: string, projection: (words: string[]) => T, separator?: string):T[] {
+            if (!separator) {
+                separator = "\t";
+            }
+            var rows = input.split('\n');
+            var result:T[] = [];
+            angular.forEach(rows, function (val) {
+                if (!val || 0 == val.length) return;
+                var o = val.split(separator);
+                try {
+                    result.push(projection(o));
+                    chLogger.log("Readed dictionary entry: " + val);
+                } catch (err) {
+                    chLogger.log("Failed to understand the row: " + val);
+                }
+            });
+            return result;
+        };
+
+        public static ParseDictionaryEntry(words: string[]): IDictionaryEntry {
+            if (!words || words.length != 2) throw 'Bad structure for dictionary entry';
+            return { Japan: words[0], Ro: words[1] };
         }
     }
 } 

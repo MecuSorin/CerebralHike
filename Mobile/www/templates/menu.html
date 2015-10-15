@@ -18,18 +18,20 @@
                 </div>
                 <ion-list>
                     <ion-item menu-close href="#/app/learn">Invata</ion-item>
-                    <ion-item menu-close href="#/app/testglossary">Test glosar</ion-item>
-                    <ion-item menu-close href="#/app/testglossary">Test glosar tehnici</ion-item>
-                    <ion-item menu-close href="#/app/testtechniques">Test tehnici</ion-item>
+                    <ion-item menu-close href="#/app/quizjapanese">Test glosar aikido</ion-item>
+                    <ion-item menu-close href="#/app/quizglossary">Test glosar tehnici</ion-item>
+                    <ion-item menu-close href="#/app/quiztechniques">Test tehnici</ion-item>
                     <ion-item menu-close href="#/app/download">Management fisiere</ion-item>
                     <ion-item menu-close ng-click="MenuCtrl.ExitApp();">Iesire</ion-item>
                 </ion-list>
             </div>
             <div class="card">
-                <div class="item item-divider">
+                <div class="item item-divider" on-hold="MenuCtrl.ShowLogs();">
                     Diverse:
                 </div>
                 <ion-list>
+                    <ion-item menu-close href="#/app/log"
+                              ng-show="MenuCtrl.IsLogVisible">Application log</ion-item>
                     <ion-item href="#" onclick="window.open('http://daitoryu.ro', '_system', 'location=yes'); return false;">Scoala <b>Sol Daito</b></ion-item>
                     <ion-item href="#" onclick="window.open('https://github.com/MecuSorin/CerebralHike', '_system', 'location=yes'); return false;">Adresa proiectului</ion-item>
                     <ion-item href="#" onclick="window.open('https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1', '_system', 'location=yes'); return false;">Ultima versiune</ion-item>

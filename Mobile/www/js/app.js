@@ -1,3 +1,10 @@
+window.ionic.Platform.ready(function () {
+    // actual bootstrap
+    var ddddoc = document.getElementsByTagName('body')[0];
+    console.log('Ionic is ready, bootstraping on ' + ddddoc.outerHTML);
+    angular.bootstrap(ddddoc, ['mocker', 'starter']);
+});
+
 cerebralhikeApp
 .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function ($http) {
@@ -49,8 +56,17 @@ cerebralhikeApp
                 }
             }
         })
-        .state('app.testglossary', {
-            url: '/testglossary',
+        .state('app.quizjapanese', {
+            url: '/quizjapanese',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/quiz_japanese.html',
+                    controller: 'QuizJapaneseController as QuizJapaneseCtrl'
+                }
+            }
+        })
+        .state('app.quizglossary', {
+            url: '/quizglossary',
             views: {
                 'menuContent': {
                     templateUrl: 'templates/quiz_glossary.html',
@@ -58,24 +74,26 @@ cerebralhikeApp
                 }
             }
         })
-        .state('app.testtechniques', {
-            url: '/testtechniques',
+        .state('app.quiztechniques', {
+            url: '/quiztechniques',
             views: {
                 'menuContent': {
                     templateUrl: 'templates/quiz_techniques.html',
                     controller: 'QuizTechniquesController as QuizTechniquesCtrl'
+                }
             }
-        }
-    })
-
+        })
+        .state('app.log', {
+            url: '/log',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/log.html',
+                    controller: 'ErrController as ErrCtrl'
+                }
+            }
+        })
 
     ;
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/testglossary');
-});
-
-window.ionic.Platform.ready(function () {
-    var ddddoc = document.getElementsByTagName('body')[0];
-    console.log('Ionic is ready, bootstraping on ' + ddddoc.outerHTML);
-    angular.bootstrap(ddddoc, ['mocker', 'starter'])
+    $urlRouterProvider.otherwise('/app/quizglossary');
 });

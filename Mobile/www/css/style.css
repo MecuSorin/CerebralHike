@@ -48,3 +48,14 @@
 .spaced-left {
     margin-left: 2em;
 }
+
+ul.logs, ul.logs li {
+    list-style-type:disc!important;
+    list-style: disc!important;
+}
+
+.logMessage {
+    overflow: visible !important;
+    font-size: xx-small !important;
+    margin-bottom: 0.8em;
+}

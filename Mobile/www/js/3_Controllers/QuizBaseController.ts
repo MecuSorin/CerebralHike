@@ -5,13 +5,14 @@ module cerebralhike {
         private static DefaultNumberOfAnswers : number = 10;
 
         constructor(public downloadService: DownloadService, public scoreService: ScoreService) {
-            this.downloadService.LoadLegend().then(() => this.PrepaireQuestion());
         }
 
         public QuestionWasUsed: boolean = false;
         public Answers: Answer[] = [];
         public ShowNextQuestionButtonVisible: boolean = true;
         // to be implemented by inheritors
+        public Setup = (): void => { this.downloadService.LoadLegend().then(() => this.PrepaireQuestion()); };
+        public GetData = (): IFeature[] => { return this.downloadService.Files; };
         public ResetQuestion = (): void => { };
         public GetNumberOfAnswers(): number { return QuizBaseController.DefaultNumberOfAnswers; }
         public CreateQuestion = (feature: IFeature): void => { };
@@ -21,13 +22,13 @@ module cerebralhike {
 
         public PrepaireQuestion = () => {
             if (!this.ShowNextQuestionButtonVisible) return;
-            console.log('Prepaire next question');
+            chLogger.log('Prepaire next question');
             this.ShowNextQuestionButtonVisible = false;
             this.QuestionWasUsed = false;
             this.Answers = [];
             this.ResetQuestion();
 
-            var chosenFeatures = Utils.GetRandomItems(this.downloadService.Files, this.GetNumberOfAnswers());
+            var chosenFeatures = Utils.GetRandomItems(this.GetData(), this.GetNumberOfAnswers());
             var questionIndex: number = -1;
             do {
                 questionIndex = Utils.GetRandom(chosenFeatures.length);
@@ -46,7 +47,7 @@ module cerebralhike {
             if (this.QuestionWasUsed) return;
             this.QuestionWasUsed = true;
 
-            console.log("User chosed the answer: " + answer.Text);
+            chLogger.log("User chosed the answer: " + answer.Text);
             var success = answer.Chose();
             this.scoreService.NewQuestionWasAnsweredTo();
             if (success) {

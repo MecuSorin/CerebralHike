@@ -7,7 +7,7 @@ module cerebralhike {
         public Files: IFeature[] = [];
 
         constructor(public $scope: angular.IScope, public downloadService: DownloadService, public $ionicPopup: ionic.popup.IonicPopupService) {
-            console.log('Download controller');
+            chLogger.log('Download controller');
             downloadService.LoadLegend()
                 .then(()=>this.ShowFiles())
                 .catch(reason=>this.ShowErrorLoadingLegend(reason))
@@ -58,9 +58,9 @@ module cerebralhike {
                 this.RemoveLocalFiles(file);
             }
             else {
-                //console.log('Before ' + file.Japan + ' to be downloaded: ' + file.ToBeDownloaded);
+                //chLogger.log('Before ' + file.Japan + ' to be downloaded: ' + file.ToBeDownloaded);
                 file.ToBeDownloaded = !file.ToBeDownloaded;
-                //console.log('Updated ' + file.Japan + ' to be downloaded: ' + file.ToBeDownloaded);
+                //chLogger.log('Updated ' + file.Japan + ' to be downloaded: ' + file.ToBeDownloaded);
                 this.downloadService.SaveLocalLegend();
             }
         }

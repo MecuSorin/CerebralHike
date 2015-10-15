@@ -1,0 +1,12 @@
+﻿<ion-view view-title="Application log">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-trash-a enabledBlue"
+                ng-click="ErrCtrl.ErrorsService.clearLog()"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ul class="logs">
+            <li class="logMessage" ng-repeat="error in ErrCtrl.ErrorsService.Errors">
+                {{error.message}}</li>
+        </ul>
+    </ion-content>
+</ion-view>

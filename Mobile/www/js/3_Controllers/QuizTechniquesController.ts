@@ -6,6 +6,7 @@ module cerebralhike {
 
         constructor(public $timeout: angular.ITimeoutService, downloadService: DownloadService, scoreService: ScoreService) {
             super(downloadService, scoreService);
+            this.Setup();
         }
 
         public Question: Feature = null;

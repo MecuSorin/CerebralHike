@@ -6,9 +6,9 @@ module cerebralhike {
         public Feature: IFeature = null;
 
         constructor(public downloadService: DownloadService, FeatureService: FeatureService, $stateParams) {
-            console.log('Searching for feature with id:' + $stateParams.featureId);
+            chLogger.log('Searching for feature with id:' + $stateParams.featureId);
             this.Feature = FeatureService.GetFeature($stateParams.featureId);
-            console.log("Using feature: " + this.Feature.Japan);
+            chLogger.log("Using feature: " + this.Feature.Japan);
             //this.ImageSrcMain = Utils.GetSafe(this.Feature.ThumbMainLocal, Utils.GetSafe(this.Feature.ThumbMainCloud, ApiVerbs.GetImagesRoot() + "funny.png"));
             //this.ImageSrcExtra = Utils.GetSafe(this.Feature.ThumbExtraLocal, Utils.GetSafe(this.Feature.ThumbExtraCloud, ApiVerbs.GetImagesRoot() + "flow.png"));
             this.ImageSrcMain =  ApiVerbs.GetImagesRoot() + "funny.png";

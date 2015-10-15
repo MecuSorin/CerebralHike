@@ -47,7 +47,7 @@
 
         public static UpdateLocalFromCloud(first: IFeature, second: IFeature) {
             if (first.ClipMainCloud != second.ClipMainCloud) {
-                console.log('updated [' + first.Japan + '] main clip url from:' + first.ClipMainCloud + ' to:' + second.ClipMainCloud);
+                chLogger.log('updated [' + first.Japan + '] main clip url from:' + first.ClipMainCloud + ' to:' + second.ClipMainCloud);
             }
             first.ClipMainCloud = second.ClipMainCloud;
             first.ClipExtraCloud = second.ClipExtraCloud;
@@ -107,7 +107,7 @@
         public static UpdateToDownloadAfterResourceDownload(feature: IFeature) {
             feature.ToBeDownloaded = (feature.ClipMainLocal && feature.ClipExtraLocal) ? true : false;
             if (!feature.ToBeDownloaded) {
-                console.log("Feature " + feature.Japan + " have both clips now");
+                chLogger.log("Feature " + feature.Japan + " have both clips now");
             }
         }
 

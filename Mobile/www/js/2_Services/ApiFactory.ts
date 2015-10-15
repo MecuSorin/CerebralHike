@@ -31,9 +31,11 @@ module cerebralhike {
         public static GetStorage(): string { return cordova.file.externalDataDirectory; }//cordova.file.dataDirectory;// 'externalDataDirectory'; 
         public static legend = 'legend.json';
 
+        public static GetDictionary(): string { return ApiVerbs.GetRoot() + "dictionary.txt"; }
+
         public static GetNewFile(suggestedName: string): string {
             var name = LocalVerbs.GetStorage() + suggestedName;
-            console.log("Creating file: " + name);
+            chLogger.log("Creating file: " + name);
             return name;
         }
     }
@@ -43,6 +45,10 @@ module cerebralhike {
         constructor(public $http: angular.IHttpService, public $q: angular.Enhanced.IQService, public ErrorsService: ErrorsService) {
         }
 
+        public GetDictionary(): angular.IPromise<string> {
+            var dictionaryPath = LocalVerbs.GetDictionary();        
+            return this.$http.get<string>(dictionaryPath).then(response => response.data);      // reading from the file with $cordovaFile.readAllText is not working
+        }
       
         public GetOriginalLegend(): angular.IPromise<ICloudFeature[]> {
             return this.GetResponse<ICloudFeature[]>(ApiVerbs.LegendSource);
@@ -63,7 +69,7 @@ module cerebralhike {
 
         public GetResponse<T>(url: string): angular.IPromise<T> {
             var result = this.$http.get<T>(url);
-            console.log('Request made for: ' +url);
+            chLogger.log('Request made for: ' +url);
             return this.WrapResponse<T>(result);
         }
 
@@ -87,7 +93,7 @@ module cerebralhike {
         }
 
         public static ExtractContent(html: string, elementId: string): string {
-            console.log('Extracting json from: ' + html);
+            chLogger.log('Extracting json from: ' + html);
             return jQuery(html).filter(elementId).html();
         }
     }

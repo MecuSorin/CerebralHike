@@ -1,0 +1,35 @@
+<ion-view view-title="Teste glosar">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-chatbubbles"
+                ng-class="{enabledBlue: QuizJapaneseCtrl.IsJapanQuestion, disabledGray: !QuizJapaneseCtrl.IsJapanQuestion}"
+                ng-click="QuizJapaneseCtrl.IsJapanQuestion = !QuizJapaneseCtrl.IsJapanQuestion;"></button>
+        {{QuizJapaneseCtrl.scoreService.CorrectAnswers}}/{{QuizJapaneseCtrl.scoreService.QuestionsAnswered}}
+    </ion-nav-buttons>
+    
+    <ion-content>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <b>{{QuizJapaneseCtrl.Question}}</b>
+            </div>
+        </div>
+        <ul>
+            <li ng-repeat="answer in QuizJapaneseCtrl.Answers"
+                class="answer {{answer.Class}}"
+                ng-click="QuizJapaneseCtrl.SelectedAnswer(answer)">{{answer.Text}}</li>
+        </ul>
+    </ion-content>
+    
+    <ion-footer-bar class="bar-stable">
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-help enabledBlue spaced-left"
+                ng-show="QuizJapaneseCtrl.QuestionWasUsed"
+                ng-click="QuizJapaneseCtrl.RevealCorrectAnswer();"></button>
+        </div>
+        
+        <div class="buttons pull-right">
+            <a class="button icon-right ion-chevron-right button-calm"
+               ng-show="QuizJapaneseCtrl.ShowNextQuestionButtonVisible"
+               ng-click="QuizJapaneseCtrl.PrepaireQuestion();">Urmatoarea intrebare</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

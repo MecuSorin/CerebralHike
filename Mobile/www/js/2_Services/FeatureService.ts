@@ -17,7 +17,7 @@ module cerebralhike {
         //public LoadFeatures(): angular.IPromise<void> {
         //    if (this.Features) {
         //        return this.$q.when();
-        //        console.log("Features is populated already");
+        //        chLogger.log("Features is populated already");
         //    }
         //    var deferred = this.$q.defer<void>();
         //    var featureProviders = [this.apiFactory.GetFeaturesList, this.apiFactory.GetFeaturesList1,
@@ -32,7 +32,7 @@ module cerebralhike {
         //        var promise = fp();
         //        promise.then(a=> {
         //            validLink = true;
-        //            console.log("ooooooooooooooooooooooooJackpot");
+        //            chLogger.log("ooooooooooooooooooooooooJackpot");
         //        });
         //    }
             
@@ -65,12 +65,12 @@ module cerebralhike {
         //}
 
         public GetFeature = (featureId: string): IFeature => {
-            console.log("Searching for feature with id: " + featureId);
+            chLogger.log("Searching for feature with id: " + featureId);
             if (!this.downloadService.Files) throw "No features loaded yet";
             for (var i = 0, lngth = this.downloadService.Files.length; i < lngth; i++) {
                 var feature = this.downloadService.Files[i];
                 if (feature.Id === parseInt(featureId)) {
-                    console.log("Found feature: " + feature.Japan);
+                    chLogger.log("Found feature: " + feature.Japan);
                     return feature;
                 }
             }
