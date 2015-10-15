@@ -1,5 +1,6 @@
 ﻿<#@ output extension=".generated.ts" #>
 <#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
 module cerebralhike {
 	export class AppVersion {
 		public static DropboxLabelAtBuildTime:string = "<#= DropboxEtiquette.GetLastBuildTimeDropboxFileLabel() #>"; // <#=DateTime.Now.ToString("dd MMM yyyy HH:mm:ss")#>
@@ -9,6 +10,7 @@ module cerebralhike {
 <#+
 
 	public static class DropboxEtiquette {
+		private static Regex _pattern = new Regex(@"(.*?)(\d+)(.*)");
 		public static string GetLastBuildTimeDropboxFileLabel() {
 			var newURL = "https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1";
 			var request = (HttpWebRequest)WebRequest.Create(newURL);
@@ -18,8 +20,19 @@ module cerebralhike {
 				var label = response.Headers["etag"];
 				if( string.IsNullOrEmpty(label))
 					return "unkown";
-				return label;
+				return IncrementNumber(label);
 			}	
+		}
+
+		public static string IncrementNumber(string text) {
+			var matches = _pattern.Matches(text);
+			if (0 == matches.Count)
+				return "unknown";
+			var captures = matches[0].Groups;
+			if (4!=captures.Count)
+				return "unknown";
+			var incrementedNumber = 1+int.Parse(captures[2].Value);
+			return captures[1].Value+incrementedNumber.ToString()+captures[3].Value;
 		}
 	}
 #>
