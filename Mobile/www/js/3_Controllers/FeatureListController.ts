@@ -41,6 +41,10 @@ module cerebralhike {
                     this.FailedToLoadFeatures = reason;
                 });
         }
+
+        public static GetLearnFeatureAppPath(feature: IFeature, appendRoot?: boolean): string {
+            return ((appendRoot) ? '#' : '') + '/app/learn/' + feature.Id;
+        }
 	}
 
 	cerebralhikeControllers.controller(FeatureListController.Alias, FeatureListController);

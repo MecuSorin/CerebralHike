@@ -8,8 +8,11 @@
     
     <ion-content>
         <div class="card">
-            <div class="item item-text-wrap">
+            <div class="item item-text-wrap item-icon-right">
                 <b>{{QuizGlossaryCtrl.Question}}</b>
+                <i class="icon ion-play enabledBlue" 
+                   ng-click="QuizGlossaryCtrl.PlayClip();"
+                   ng-show="QuizGlossaryCtrl.QuestionWasUsed"></i>
             </div>
         </div>
         <ul>
@@ -24,6 +27,9 @@
             <button class="button button-icon button-clear ion-help enabledBlue spaced-left"
                 ng-show="QuizGlossaryCtrl.QuestionWasUsed"
                 ng-click="QuizGlossaryCtrl.RevealCorrectAnswer();"></button>
+            <button class="button button-icon button-clear ion-eye enabledBlue spaced-left"
+                    ng-show="QuizGlossaryCtrl.QuestionWasUsed"
+                    ng-click="QuizGlossaryCtrl.NavigateToFeature();"></button>
         </div>
         
         <div class="buttons pull-right">
