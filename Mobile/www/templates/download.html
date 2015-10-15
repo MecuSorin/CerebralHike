@@ -1,21 +1,12 @@
 <ion-view view-title="All files">
     <ion-content>
-        <p ng-click="DownloadCtrl.DownloadFiles()">Tap this text to download the files!</p>
+        <div class="card">
+            <ion-item class="item-icon-left" ng-click="DownloadCtrl.DownloadFiles()">
+                <i class="icon ion-android-download enabledBlue"></i>
+                Download the files
+            </ion-item>
+        </div>
         <ion-list ng-show="DownloadCtrl.FailedToLoad == ''">
-            <!--<ion-item class="item item-row " ng-repeat="file in DownloadCtrl.Files"
-                      type="item-text-wrap">
-                <i class="icon {{DownloadCtrl.GetIconIsLocal(file)}} item-spaced icon-sized"></i>
-                <i class="icon {{DownloadCtrl.GetIconMarkedForDownload(file)}} item-spaced icon-sized icon-pushable"
-                   ng-click="DownloadCtrl.ChangeToDownload(file);"
-                   ng-show="DownloadCtrl.IsDownloadButtonVisible(file)"></i>
-                <div class="item-spaced" style="display: inline;">{{file.Book}} - {{file.Japan}}</div>
-                <i class="icon item-spaced icon-sized ion-information"
-                   ng-hide="DownloadCtrl.IsDownloadButtonVisible(file)"
-                   ng-click="DownloadCtrl.ProvideInfo(file);"></i>
-                <i class="icon ion-android-delete item-spaced icon-sized icon-pushable"
-                   ng-hide="DownloadCtrl.IsDownloadButtonVisible(file)"
-                   ng-click="DownloadCtrl.RemoveLocalFiles(file)"></i>
-            </ion-item>-->
             <ion-item class="item item-icon-left item-icon-right" ng-repeat="file in DownloadCtrl.Files"
                       type="item-text-wrap">
                 <i class="icon {{DownloadCtrl.GetIconIsLocal(file)}} icon-sized"

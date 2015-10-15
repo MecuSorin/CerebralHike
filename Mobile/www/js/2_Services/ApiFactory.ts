@@ -10,6 +10,7 @@ module cerebralhike {
         private static images = "img/";
         public static FeaturesList = "legend.json";
         public static LegendSource = "https://www.dropbox.com/s/b6nglf3fo770auy/legend.json?dl=1";
+        public static LatestBuild = "https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1";
         public static GetRoot(): string {
             var url = ApiVerbs.root;
             if (ionic.Platform.isAndroid()) {
@@ -42,7 +43,16 @@ module cerebralhike {
 
     export class ApiFactory {
         public static Alias = "apiFactory";
-        constructor(public $http: angular.IHttpService, public $q: angular.Enhanced.IQService, public ErrorsService: ErrorsService) {
+        constructor(public $http: angular.IHttpService,
+            public $q: angular.Enhanced.IQService,
+            public $timeout: angular.ITimeoutService,
+            public ErrorsService: ErrorsService) {
+        }
+
+        public GetLatestDropboxLabelForTheBuild(): angular.IPromise<string> {
+            var headerPromise = this.$timeout(400).then(() => this.$http.head(ApiVerbs.LatestBuild));
+            headerPromise.then(response=> chLogger.log("Received the header for latestbuild"));
+            return headerPromise.then((response: any) => <string>response.headers("etag"));
         }
 
         public GetDictionary(): angular.IPromise<string> {
@@ -98,6 +108,6 @@ module cerebralhike {
         }
     }
 
-    cerebralhikeServices.factory(ApiFactory.Alias, ($http: angular.IHttpService, $q: angular.Enhanced.IQService, ErrorsService: ErrorsService) => new ApiFactory($http, $q, ErrorsService));
+    cerebralhikeServices.factory(ApiFactory.Alias, ($http: angular.IHttpService, $q: angular.Enhanced.IQService, $timeout: angular.ITimeoutService, ErrorsService: ErrorsService) => new ApiFactory($http, $q, $timeout, ErrorsService));
 } 
 

@@ -34,7 +34,12 @@
                               ng-show="MenuCtrl.IsLogVisible">Application log</ion-item>
                     <ion-item href="#" onclick="window.open('http://daitoryu.ro', '_system', 'location=yes'); return false;">Scoala <b>Sol Daito</b></ion-item>
                     <ion-item href="#" onclick="window.open('https://github.com/MecuSorin/CerebralHike', '_system', 'location=yes'); return false;">Adresa proiectului</ion-item>
-                    <ion-item href="#" onclick="window.open('https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1', '_system', 'location=yes'); return false;">Ultima versiune</ion-item>
+                    <ion-item href="#" onclick="window.open('https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1', '_system', 'location=yes'); return false;"
+                              class="item-icon-right"
+                              >
+                        Ultima versiune
+                        <i class="icon ion-android-download" ng-show="MenuCtrl.IsUpdateVersionVisible"></i>
+                    </ion-item>
                 </ion-list>
             </div>
         </ion-content>

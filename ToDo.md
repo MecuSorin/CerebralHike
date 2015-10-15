@@ -8,7 +8,8 @@
 - ~~buton de play in quiz tehnici~~
 - ~~buton de navigat la ecranul de invatare al tehnicii~~
 - ~~de ascuns tehnici~~
-- mecanism de actualizare
+- ~~mecanism de actualizare~~
 - persistent score for Stefan -  to think at a prize system
 - de accentuat impresia ca imaginile sunt defapt butoane de play pe care se poate apasa (sa nu uit sa pun si culoarea de activ folosita in restul aplicatiei)
+- de semnalat schimbare de content (similar pt legend.json cum am facut pt apk)
 - de vazut cum pot salva frame-uri din video pentru imaginile butoanelor de play

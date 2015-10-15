@@ -17,11 +17,15 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <None Include="ToDo.md" />
     <Content Include="web.config" />
     <Content Include="www\appdata\dictionary.txt" />
@@ -30,6 +34,10 @@
     <Content Include="www\css\style.css" />
     <Content Include="www\index.html" />
     <Content Include="www\js\0_typings\cordova\.gitignore" />
+    <None Include="www\js\1_Bootstrap\Version.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Version.generated.ts</LastGenOutput>
+    </None>
     <Content Include="www\js\app.js" />
     <Content Include="www\lib\angular-animate\angular-animate.js" />
     <Content Include="www\lib\angular-animate\angular-animate.min.js" />
@@ -193,6 +201,11 @@
     <TypeScriptCompile Include="www\js\1_Bootstrap\app.bootstrap.ts" />
     <TypeScriptCompile Include="www\js\1_Bootstrap\interfaces.d.ts" />
     <TypeScriptCompile Include="www\js\1_Bootstrap\mocks.ts" />
+    <TypeScriptCompile Include="www\js\1_Bootstrap\Version.generated.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Version.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="www\js\2_Services\ApiFactory.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ScoreService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ErrorsService.ts" />
@@ -264,4 +277,11 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="..\packages\Clarius.TransformOnBuild.1.1.12\build\Clarius.TransformOnBuild.targets" Condition="Exists('..\packages\Clarius.TransformOnBuild.1.1.12\build\Clarius.TransformOnBuild.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Clarius.TransformOnBuild.1.1.12\build\Clarius.TransformOnBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Clarius.TransformOnBuild.1.1.12\build\Clarius.TransformOnBuild.targets'))" />
+  </Target>
 </Project>

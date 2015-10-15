@@ -42,7 +42,7 @@
         public ToHide: boolean;
 
         public static AreEqual(first: IFeature, second: IFeature) {
-            return first && second && first.Book == second.Book && first.Japan == second.Japan;
+            return first && second && first.Book == second.Book && first.Japan == second.Japan && first.Position == second.Position;
         }
 
         public static UpdateLocalFromCloud(first: IFeature, second: IFeature) {

@@ -1,0 +1,25 @@
+﻿<#@ output extension=".generated.ts" #>
+<#@ import namespace="System.Net" #>
+module cerebralhike {
+	export class AppVersion {
+		public static DropboxLabelAtBuildTime:string = "<#= DropboxEtiquette.GetLastBuildTimeDropboxFileLabel() #>"; // <#=DateTime.Now.ToString("dd MMM yyyy HH:mm:ss")#>
+	}
+}
+
+<#+
+
+	public static class DropboxEtiquette {
+		public static string GetLastBuildTimeDropboxFileLabel() {
+			var newURL = "https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1";
+			var request = (HttpWebRequest)WebRequest.Create(newURL);
+			request.Method = "HEAD";
+			using (var response = request.GetResponse())
+			{
+				var label = response.Headers["etag"];
+				if( string.IsNullOrEmpty(label))
+					return "unkown";
+				return label;
+			}	
+		}
+	}
+#>
