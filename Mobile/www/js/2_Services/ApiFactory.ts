@@ -31,6 +31,7 @@ module cerebralhike {
     export class LocalVerbs {
         public static GetStorage(): string { return cordova.file.externalDataDirectory; }//cordova.file.dataDirectory;// 'externalDataDirectory'; 
         public static legend = 'legend.json';
+        public static achievement = 'achievement.json';
 
         public static GetDictionary(): string { return ApiVerbs.GetRoot() + "dictionary.txt"; }
 
@@ -59,9 +60,13 @@ module cerebralhike {
             var dictionaryPath = LocalVerbs.GetDictionary();        
             return this.$http.get<string>(dictionaryPath).then(response => response.data);      // reading from the file with $cordovaFile.readAllText is not working
         }
-      
+
         public GetOriginalLegend(): angular.IPromise<ICloudFeature[]> {
             return this.GetResponse<ICloudFeature[]>(ApiVerbs.LegendSource);
+        }
+
+        public GetAchievement(achievementPath: string): angular.IPromise<IScoreEntry[]> {
+            return this.GetResponse<IScoreEntry[]>(achievementPath);
         }
 
         public GetLegend(filePath: string): angular.IPromise<IFeature[]> {

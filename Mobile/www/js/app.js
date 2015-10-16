@@ -92,6 +92,15 @@ cerebralhikeApp
                 }
             }
         })
+        .state('app.achievement', {
+            url: '/achievement',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/achievement.html',
+                    controller: 'AchievementController as AchievementCtrl'
+                }
+            }
+        })
 
     ;
     // if none of the above states are matched, use this as the fallback

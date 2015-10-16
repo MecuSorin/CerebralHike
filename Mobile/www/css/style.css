@@ -94,3 +94,24 @@ span.font-header {
     margin-top: 2px !important;
     margin-bottom: 2px !important;
 }
+
+.ct-series-a .ct-line {
+    stroke: red;
+    stroke-width: 2px !important;
+}
+.ct-series-b .ct-line {
+    stroke: green;
+    stroke-width: 2px !important;
+}
+
+.ct-area {
+    fill-opacity:.7;
+    stroke: none;
+}
+.ct-series-a .ct-area {
+    fill: orange;
+}
+
+.ct-series-b .ct-area {
+    fill: green;
+}

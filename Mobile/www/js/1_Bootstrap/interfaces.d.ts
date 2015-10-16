@@ -67,6 +67,19 @@ declare module cerebralhike {
     interface IFeatureVerifier {
         UpdateLocalClipsStatus(feature: IFeature);
     }
+
+
+    interface IQuizScore {
+        Correct: number;
+        Questions: number;
+    }
+
+    interface IScoreEntry {
+        Date: string;
+        Dictionary: IQuizScore;
+        Glossary: IQuizScore;
+        Techniques: IQuizScore;
+    }
 }
 
 
@@ -76,8 +89,6 @@ declare module ngCordova {
         success: boolean;
         fileRemoved: T;
     }
-
-
 
     interface IFile {
         getFreeDiskSpace(): angular.IPromise<number>;

@@ -21,6 +21,7 @@ module cerebralhike {
         public IsSameQuestion = (): boolean => { return false; };
         public CreateAnswerAndAppend = (answers: Answer[], feature: IFeature, isCorrect: boolean): void => { };
         public SetupQuestion = (): void => { };
+        public OnAnswer = (isCorrect: boolean): void => { };
 
         public PrepaireQuestion = () => {
             if (!this.ShowNextQuestionButtonVisible) return;
@@ -51,10 +52,7 @@ module cerebralhike {
 
             chLogger.log("User chosed the answer: " + answer.Text);
             var success = answer.Chose();
-            this.scoreService.NewQuestionWasAnsweredTo();
-            if (success) {
-                this.scoreService.NewCorrectAnswer();
-            }
+            this.OnAnswer(success);
             this.ShowNextQuestionButtonVisible = true;
         }
 

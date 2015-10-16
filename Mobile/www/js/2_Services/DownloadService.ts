@@ -36,7 +36,7 @@ module cerebralhike {
                         .then(legend=> Feature.ToLocal(legend))
                         .then(files=> this.UpdateLocalLegend(files))
                 });
-        }
+        };
 
         private ReadLocalLegend = (): angular.IPromise<IFeature[]> => {
             return this.RootDirEntryPromise
@@ -46,7 +46,7 @@ module cerebralhike {
                         chLogger.log('legend path: ' + legendPath);
                         return this.apiFactory.GetLegend(legendPath).then(legend=> this.$q.when(Feature.ToLocalInstance(legend, this)));
                     }));
-        }
+        };
 
         private GetRootDirPromise = (): angular.IPromise<string> => {
             chLogger.log('CheckForRootDir:' + cordova.file.externalDataDirectory);
@@ -61,7 +61,7 @@ module cerebralhike {
                     deferrer.reject(reason)
                 });
             return deferrer.promise;
-        }
+        };
 
         public CreateLocalLegendIfNotExists = (): angular.IPromise<void> => {
             chLogger.log('CreateLocalLegendIfNotExists');
@@ -82,7 +82,7 @@ module cerebralhike {
                 )
                 .catch(failCreateRoot=> createFileDeferrer.reject(failCreateRoot));
             return createFileDeferrer.promise;
-        }
+        };
 
         public SaveLocalLegend = (): angular.IPromise<void> => {
             var saveDeferrer = this.$q.defer<void>();
@@ -93,7 +93,7 @@ module cerebralhike {
                 .then(() => chLogger.log("Saved the legend.json"))
                 .catch(reason=> chLogger.log("Failed to save the legend.json"));
             return saveDeferrer.promise;
-        }
+        };
 
 
         private UpdateLocalLegend = (cloudLegend: IFeature[]): angular.IPromise<void> => {
@@ -115,7 +115,7 @@ module cerebralhike {
             }
             this.SaveLocalLegend();
             return this.$q.when();
-        }
+        };
 
         public UpdateLocalClipsStatus = (feature: IFeature) => {
             if (Feature.HasLocalMainClip(feature)) {
@@ -124,7 +124,7 @@ module cerebralhike {
             if (Feature.HasLocalExtraClip(feature)) {
                 this.$cordovaFile.checkFile(feature.ClipExtraLocal, '').catch(reason => feature.ClipExtraLocal = null);
             }
-        }
+        };
 
         private DownloadFeatureResources = (feature: IFeature): angular.IPromise<void> => {
             if (!feature.ToBeDownloaded) {
@@ -151,7 +151,7 @@ module cerebralhike {
                 .then(() => resourceDownloadDeferrer.resolve())
                 .catch(reason=> resourceDownloadDeferrer.reject(reason));
             return resourceDownloadDeferrer.promise;
-        }
+        };
 
         public GetClipSafe = (local: string, remote: string): angular.IPromise<string> => {
             if (local) return this.$q.when(local);
@@ -169,7 +169,7 @@ module cerebralhike {
                     return "";
                 }
             });
-        }
+        };
 
         public DownloadAllFiles = () => {
             //if (!Utils.HaveCheapNetworkConnection(this.$cordovaNetwork)) {
@@ -177,7 +177,7 @@ module cerebralhike {
             //    return;
             //}
             this.DownloadFiles(0);
-        }
+        };
 
 
         public DownloadFiles = (featureIndex: number): angular.IPromise<void> => {
@@ -186,7 +186,7 @@ module cerebralhike {
             }
             return this.DownloadFeatureResources(this.Files[featureIndex])
                 .then(() => this.DownloadFiles(featureIndex + 1));
-        }
+        };
 
         private DownloadFile = (remotePath: string): angular.IPromise<string> => {
             var suggestedName = DownloadService.GetRandomNameForLocalFile(remotePath);
@@ -197,7 +197,7 @@ module cerebralhike {
                 .download(remotePath, localName, noOptions, ignoreCertificateIssues)
                 .then(savedFile=> this.$q.when(savedFile.nativeURL));
             //return this.$q.reject("disabled download");
-        }
+        };
 
         public RemoveLocalFiles = (feature: IFeature): angular.IPromise<any> => {
             var mainPromise = this.$q.when();
@@ -221,7 +221,7 @@ module cerebralhike {
                     });
             }
             return this.$q.all([mainPromise, extraPromise]);
-        }
+        };
 
         private GetRemoveFilePromise = (url: string): angular.IPromise<any> => {
             var fileExistsPromise = this.$cordovaFile.checkFile(url, '');
@@ -236,7 +236,7 @@ module cerebralhike {
             });
             deleteFilePromise.then(caaaaaa => chLogger.log('File deleted: ' + url));
             return deleteFilePromise;
-        }
+        };
 
         private static GetRandomNameForLocalFile(url: string): string {
             try {
@@ -250,13 +250,35 @@ module cerebralhike {
             }
         }
 
-        public ReadDictionary(): angular.IPromise<IDictionaryEntry[]> {
+        public ReadDictionary = (): angular.IPromise<IDictionaryEntry[]> => {
             var entriesPromise = this.apiFactory.GetDictionary()
                 .then(text=> this.$q.when(Utils.ParseTSV(text, Utils.ParseDictionaryEntry)));
             entriesPromise.then(entries=> chLogger.log("Found entries in dictionary:" + entries.length))
                 .catch(reason=> chLogger.log("Failed to read entries from the dictionary because " + chLogger.Plain(reason)));
             return entriesPromise;
-        }
+        };
+
+        public SaveAchievements = (score: IScoreEntry[]): angular.IPromise<void> => {
+            var saveDeferrer = this.$q.defer<void>();
+            this.RootDirEntryPromise
+                .then(root=>this.$cordovaFile.writeFile(root, LocalVerbs.achievement, Utils.ToJson(score), true))
+                .then(progress=> saveDeferrer.resolve())
+                .catch(failCreateFile=> saveDeferrer.reject(failCreateFile));
+            saveDeferrer.promise
+                .then(() => chLogger.log("Saved the achievement.json"))
+                .catch(reason=> chLogger.log("Failed to save the achievement.json"));
+            return saveDeferrer.promise;
+        };
+
+        public ReadAchievement = (): angular.IPromise<IScoreEntry[]> => {
+            return this.RootDirEntryPromise
+                .then(root=> this.$cordovaFile.checkFile(root, LocalVerbs.achievement)
+                    .then(file=> {
+                        var achievementPath = file.nativeURL;
+                        chLogger.log('achievement path: ' + achievementPath);
+                        return this.apiFactory.GetAchievement(achievementPath);
+                    }));
+        };
 	}
 
 	cerebralhikeServices.service(DownloadService.Alias, DownloadService);

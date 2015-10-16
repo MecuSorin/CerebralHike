@@ -28,6 +28,7 @@ module cerebralhike {
             var answer = new GlossaryAnswer(feature, this.IsJapanQuestion, isCorrect);
             answers.push(answer);
         };
+        public OnAnswer = (isCorrect: boolean): void => { this.scoreService.NewJapaneseAnswer(isCorrect); };
 
         public Setup = (): void => {
             this.downloadService.ReadDictionary().then(features => {

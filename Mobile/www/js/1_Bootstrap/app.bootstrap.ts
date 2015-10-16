@@ -13,7 +13,7 @@ module cerebralhike {
     cerebralhikeLogger.service(ErrorsService.Alias, ErrorsService.Register);
 
     export var cerebralhikeServices = angular.module('cerebralhike.services', dependinces);
-    export var cerebralhikeControllers = angular.module('cerebralhike.controllers', ['cerebralhike.services']);
+    export var cerebralhikeControllers = angular.module('cerebralhike.controllers', ['cerebralhike.services', 'angular-chartist']);
     
 }
 var cerebralhikeApp = angular.module('starter', ['ionic', 'cerebralhike.controllers']);

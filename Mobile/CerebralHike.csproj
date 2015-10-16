@@ -41,6 +41,9 @@
     <Content Include="www\lib\angular-animate\angular-animate.js" />
     <Content Include="www\lib\angular-animate\angular-animate.min.js" />
     <Content Include="www\lib\angular-animate\index.js" />
+    <Content Include="www\lib\angular-chartlist\angular-chartist.js" />
+    <Content Include="www\lib\angular-chartlist\chartist.min.css" />
+    <Content Include="www\lib\angular-chartlist\chartist.min.js" />
     <Content Include="www\lib\angular-sanitize\angular-sanitize.js" />
     <Content Include="www\lib\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="www\lib\angular-sanitize\index.js" />
@@ -74,6 +77,7 @@
     <Content Include="www\lib\ngCordova\dist\ng-cordova-mocks.min.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.min.js" />
+    <Content Include="www\templates\achievement.html" />
     <Content Include="www\templates\log.html" />
     <Content Include="www\templates\quiz_japanese.html" />
     <Content Include="www\templates\quiz_glossary.html" />
@@ -82,6 +86,8 @@
     <Content Include="www\templates\download.html" />
     <Content Include="www\templates\learn_list.html" />
     <Content Include="www\templates\menu.html" />
+    <Content Include="www\lib\angular-chartlist\scss\chartist.scss" />
+    <Content Include="www\lib\angular-chartlist\scss\settings\_chartist-settings.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
@@ -211,6 +217,7 @@
     <TypeScriptCompile Include="www\js\2_Services\DownloadService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\MenuController.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\AchievementController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizBaseController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizJapaneseController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizTechniquesController.ts" />
@@ -219,6 +226,7 @@
     <TypeScriptCompile Include="www\js\3_Controllers\DownloadController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\FeatureListController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\ErrorController.ts" />
+    <TypeScriptCompile Include="www\js\4_Models\ScoreEntry.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Answer.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Feature.ts" />
     <TypeScriptCompile Include="www\js\4_Models\Set.ts" />

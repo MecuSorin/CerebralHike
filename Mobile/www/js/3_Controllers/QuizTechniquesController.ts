@@ -39,6 +39,7 @@ module cerebralhike {
             this.QuestionImage = ApiVerbs.GetImagesRoot() + "funny.png";
             this.$timeout(700, true).then(() => this.PlayClip());
         };
+        public OnAnswer = (isCorrect: boolean): void => { this.scoreService.NewTechniqueAnswer(isCorrect); };
 	}
 
 	cerebralhikeControllers.controller(QuizTechniquesController.Alias, QuizTechniquesController);

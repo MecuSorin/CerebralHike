@@ -10,7 +10,6 @@
 - ~~de ascuns tehnici~~
 - ~~mecanism de actualizare~~
 - bug: denumiri cu acelasi nume care se repeta in teste (trebuie ca testele sa fie filtrate de dubluri- care pot fi chiar si din carti diferite, pozitii diferite)
-- persistent score for Stefan -  to think at a prize system
+- ~~persistent score for Stefan~~ -  to think at a prize system
 - de accentuat impresia ca imaginile sunt defapt butoane de play pe care se poate apasa (sa nu uit sa pun si culoarea de activ folosita in restul aplicatiei)
-- de semnalat schimbare de content (similar pt legend.json cum am facut pt apk)
 - de vazut cum pot salva frame-uri din video pentru imaginile butoanelor de play
