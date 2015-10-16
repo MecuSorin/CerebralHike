@@ -65,6 +65,32 @@ ul.logs, ul.logs li {
     font-weight:600;
 }
 
+span.font-header {
+    margin-top: -2px;
+    margin-bottom: -3px;
+}
+
+.techniqueItem {
+    display: block;
+    margin-top: -4px!important;
+    margin-bottom:-4px!important;
+}
+
 .font-footer {
     font-size: 8px;
+}
+
+.techniqueList a {
+    /*padding: 0px !important;*/
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+}
+
+.techniqueList a div {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
 }

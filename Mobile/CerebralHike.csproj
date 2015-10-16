@@ -26,7 +26,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="ToDo.md" />
     <Content Include="web.config" />
     <Content Include="www\appdata\dictionary.txt" />
     <Content Include="www\css\ionic.app.css" />
