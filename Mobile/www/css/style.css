@@ -95,6 +95,9 @@ span.font-header {
     margin-bottom: 2px !important;
 }
 
+.ct-point {
+    stroke-width:8px;
+}
 .ct-series-a .ct-line {
     stroke: red;
     stroke-width: 2px !important;
@@ -102,6 +105,9 @@ span.font-header {
 .ct-series-b .ct-line {
     stroke: green;
     stroke-width: 2px !important;
+}
+.ct-series-b .ct-point {
+    stroke: green;
 }
 
 .ct-area {
@@ -115,3 +121,5 @@ span.font-header {
 .ct-series-b .ct-area {
     fill: green;
 }
+
+

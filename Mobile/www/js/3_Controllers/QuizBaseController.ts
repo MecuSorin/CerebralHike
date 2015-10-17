@@ -5,6 +5,7 @@ module cerebralhike {
         private static DefaultNumberOfAnswers : number = 10;
 
         constructor(public downloadService: DownloadService, public scoreService: ScoreService) {
+            scoreService.LoadData();        // if the user answers a quiz before that the achievement will be lost (overwritten)
         }
 
         public QuestionWasUsed: boolean = false;
