@@ -1,0 +1,45 @@
+﻿#region Directives
+
+using System;
+using Params;
+
+#endregion
+
+namespace TestConsole
+{
+    internal class Program
+    {
+        #region Private Methods
+
+        private static void Main(string[] args)
+        {
+            var paramsControl = new ParamsControl<Options>(new Options(), args, "Testconsole runner");
+
+            var valid = paramsControl.Validate();
+
+            if (valid == false)
+                Console.WriteLine(paramsControl.GenerateError());
+
+            Console.WriteLine("Source {0} Destination {1} Verbose {2}", paramsControl.Values.Source, paramsControl.Values.Destination, paramsControl.Values.Verbose);
+        }
+
+        #endregion
+    }
+
+    public class Options
+    {
+        #region  Properties
+
+        [Param(Name = 'd', FullName = "Destination", Required = true, Description = "destination")]
+        public string Destination { get; set; }
+
+        [Param(Name = 's', FullName = "Source", Required = true,  Description = "source")]
+        public string Source { get; set; }
+
+        [Param(Name = 'v', FullName = "Verbose", Required = false, DefaultValue =  true, Description = "verbose")]
+        public bool Verbose { get; set; }
+
+
+        #endregion
+    }
+}
