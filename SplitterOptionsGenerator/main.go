@@ -75,6 +75,20 @@ func NewMove(book, attack, front, position, japan, ro, start, end string, additi
 	return move{Book: book, Attack: attack, Front: front, Position: position, Japan: japan, Ro: ro, Marker: NewFileMarker(start, end), AdditionalMarkers: markers}
 }
 
+type BookOptions struct {
+	moves	  []move
+	lastIndex int
+}
+
+func NewBookOptions() *BookOptions {
+	result := BookOptions{make([]move, 0), 0}
+	return &result
+}
+
+func (b *BookOptions) AddMove(m move) {
+	b.moves = append(b.moves, m)
+}
+
 type FileMarker struct {
 	rawStart string
 	rawEnd	 string
@@ -131,13 +145,14 @@ func (m move) getClipName(suffix string, index int) string {
 	return fmt.Sprintf(name, index)
 }
 
-func saveOptionsFile(partsText, suffix string) {
-	f, err := os.Create("splitter_" + suffix + ".options")
+func saveOptionsFile(bookName, partsText, suffix string) {
+	f, err := os.Create("splitter_" + suffix + "_" + bookName + ".options")
 	if nil != err {
 		log.Fatal("Unable to create the splitting options file")
 	}
 	defer f.Close()
 	clipName := strings.Replace(*outputName, "{suffix}", suffix, 1)
+	clipName = strings.Replace(clipName, "{book}", bookName, 1)
 	//just for brevity - not optimal
 	allText := []string{"-o",
 		clipName,
@@ -205,27 +220,36 @@ func main() {
 	if nil != err {
 		log.Fatal("Failed to read the data from markers file")
 	}
-	allMoves := make([]move, len(rows))
-	for i, each := range rows {
+	allMoves := make(map[string]*BookOptions)
+	for _, each := range rows {
 		m := NewMove(each[ColBook], each[ColAttack], each[ColFront], each[ColPosition], each[ColJapan], each[ColRo], each[ColStart], each[ColEnd], each[ColEnd+1:]...)
-		allMoves[i] = m
+		if _, ok := allMoves[m.Book]; !ok {
+			allMoves[m.Book] = NewBookOptions()
+		}
+		allMoves[m.Book].AddMove(m)
 	}
-	jsonOutput := make([]jsonMove, len(allMoves))
-	splittingOptionsMain, splittingOptionsExtra := "", ""
-	for i, each := range allMoves {
-		mainOpt, extraOpt := each.GetClips()
-		splittingOptionsMain = splittingOptionsMain + mainOpt
-		splittingOptionsExtra = splittingOptionsExtra + extraOpt
-		jsonOutput[i] = jsonMove{each.Book, each.Attack, each.Front, each.Position, each.Japan, each.Ro, each.getClipName("m", i+1), each.getClipName("e", i+1)}
-		//		fmt.Printf("%s \t %s %d %d", each.Japan, each.Ro, each.Marker.start, each.Marker.end)
-		//cmd := exec.Command("vlc", "--start-time", each.Marker.start, "--stop-time", each.Marker.end, *movieFile)
-		//err = cmd.Run()
-		//if nil != err {
-		//log.Print(err)
-		//}
+	jsonOutput := make([]jsonMove, len(rows))
+	overallMoveIndex := 0
+	for bookName := range allMoves {
+		splittingOptionsMain, splittingOptionsExtra := "", ""
+		for _, each := range allMoves[bookName].moves {
+			mainOpt, extraOpt := each.GetClips()
+			splittingOptionsMain = splittingOptionsMain + mainOpt
+			splittingOptionsExtra = splittingOptionsExtra + extraOpt
+			clipIndexByBook := allMoves[bookName].lastIndex + 1
+			jsonOutput[overallMoveIndex] = jsonMove{each.Book, each.Attack, each.Front, each.Position, each.Japan, each.Ro, each.getClipName("m", clipIndexByBook), each.getClipName("e", clipIndexByBook)}
+			allMoves[bookName].lastIndex = clipIndexByBook
+			overallMoveIndex = overallMoveIndex + 1
+			//		fmt.Printf("%s \t %s %d %d", each.Japan, each.Ro, each.Marker.start, each.Marker.end)
+			//cmd := exec.Command("vlc", "--start-time", each.Marker.start, "--stop-time", each.Marker.end, *movieFile)
+			//err = cmd.Run()
+			//if nil != err {
+			//log.Print(err)
+			//}
+		}
+		saveOptionsFile(bookName, splittingOptionsMain[1:], "m")
+		saveOptionsFile(bookName, splittingOptionsExtra[1:], "e")
 	}
-	saveOptionsFile(splittingOptionsMain[1:], "m")
-	saveOptionsFile(splittingOptionsExtra[1:], "e")
 	saveDataToJSON(jsonOutput)
 	log.Println("Generated the options file")
 }

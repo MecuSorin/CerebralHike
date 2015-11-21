@@ -29,6 +29,33 @@ Ikka-Jo		Back	Tachi-Waza	Ryo-Kata-hineri	Insurubarea cu ambii umeri	25:34	25:37	
 Ikka-Jo		Back	Tachi-Waza	Ryo-Hiji-gaeshi	Rasucirea cu ambele coate	26:10	26:14	26:28	26:35
 Ikka-Jo		Back	Tachi-Waza	Daki-jime-dori	Prinderea la strangulare prin imbratisare	26:44	26:50	27:07	27:18
 Ikka-Jo		Back	Tachi-Waza	Kata-otoshi	Aruncarea peste umar din spate in fata	27:27	27:30	27:43	27:49
-
-
-
+Nika-Jo		Front	Suwari-Waza	Kote-zume	Presarea incheieturii mainii	28:57	29:04	29:20	29:57
+Nika-Jo		Front	Suwari-Waza	Gyaku-dasuki	Snurul invers	30:08	30:13	30:29	30:42
+Nika-Jo		Front	Suwari-Waza	Hiji-kujiki	Dislocarea cotului	30:55	31:01	31:14	31:27	31:30	31:41
+Nika-Jo		Front	Suwari-Waza	Konoha-gaeshi	Rasucirea ca o funza de copac	31:53	31:58	32:09	32:21	32:24	32:38
+Nika-Jo		Front	Suwari-Waza	Shuto-zume	Presarea cu sabia mainii	32:54	33:01	33:14	33:29
+Nika-Jo		Front	Suwari-Waza	Kubi-hineri	Insurubarea gatului	33:46	33:51	34:04	34:29
+Nika-Jo		Front	Suwari-Waza	Kote-gaeshi	Rasucirea incheieturii mainii	34:43	34:49	34:59	35:11
+Nika-Jo		Front	Suwari-Waza	Kata-Ha-dori	Prinderea de o aripa	35:26	35:34	35:47	36:02
+Nika-Jo		Front	Suwari-Waza	Kamate-zume	Presarea mainii facute secera	36:22	36:26	36:37	36:43
+Nika-Jo		Front	Suwari-Waza	Gyaku-gote	Incheietura mainii inverse	36:56	37:01	37:12	37:28
+Nika-Jo		Front	Hanmi Handachi Waza	Shuto-zume	Presarea cu sabia mainii	37:47	37:52	38:01	38:13
+Nika-Jo		Front	Hanmi Handachi Waza	Kote-gaeshi	Rasucirea incheieturii mainii	38:26	38:30	38:37	38:47
+Nika-Jo		Front	Hanmi Handachi Waza	Suso-dori	Prinderea tivului	39:01	39:05	39:13	39:24
+Nika-Jo		Back	Hanmi Handachi Waza	Hiji-kujiki	Dislocarea cotului	39:36	39:40	39:47	40:01
+Nika-Jo		Front	Hanmi Handachi Waza	Irimi-zume	Presarea prin intrarea cu corpul	40:18	40:25	40:43	40:55
+Nika-Jo		Front	Tachi-Waza	Gyaku-dasuki	Snurul invers	41:12	41:17	41:29	41:41
+Nika-Jo		Front	Tachi-Waza	Hiki-otoshi	Rasturnarea prin tragere	41:53	41:58	42:12	42:21
+Nika-Jo		Front	Tachi-Waza	Kubi-nage	Aruncarea de la gat	42:31	42:34	42:43	43:11
+Nika-Jo		Front	Tachi-Waza	Suso-barai	Maturarea cu tivul manecii	43:21	43:24	43:34	43:41
+Nika-Jo		Front	Tachi-Waza	Seoi-nage	Aruncarea pe spate	43:52	43:55	44:06	44:16
+Nika-Jo		Front	Tachi-Waza	Shuto-zume	Presarea cu sabia mainii	44:27	44:32	44:43	44:55
+Nika-Jo		Front	Tachi-Waza	Kote-gaeshi	Rasucirea incheieturii mainii	45:05	45:08	45:22	45:31	45:37	45:45
+Nika-Jo		Front	Tachi-Waza	Kata-guruma	Rotirea peste umar	45:54	45:57	46:09	46:18	46:20	46:25
+Nika-Jo		Front	Tachi-Waza	Koshi-guruma	Rotirea peste shold	46:35	46:40	46:51	47:03
+Nika-Jo		Front	Tachi-Waza	Se-kujiki	Dislocarea spatelui	47:13	47:18	47:28	47:55
+Nika-Jo		Back	Tachi-Waza	Tsuki-taoshi	Aruncarea cu mana intinsa / cu lovitura	48:12	48:15	48:29	48:38	48:41	48:46	48:49	48:54	48:56	49:00
+Nika-Jo		Back	Tachi-Waza	Sukui-nage	Sapare si aruncare	49:11	49:15	49:28	49:41
+Nika-Jo		Back	Tachi-Waza	Gyaku-gote	Incheietura mainii inverse	49:52	49:56	50:10	50:22	50:25	50:37
+Nika-Jo		Back	Tachi-Waza	Kubi-nage	Aruncarea de la gat	50:47	50:51	51:02	51:10
+Nika-Jo		Back	Tachi-Waza	Hiji-kujiki	Dislocarea cotului	51:22	51:25	51:36	51:46
