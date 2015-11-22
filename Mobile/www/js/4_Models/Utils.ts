@@ -46,11 +46,11 @@ module cerebralhike {
             return Math.floor(Math.random() * Math.abs(upToValue));
         }
 
-        public static GetRandomItems<T>(collection: T[], numberOfItemsToTake: number): T[] {
+        public static GetRandomItems<T>(collection: T[], numberOfItemsToTake: number, getHash: (item:T)=> number ): T[] {
             if (collection.length < numberOfItemsToTake) {
                 return collection;
             }
-            var set = new Set();
+            var set = new Set<number>();
             var lngth = collection.length;
             var result: T[] = [];
             for (var i = Math.abs(numberOfItemsToTake); i > 0; i--) {
@@ -58,7 +58,11 @@ module cerebralhike {
                 var chosen: number = -1;
                 do {
                     chosen = Utils.GetRandom(lngth);
-                    newItem = set.Add(chosen);
+                    var hash = getHash(collection[chosen]);
+                    newItem = set.Add(hash);
+                    if (!newItem) {
+                        chLogger.log("Duplicate found when searching features");
+                    }
                 }
                 while (!newItem);
                 result.push(collection[chosen]);
@@ -99,6 +103,17 @@ module cerebralhike {
         public static ParseDictionaryEntry(words: string[]): IDictionaryEntry {
             if (!words || words.length != 2) throw 'Bad structure for dictionary entry';
             return { Japan: words[0], Ro: words[1] };
+        }
+
+        public static GetHashCode(text:string):number {
+            var hash = 0;
+            if (text.length == 0) return hash;
+            for (var i = 0; i < text.length; i++) {
+                var character = text.charCodeAt(i);
+                hash = ((hash << 5) - hash) + character;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
         }
     }
 } 

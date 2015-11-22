@@ -1,15 +1,15 @@
 ﻿module cerebralhike {
-    export class Set {
+    export class Set<T> {
         constructor() { }
-        private Selection: number[] = [];
+        private Selection: T[] = [];
 
-        public Add = (value: number): boolean => {
+        public Add = (value: T): boolean => {
             if (0 <= this.Selection.indexOf(value)) return false;
             this.Selection.push(value);
             return true;
         }
 
-        public GetItems = (): number[] => {
+        public GetItems = (): T[] => {
             return this.Selection;
         }
     }

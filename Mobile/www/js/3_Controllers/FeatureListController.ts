@@ -3,17 +3,17 @@
 module cerebralhike {
 	export class FeatureListController {
         public static Alias ="FeatureListController";
-        public static $inject=['$scope', FeatureService.Alias];
 
         public Features :IFeature[] = [];
-        public FailedToLoadFeatures :string = "Loading ..."
+        public FailedToLoadFeatures: string = "Loading ...";
         constructor(public $scope: angular.IScope, public FeatureService: FeatureService) {
             FeatureService.LoadFeatures()
                 .then(()=>this.ShowFeatures())
                 .catch(reason=>this.ShowErrorLoadingFeatures(reason))
-                .finally(()=>this.RefreshScope());
+                .finally(() => this.RefreshScope());
         }
 
+        public FeatureFilter: string = '';
         private RefreshScope = () => {
             if (!this.$scope.$$phase) { 
                 this.$scope.$apply();
@@ -23,7 +23,7 @@ module cerebralhike {
         private ShowErrorLoadingFeatures = reason=> {
             this.Features = [];
             this.FailedToLoadFeatures = "Failed to load" + reason.toString();
-        }
+        };
 
         private ShowFeatures = () => {
             this.FeatureService.LoadFeatures()
@@ -40,7 +40,7 @@ module cerebralhike {
                     this.Features = [];
                     this.FailedToLoadFeatures = reason;
                 });
-        }
+        };
 
         public HideFeature(feature: IFeature): void {
             feature.ToHide = !feature.ToHide;
@@ -50,6 +50,10 @@ module cerebralhike {
         public static GetLearnFeatureAppPath(feature: IFeature, appendRoot?: boolean): string {
             return ((appendRoot) ? '#' : '') + '/app/learn/' + feature.Id;
         }
+
+        public ClearFilter = () => {
+            this.FeatureFilter = '';
+        };
 	}
 
 	cerebralhikeControllers.controller(FeatureListController.Alias, FeatureListController);

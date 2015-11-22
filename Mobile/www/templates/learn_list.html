@@ -1,21 +1,32 @@
 <ion-view view-title="Invata">
     <ion-content>
         <ion-list class="techniqueList" ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
-            <ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="feature in FeatureListCtrl.Features"
+            <ion-item class="item-remove-animate item-icon-left item-icon-right" 
+                      ng-repeat="feature in FeatureListCtrl.Features | filter:FeatureListCtrl.FeatureFilter"
                       type="item-text-wrap"
-                      href="#/app/learn/{{::feature.Id}}">
+                      href="#/app/learn/{{feature.Id}}">
 
                 <i class="icon ion-eye{{(feature.ToHide) ? '-disabled':''}} enabledBlue"
                    ng-click="FeatureListCtrl.HideFeature(feature);"
                    onclick="return false;"></i>
                 <div class="item-body font-footer">
-                    <span class="techniqueItem">{{::feature.Book}}</span>
-                    <span class="font-header">{{::feature.Japan}}</span>
-                    <span class="techniqueItem">{{::feature.Ro}}</span>
+                    <span class="techniqueItem">{{feature.Book}}</span>
+                    <span class="font-header">{{feature.Japan}}</span>
+                    <span class="techniqueItem">{{feature.Ro}}</span>
                 </div>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>
         <h2 ng-show="FeatureListCtrl.FailedToLoadFeatures != ''">{{FeatureListCtrl.FailedToLoadFeatures}}</h2>
     </ion-content>
+    <div class="bar bar-footer bar-light">
+        <div class="item-icon-left"
+                  ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
+            <i class="icon ion-funnel{{FeatureListCtrl.FeatureFilter == '' ? '' : ' enabledBlue'}}"
+               ng-click="FeatureListCtrl.ClearFilter();"></i>
+            <input type="text"
+                   ng-model="FeatureListCtrl.FeatureFilter"
+                   placeholder="Tasteaza pt a filtra lista" />
+        </div>
+    </div>
 </ion-view>

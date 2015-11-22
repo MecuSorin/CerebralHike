@@ -80,6 +80,11 @@ declare module cerebralhike {
         Glossary: IQuizScore;
         Techniques: IQuizScore;
     }
+
+    interface IFilteredScope extends angular.IScope
+    {
+        Filter: string;
+    }
 }
 
 

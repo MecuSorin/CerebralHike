@@ -23,6 +23,7 @@ module cerebralhike {
         public CreateAnswerAndAppend = (answers: Answer[], feature: IFeature, isCorrect: boolean): void => { };
         public SetupQuestion = (): void => { };
         public OnAnswer = (isCorrect: boolean): void => { };
+        public GetHashCode = (item: IFeature): number => { return Utils.GetHashCode(item.Japan); }
 
         public PrepaireQuestion = () => {
             if (!this.ShowNextQuestionButtonVisible) return;
@@ -32,7 +33,7 @@ module cerebralhike {
             this.Answers = [];
             this.ResetQuestion();
 
-            var chosenFeatures = Utils.GetRandomItems(this.GetData(), this.GetNumberOfAnswers());
+            var chosenFeatures = Utils.GetRandomItems(this.GetData(), this.GetNumberOfAnswers(), this.GetHashCode);
             var questionIndex: number = -1;
             do {
                 questionIndex = Utils.GetRandom(chosenFeatures.length);
