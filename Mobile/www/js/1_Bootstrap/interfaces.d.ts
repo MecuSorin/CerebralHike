@@ -84,6 +84,7 @@ declare module cerebralhike {
     interface IFilteredScope extends angular.IScope
     {
         Filter: string;
+        myFilteredFeatures: IFeature[]
     }
 }
 

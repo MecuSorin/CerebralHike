@@ -12,5 +12,9 @@
         public GetItems = (): T[] => {
             return this.Selection;
         }
+
+        public Length = () => {
+            return this.Selection.length;
+        }
     }
 }

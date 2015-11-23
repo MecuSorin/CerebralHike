@@ -21,11 +21,9 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
-    "org.apache.cordova.file",
-    "org.apache.cordova.file-transfer",
-    "org.apache.cordova.network-information",
-    "org.apache.cordova.console",
-    "org.apache.cordova.device",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-network-information",
     {
       "locator": "https://github.com/MecuSorin/cordova-plugin-video.git",
       "id": "com.mecusorin.cordova.video"

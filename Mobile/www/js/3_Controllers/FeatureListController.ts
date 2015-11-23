@@ -6,7 +6,7 @@ module cerebralhike {
 
         public Features :IFeature[] = [];
         public FailedToLoadFeatures: string = "Loading ...";
-        constructor(public $scope: angular.IScope, public FeatureService: FeatureService) {
+        constructor(public $scope: IFilteredScope, public FeatureService: FeatureService) {
             FeatureService.LoadFeatures()
                 .then(()=>this.ShowFeatures())
                 .catch(reason=>this.ShowErrorLoadingFeatures(reason))
@@ -54,6 +54,39 @@ module cerebralhike {
         public ClearFilter = () => {
             this.FeatureFilter = '';
         };
+
+        public UserChecked = () => {
+            this.UserSwitchedToHideTo(true, this.$scope.myFilteredFeatures);
+        }
+
+        public UserUnchecked = () => {
+            this.UserSwitchedToHideTo(false, this.$scope.myFilteredFeatures);
+        }
+
+        public UserCheckedItems = (features:IFeature[]) => {
+            this.UserSwitchedToHideTo(false, features);
+        }
+
+        public UserUncheckedItems = (features: IFeature[]) => {
+            this.UserSwitchedToHideTo(true, features);
+        }
+
+        private UserSwitchedToHideTo = (value: boolean, filteredFeatures: IFeature[]) => {
+            if (!filteredFeatures) {
+                chLogger.log("User checked/unchecked on undefined collection");
+
+                var aaaa: any = this.$scope;
+                chLogger.log(aaaa);
+                return;
+            }
+            if (0 == filteredFeatures.length) {
+                chLogger.log("Unable to peform change because no feature was filtered");
+                return;
+            }
+            angular.forEach(filteredFeatures, feature=> feature.ToHide = value);
+            chLogger.log("Updated ToHide to "+value+" for " + filteredFeatures.length + " techniques");
+            this.FeatureService.downloadService.SaveLocalLegend();
+        }
 	}
 
 	cerebralhikeControllers.controller(FeatureListController.Alias, FeatureListController);

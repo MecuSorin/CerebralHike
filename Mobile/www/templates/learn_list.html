@@ -1,8 +1,20 @@
-<ion-view view-title="Invata">
+<ion-view view-title="Invata" >
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-checkbox-outline enabledBlue"
+                ng-click="FeatureListCtrl.UserCheckedItems(myFilteredFeatures);"></button>
+        <button class="button button-icon button-clear ion-android-checkbox-outline-blank enabledBlue"
+                ng-click="FeatureListCtrl.UserUncheckedItems(myFilteredFeatures);"></button>
+        # {{myFilteredFeatures.length}}
+    </ion-nav-buttons>
     <ion-content>
+        <button class="button button-icon button-clear ion-android-checkbox-outline enabledBlue"
+                ng-click="FeatureListCtrl.UserCheckedItems(myFilteredFeatures);"></button>
+        <button class="button button-icon button-clear ion-android-checkbox-outline-blank enabledBlue"
+                ng-click="FeatureListCtrl.UserUncheckedItems(myFilteredFeatures);"></button>
+        # {{myFilteredFeatures.length}}
         <ion-list class="techniqueList" ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
             <ion-item class="item-remove-animate item-icon-left item-icon-right" 
-                      ng-repeat="feature in FeatureListCtrl.Features | filter:FeatureListCtrl.FeatureFilter"
+                      ng-repeat="feature in FeatureListCtrl.Features | filter:FeatureListCtrl.FeatureFilter as myFilteredFeatures"
                       type="item-text-wrap"
                       href="#/app/learn/{{feature.Id}}">
 
@@ -22,11 +34,17 @@
     <div class="bar bar-footer bar-light">
         <div class="item-icon-left"
                   ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
-            <i class="icon ion-funnel{{FeatureListCtrl.FeatureFilter == '' ? '' : ' enabledBlue'}}"
+            <i class="icon {{FeatureListCtrl.FeatureFilter == '' ? 'ion-funnel' : 'ion-backspace-outline enabledBlue'}}"
                ng-click="FeatureListCtrl.ClearFilter();"></i>
             <input type="text"
                    ng-model="FeatureListCtrl.FeatureFilter"
-                   placeholder="Tasteaza pt a filtra lista" />
+                   ng-model-options="{ debounce: 1000 }"
+                   placeholder="Tasteaza pentru a filtra lista" />
         </div>
+        <button class="button button-icon button-clear ion-android-checkbox-outline enabledBlue"
+                ng-click="FeatureListCtrl.UserCheckedItems(myFilteredFeatures);"></button>
+        <button class="button button-icon button-clear ion-android-checkbox-outline-blank enabledBlue"
+                ng-click="FeatureListCtrl.UserUncheckedItems(myFilteredFeatures);"></button>
+        # {{myFilteredFeatures.length}}
     </div>
 </ion-view>

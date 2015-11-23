@@ -50,7 +50,8 @@ module cerebralhike {
             if (collection.length < numberOfItemsToTake) {
                 return collection;
             }
-            var set = new Set<number>();
+            var pickedItemsSet = new Set<number>();
+            var duplicatesItemsIndexesSet = new Set<number>();
             var lngth = collection.length;
             var result: T[] = [];
             for (var i = Math.abs(numberOfItemsToTake); i > 0; i--) {
@@ -59,13 +60,15 @@ module cerebralhike {
                 do {
                     chosen = Utils.GetRandom(lngth);
                     var hash = getHash(collection[chosen]);
-                    newItem = set.Add(hash);
+                    newItem = pickedItemsSet.Add(hash);
                     if (!newItem) {
-                        chLogger.log("Duplicate found when searching features");
+                        duplicatesItemsIndexesSet.Add(chosen);
                     }
                 }
-                while (!newItem);
-                result.push(collection[chosen]);
+                while (!newItem && (duplicatesItemsIndexesSet.Length() + pickedItemsSet.Length() < collection.length));
+                if (newItem) {
+                    result.push(collection[chosen]);
+                }
             }
             return result;
         }
