@@ -1,7 +1,7 @@
 {
   "name": "cerebralhike",
   "version": "1.0.0",
-  "description": "cerebralHike: An Ionic project",
+  "description": "CerebralHike: An Ionic project",
   "dependencies": {
     "angular-chartist.js": "^3.3.9",
     "gulp": "^3.5.6",
@@ -20,17 +20,15 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard",
     "cordova-plugin-file",
     "cordova-plugin-file-transfer",
     "cordova-plugin-network-information",
+    "cordova-plugin-inappbrowser",
     {
       "locator": "https://github.com/MecuSorin/cordova-plugin-video.git",
       "id": "com.mecusorin.cordova.video"
-    },
-    {
-      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
-      "id": "cordova-plugin-inappbrowser"
     }
   ],
   "cordovaPlatforms": [

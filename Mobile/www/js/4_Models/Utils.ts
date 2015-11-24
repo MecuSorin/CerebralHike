@@ -13,7 +13,11 @@ module cerebralhike {
             if (clipLocation && clipLocation.length > 1) {
                 chLogger.log("Play clip: " + clipLocation)
                 var host: any = window.plugins;
-                host.videoPlayer.play(clipLocation);
+                try {
+                    host.videoPlayer.play(clipLocation);
+                } catch (err) {
+                    chLogger.log("Play clip failed: " + err);
+                }
             } else {
                 chLogger.log("No clip to play");
             }
