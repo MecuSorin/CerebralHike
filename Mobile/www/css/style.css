@@ -43,6 +43,10 @@
     color: #11c1f3 !important;
 }
 
+.forecolorRed {
+    color: red;
+}
+
 .disabledGray {
     color: gray !important;
 }
@@ -54,6 +58,10 @@
 
 .spaced-left {
     margin-left: 2em;
+}
+
+.spaced-right {
+    margin-right: 2em;
 }
 
 ul.logs, ul.logs li {

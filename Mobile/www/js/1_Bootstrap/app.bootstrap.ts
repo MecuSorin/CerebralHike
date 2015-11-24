@@ -12,16 +12,6 @@ module cerebralhike {
     export var cerebralhikeLogger = angular.module('cerebralhike.logs', []);
     cerebralhikeLogger.service(ErrorsService.Alias, ErrorsService.Register);
 
-    cerebralhikeLogger.filter('toArray', function () {
-        return function (items) {
-            var filtered = [];
-            angular.forEach(items, function (item) {
-                filtered.push(item);
-            });
-            return filtered;
-        };
-    });
-
     export var cerebralhikeServices = angular.module('cerebralhike.services', dependinces);
     export var cerebralhikeControllers = angular.module('cerebralhike.controllers', ['cerebralhike.services', 'angular-chartist']);
     

@@ -62,7 +62,16 @@ module cerebralhike {
         }
 
         public GetOriginalLegend(): angular.IPromise<ICloudFeature[]> {
-            return this.GetResponse<ICloudFeature[]>(ApiVerbs.LegendSource);
+            var deferred = this.$q.defer<ICloudFeature[]>();
+            this.GetResponse<ICloudFeature[]>(ApiVerbs.LegendSource).then(response => deferred.resolve(response))
+                .catch(reason => {
+                    chLogger.log(reason);
+                    chLogger.log("Try again to get the legend.json");
+                    this.GetResponse<ICloudFeature[]>(ApiVerbs.LegendSource)
+                        .then(response => deferred.resolve(response))
+                        .catch(errorReason=> deferred.reject(errorReason));
+                });
+           return deferred.promise;
         }
 
         public GetAchievement(achievementPath: string): angular.IPromise<IScoreEntry[]> {
