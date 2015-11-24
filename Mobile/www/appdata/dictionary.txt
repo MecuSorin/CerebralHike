@@ -1,0 +1,63 @@
+﻿Arigato gozaimashita	Thank you
+Hajime	“Begin” or “Start”
+Matte	“Wait” or “Stop”
+Onegai shimasu	A standard Japanese phrase used when asking for a favor or request.  In Aikido, one says this while bowing to the sensei at the beginning of class and to one’s partner before practicing a technique.
+Shomen ni rei!	Bow to the front!  Command used to signal formal seated bow by students at end of practice
+Dogi	A uniform made of thick woven cotton, used in Aikido, Judo, and other martial arts
+Dojo	Practice hall; the place where a martial art is taught and practiced
+Ki	A central concept in East Asian systems of thought and medicine, as well as many other martial arts aside from Aikido. A kind of “life force” that governs the way living beings move and operate.
+Nage (or Tori)	The partner executing a technique in paired or multiple partner practice
+O-sensei	Reference of respect to Morihei Ueshiba (1883-1969), the founder of Aikido, whose picture adorns the front of the dojo
+Rei	A bow
+Sensei	Teacher
+Uke	Receiver of a Technique, that is, the “attacker” who is then thrown or pinned
+ashi	foot/leg
+atama	head
+hiji	elbow
+hiza	knee
+kata	shoulder
+koshi	hip
+kote	forearm
+kubi	neck
+mune	chest
+te	hand
+tekubi	wrist
+ude	arm
+Shiho-nage	Four Direction Throw
+Irimi-nage	Entering Throw
+Kote-gaeshi	Throw from outward wrist twist
+Tenchi-nage	Heaven and Earth Throw
+Kaiten-nage	Rotation Throw
+Kokyu-nage	Breath Throw
+Koshi-nage	Hip Throw
+Juji-garami (sometimes juji-nage)	Cross-shaped Entanglement
+Sumi-otoshi	Corner Drop
+Aiki-otoshi	Aiki Drop
+Ikkyo (ude osae)	Arm Pin
+Nikkyo (kote-mawashi)	Wrist In-Turn to arm pin
+Sankyo (kote-hineri)	Wrist Twist to arm pin
+Yonkyo (tekubi-osae)	Wrist Pin
+Gokyo (ude-nobashi)	Arm Stretch
+Ude-hishigi (or Hiji-gatame or sometimes Rokkyo)	Arm Smash; an technique executed by hyper-extending the elbow
+Shomen-uchi	Strike to the front of the face with the te-gatana
+Yokomen-uchi	Strike to the temple with the te-gatana
+Mune-zuki	Punch to the abdomen
+Katate-dori	Single-handed grip to the wrist (Uke grabs Nage’s right wrist with his left hand)
+Gyaku katate-dori or Ai-dori or Ai-hanmi katate-dori	Cross-handed grip to the wrist (Uke grabs Nage’s right wrist with his right hand)
+Morote-dori (or Katate-ryote-dori)	Uke uses two hands to grab one of the Nage’s wrist.
+Ryote-dori	Uke uses both hands to grab both of the Nage’s wrists
+Mune-dori	Uke grabs Nage by the lapel of dogi
+Kata-dori	Uke grabs one of the Nage’s shoulder with one hand
+Ryokata-dori	Uke grabs both of the Nage’s shoulders
+Kata-dori shomen-uchi	Uke grabs one of the Nage’s shoulder with one hand and strikes at the Nage with the other hand
+Ushiro ryote-dori	Uke grabs both Nage’s wrists from behind.
+Ushiro ryokata-dori	Uke grabs both Nage’s shoulders from behind.
+Ushiro eri-dori	Uke grabs the back of Nage’s collar from behind
+Ushiro kubi-jime	Uke reaches around with one arm, grabs the Nage’s lapel to strangle the Nage and holds on to one of Nage’s wrists with the other hand
+Ushiro-kakae	Uke embraces Nage’s torso from behind, so that Nage’s arms are trapped
+Tenshin	Movement where one steps back and off-line of the incoming attack.
+Ukemi	Tumbling or breakfalls.
+Ura	Rear or in back of, used to describe techniques executed by moving around behind the Uke
+Ushiro Ukemi (or Koho kaiten)	The backwards roll.
+Ushiro-waza	Defenses to attacks from the rear
+Waza	A technique

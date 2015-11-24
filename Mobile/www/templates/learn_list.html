@@ -26,7 +26,7 @@
         <h2 ng-show="FeatureListCtrl.FailedToLoadFeatures != ''">{{FeatureListCtrl.FailedToLoadFeatures}}</h2>
     </ion-content>
     <div class="bar bar-footer bar-light">
-        <label class="item item-input item-icon-left"
+        <div class="item-icon-left"
                   ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
             <i class="icon {{FeatureListCtrl.FeatureFilter == '' ? 'ion-funnel' : 'ion-backspace-outline enabledBlue'}} input-label"
                ng-click="FeatureListCtrl.ClearFilter();"></i>
@@ -36,6 +36,6 @@
                    ng-model-options="{ debounce: 1000 }"
                    ng-change="FeatureListCtrl.UpdateFilter()"
                    placeholder="Tasteaza pentru a filtra lista" />
-        </label>
+        </div>
     </div>
 </ion-view>

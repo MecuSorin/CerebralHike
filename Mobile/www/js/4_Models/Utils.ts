@@ -46,7 +46,7 @@ module cerebralhike {
             return Math.floor(Math.random() * Math.abs(upToValue));
         }
 
-        public static GetRandomItems<T>(collection: T[], numberOfItemsToTake: number, getHash: (item:T)=> number ): T[] {
+        public static GetRandomItems<T>(collection: T[], numberOfItemsToTake: number, getHash: (item: T) => number): T[] {
             if (collection.length < numberOfItemsToTake) {
                 return collection;
             }
@@ -54,21 +54,26 @@ module cerebralhike {
             var duplicatesItemsIndexesSet = new Set<number>();
             var lngth = collection.length;
             var result: T[] = [];
-            for (var i = Math.abs(numberOfItemsToTake); i > 0; i--) {
-                var newItem = false;
-                var chosen: number = -1;
-                do {
-                    chosen = Utils.GetRandom(lngth);
-                    var hash = getHash(collection[chosen]);
-                    newItem = pickedItemsSet.Add(hash);
-                    if (!newItem) {
-                        duplicatesItemsIndexesSet.Add(chosen);
+            try {
+                for (var i = Math.abs(numberOfItemsToTake); i > 0; i--) {
+                    var newItem = false;
+                    var chosen: number = -1;
+                    do {
+                        chosen = Utils.GetRandom(lngth);
+                        var hash = getHash(collection[chosen]);
+                        newItem = pickedItemsSet.Add(hash);
+                        if (!newItem) {
+                            duplicatesItemsIndexesSet.Add(chosen);
+                        }
+                    }
+                    while (!newItem && (duplicatesItemsIndexesSet.Length() + pickedItemsSet.Length() < collection.length));
+                    if (newItem) {
+                        result.push(collection[chosen]);
                     }
                 }
-                while (!newItem && (duplicatesItemsIndexesSet.Length() + pickedItemsSet.Length() < collection.length));
-                if (newItem) {
-                    result.push(collection[chosen]);
-                }
+            }
+            catch (err) {
+                chLogger.log(err);
             }
             return result;
         }

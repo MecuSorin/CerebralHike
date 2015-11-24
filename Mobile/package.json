@@ -27,6 +27,10 @@
     {
       "locator": "https://github.com/MecuSorin/cordova-plugin-video.git",
       "id": "com.mecusorin.cordova.video"
+    },
+    {
+      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
+      "id": "cordova-plugin-inappbrowser"
     }
   ],
   "cordovaPlatforms": [
