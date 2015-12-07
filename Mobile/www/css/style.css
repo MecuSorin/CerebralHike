@@ -139,3 +139,14 @@ span.font-header {
 
 .has-footer {
   bottom: 46px; }
+
+.full-width {
+  width: 100%;
+}
+
+.button.button-icon.input-button {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  color: #11c1f3 !important;
+}
