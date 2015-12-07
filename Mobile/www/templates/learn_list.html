@@ -5,7 +5,7 @@
         <button class="button button-icon button-clear ion-eye-disabled enabledBlue spaced-right"
                 ng-click="FeatureListCtrl.UserUnchecked();"></button>
     </ion-nav-buttons>
-    <ion-content>
+    <ion-content class="has-footer">
         <ion-list class="techniqueList" ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
             <ion-item class="item-remove-animate item-icon-left item-icon-right" 
                       ng-repeat="feature in FeatureListCtrl.FilteredFeatures"

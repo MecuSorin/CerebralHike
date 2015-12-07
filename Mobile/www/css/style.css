@@ -137,4 +137,5 @@ span.font-header {
     fill: green;
 }
 
-
+.has-footer {
+  bottom: 46px; }
