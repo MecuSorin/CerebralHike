@@ -25,22 +25,37 @@
   bottom: 0;
 }
 
-.unusedAnswer {
+.answer {
+    margin: 0.2em;
+    padding: 0.7em;
+}
+.answer-margin-left {
+    margin-left:0.9em;
+}
+.answer-unused {
     background-color: white;
 }
-.correctAnswer {
-    background-color: #33cd5f;
-}
-.invalidAnswer {
-    background-color: #ffc900;
-}
 
-.answer {
-    margin:1.2em;
+.answer-used {
+    background-color: #e8f8fd; 
 }
 
 .enabledBlue {
     color: #11c1f3 !important;
+}
+
+.answer-icon {
+    position: absolute;
+    right:8px;
+    font-size: x-large;
+    margin-top:-3px;
+}
+
+.answer-correct-color {
+    color: #1f7b33;
+}
+.answer-invalid-color {
+    color: #db0a07;
 }
 
 .forecolorRed {
@@ -62,6 +77,10 @@
 
 .spaced-right {
     margin-right: 2em;
+}
+
+.spaced-top {
+    margin-top: 1.2em;
 }
 
 ul.logs, ul.logs li {
@@ -138,10 +157,26 @@ span.font-header {
 }
 
 .has-footer {
-  bottom: 46px; }
+  bottom: 46px; 
+}
+
+.has-tall-subheader {
+    top: 122px;
+}
+
+.bar-subheader.tall-subheader {
+  height: 78px; 
+}
 
 .full-width {
   width: 100%;
+}
+
+.container-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 320px;
 }
 
 .button.button-icon.input-button {
@@ -149,4 +184,8 @@ span.font-header {
   right: 0;
   top: 5px;
   color: #11c1f3 !important;
+}
+
+.card-slim-margins {
+    margin: 9px 50px;
 }

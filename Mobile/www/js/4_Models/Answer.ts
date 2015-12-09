@@ -1,20 +1,25 @@
 ﻿module cerebralhike {
     export class Answer {
-        public static UnusedAnswer = 'unusedAnswer';
-        public static CorrectAnswer = 'correctAnswer';
-        public static InvalidAnswer = 'invalidAnswer';
+        public static UnusedAnswer = 'answer-unused';
+        public static UsedAnswer = 'answer-used';
+        public static CorrectAnswer = 'ion-checkmark-circled answer-correct-color';
+        public static InvalidAnswer = 'ion-close-circled answer-invalid-color';
 
         constructor(feature: IFeature, isCorrect: boolean) {
             this.Text = feature.Japan;
             this.IsCorrect = isCorrect;
+            this.Class = isCorrect ? Answer.CorrectAnswer : Answer.InvalidAnswer;
         }
 
         public Text: string = '';
         public IsCorrect: boolean = false;
-        public Class: string = Answer.UnusedAnswer;
+        public WasUsed: boolean = false;
+        public Class: string = '';
+        public UsedClass: string = Answer.UnusedAnswer;
 
         public Chose = (): boolean => {
-            this.Class = (this.IsCorrect ? Answer.CorrectAnswer : Answer.InvalidAnswer);
+            this.WasUsed = true;
+            this.UsedClass = Answer.UsedAnswer;
             return this.IsCorrect;
         }
     }

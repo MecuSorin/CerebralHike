@@ -4,24 +4,51 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{FeatureDetailCtrl.Feature.Id}}. {{FeatureDetailCtrl.Feature.Japan}}" style="background-color: azure;">
-  <ion-content class="padding">
-    <h2>{{FeatureDetailCtrl.Feature.Ro}}</h2>
-      <p>{{FeatureDetailCtrl.Feature.Position}}</p>
-      <p>{{FeatureDetailCtrl.Feature.Attack}}  </p>
-      <p>{{FeatureDetailCtrl.Feature.Front}}   </p>
-      <img src="{{FeatureDetailCtrl.ImageSrcMain}}" ng-click="FeatureDetailCtrl.PlayClipMain()"  width="128" height="128" />
-      <img src="{{FeatureDetailCtrl.ImageSrcExtra}}" ng-click="FeatureDetailCtrl.PlayClipExtra()"  width="128" height="128" />
+<ion-view view-title="{{::FeatureDetailCtrl.Feature.Japan}}" style="background-color: azure;">
+    <ion-content class="padding">
+        <h2>{{::FeatureDetailCtrl.Feature.Ro}}</h2>
+        <p>{{::FeatureDetailCtrl.Feature.Book}}</p>
+        <p>{{::FeatureDetailCtrl.Feature.Position}}</p>
+        <p>{{::FeatureDetailCtrl.Feature.Attack}}  </p>
+        <p>{{::FeatureDetailCtrl.Feature.Front}}   </p>
+        <div class="full-width container-flex">
+            <!--play main button-->
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 width="146px" height="129px" viewBox="0 0 146 129" enable-background="new 0 0 146 129" xml:space="preserve"
+                 ng-click="FeatureDetailCtrl.PlayClipMain()">
+                <g>
+                <g>
+                <path fill="#11C1F3" d="M136,1.5c4.963,0,9,3.538,9,8.5v87c0,4.963-4.037,9.5-9,9.5H10c-4.962,0-9-4.537-9-9.5V10
+                        c0-4.962,4.038-8.5,9-8.5H136 M136,0.5H10c-5.5,0-10,4-10,9.5v87c0,5.5,4.5,10.5,10,10.5h126c5.5,0,10-5,10-10.5V10
+                        C146,4.5,141.5,0.5,136,0.5L136,0.5z" />
+                    </g>
+                <g>
+                <path fill="#11C1F3" d="M54,59.294c0-3.187,0-8.4,0-11.587V34.207c0-3.187,2.247-4.509,5.02-2.938l12.056,6.834
+                        c2.772,1.57,7.3,4.149,10.065,5.731l11.876,6.792c2.766,1.582,2.762,4.166-0.008,5.741l-11.973,6.813
+                        c-2.77,1.576-7.302,4.154-10.071,5.73l-11.951,6.813C56.245,77.298,54,75.979,54,72.793V59.294z" />
+                    </g>
+                </g>
+            </svg>
 
-      <!--<video controls>
-        <source src="{{FeatureDetailCtrl.Feature.ClipMain}}" type="video/mp4">
-        <a href="{{FeatureDetailCtrl.Feature.ClipMain}}">Open</a> the video clip
-      </video>
-      <video controls>
-          <source src="{{FeatureDetailCtrl.Feature.ClipExtra}}" type="video/mp4">
-          <a href="{{FeatureDetailCtrl.Feature.ClipExtra}}">Open</a> the video clip
-      </video>
-
-      <button ng-click="FeatureDetailCtrl.PlayClipMain()">Play main clip</button>-->
-  </ion-content>
+            <!--play extra button-->
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 width="146px" height="129px" viewBox="0 0 146 129" enable-background="new 0 0 146 129" xml:space="preserve"
+                 ng-click="FeatureDetailCtrl.PlayClipExtra()">
+                <g>
+                <g>
+                <g>
+                <path fill="#11C1F3" d="M137,1.5c4.636,0,8,3.285,8,8.5v87c0,5.215-3.364,9.5-8,9.5h-18.563h-1.003l0.003,0.753l0.057,19.718
+                            L93.02,106.548L92.74,106.5h-0.365H11c-4.721,0-10-4.349-10-9.5V10c0-5.151,5.279-8.5,10-8.5H137 M137,0.5H11c-5.5,0-11,4-11,9.5
+                            v87c0,5.5,5.5,10.5,11,10.5h81.375l26.125,22l-0.063-22H137c5.5,0,9-5,9-10.5V10C146,4.5,142.5,0.5,137,0.5L137,0.5z" />
+                    </g>
+                </g>
+                <g>
+                <path fill="#11C1F3" d="M55,59.294c0-3.187,0-8.4,0-11.587V34.207c0-3.187,2.122-4.509,4.895-2.938l11.993,6.834
+                        c2.772,1.57,7.269,4.149,10.034,5.731l11.86,6.792c2.766,1.582,2.754,4.166-0.016,5.741L81.79,63.179
+                        c-2.77,1.576-7.304,4.154-10.073,5.73L59.89,75.722c-2.77,1.576-4.89,0.258-4.89-2.929V59.294z" />
+                </g>
+                </g>
+            </svg>
+        </div>
+    </ion-content>
 </ion-view>

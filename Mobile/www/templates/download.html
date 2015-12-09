@@ -1,21 +1,27 @@
 <ion-view view-title="Management fisiere">
-    <ion-content>
-        <div class="card">
+
+    <!--download button-->
+    <ion-header-bar class="bar-light bar-subheader tall-subheader">
+        <div class="card card-slim-margins">
             <ion-item class="item-icon-left" ng-click="DownloadCtrl.DownloadFiles()">
                 <i class="icon ion-android-download enabledBlue"></i>
                 Descarca resursele selectate
             </ion-item>
         </div>
+    </ion-header-bar>
+
+    <!--list of resources-->
+    <ion-content class="has-subheader has-tall-subheader" >
         <ion-list ng-show="DownloadCtrl.FailedToLoad == ''">
             <ion-item class="item item-icon-left item-icon-right" ng-repeat="file in DownloadCtrl.Files"
                       type="item-text-wrap">
                 <i class="icon {{DownloadCtrl.GetIconIsLocal(file)}} icon-sized"
                     ng-click="DownloadCtrl.ProvideInfo(file);"></i>
-                &nbsp; {{file.Book}} &nbsp; {{file.Japan}}
+                &nbsp; {{::file.Book}} &nbsp; {{::file.Japan}}
                 <i class="icon {{DownloadCtrl.GetIconAction(file)}} icon-sized enabledBlue"
                    ng-click="DownloadCtrl.DownloadOrRemove(file);"></i>
             </ion-item>
         </ion-list>
-        <h2 ng-show="DownloadCtrl.FailedToLoad != ''">{{DownloadCtrl.FailedToLoad}}</h2>
+        <h2 ng-show="::DownloadCtrl.FailedToLoad.length">{{::DownloadCtrl.FailedToLoad}}</h2>
     </ion-content>
 </ion-view>

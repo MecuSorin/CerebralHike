@@ -3,11 +3,30 @@
         {{QuizTechniquesCtrl.scoreService.CorrectAnswers}}/{{QuizTechniquesCtrl.scoreService.QuestionsAnswered}}
     </ion-nav-buttons>
     <ion-content>
-        <img src="{{QuizTechniquesCtrl.QuestionImage}}" ng-click="QuizTechniquesCtrl.PlayClip()" width="128" height="128" />
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             width="146px" height="129px" viewBox="0 0 146 129" enable-background="new 0 0 146 129" xml:space="preserve"
+             class="spaced-top answer-margin-left"
+             ng-click="QuizTechniquesCtrl.PlayClip()">
+            <g>
+            <g>
+            <path fill="#11C1F3" d="M136,1.5c4.963,0,9,3.538,9,8.5v87c0,4.963-4.037,9.5-9,9.5H10c-4.962,0-9-4.537-9-9.5V10
+                        c0-4.962,4.038-8.5,9-8.5H136 M136,0.5H10c-5.5,0-10,4-10,9.5v87c0,5.5,4.5,10.5,10,10.5h126c5.5,0,10-5,10-10.5V10
+                        C146,4.5,141.5,0.5,136,0.5L136,0.5z" />
+                </g>
+            <g>
+            <path fill="#11C1F3" d="M54,59.294c0-3.187,0-8.4,0-11.587V34.207c0-3.187,2.247-4.509,5.02-2.938l12.056,6.834
+                        c2.772,1.57,7.3,4.149,10.065,5.731l11.876,6.792c2.766,1.582,2.762,4.166-0.008,5.741l-11.973,6.813
+                        c-2.77,1.576-7.302,4.154-10.071,5.73l-11.951,6.813C56.245,77.298,54,75.979,54,72.793V59.294z" />
+                </g>
+            </g>
+        </svg>
         <ul>
             <li ng-repeat="answer in QuizTechniquesCtrl.Answers"
-                class="answer {{answer.Class}}"
-                ng-click="QuizTechniquesCtrl.SelectedAnswer(answer)">{{answer.Text}}</li>
+                class="answer {{answer.UsedClass}}"
+                ng-click="QuizTechniquesCtrl.SelectedAnswer(answer)">
+                {{::answer.Text}}
+                <i class="answer-icon" ng-class="::answer.Class" ng-show="answer.WasUsed"></i>
+            </li>
         </ul>
     </ion-content>
     <ion-footer-bar class="bar-stable">

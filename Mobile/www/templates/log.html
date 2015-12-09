@@ -6,7 +6,7 @@
     <ion-content>
         <ul class="logs">
             <li class="logMessage" ng-repeat="error in ErrCtrl.ErrorsService.Errors">
-                {{error.message}}</li>
+                {{::error.message}}</li>
         </ul>
     </ion-content>
 </ion-view>

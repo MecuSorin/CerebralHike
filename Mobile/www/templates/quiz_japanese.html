@@ -14,8 +14,11 @@
         </div>
         <ul>
             <li ng-repeat="answer in QuizJapaneseCtrl.Answers"
-                class="answer {{answer.Class}}"
-                ng-click="QuizJapaneseCtrl.SelectedAnswer(answer)">{{answer.Text}}</li>
+                class="answer {{answer.UsedClass}}"
+                ng-click="QuizJapaneseCtrl.SelectedAnswer(answer)">
+                    {{::answer.Text}}
+                    <i class="answer-icon" ng-class="::answer.Class" ng-show="answer.WasUsed"></i>
+            </li>
         </ul>
     </ion-content>
     

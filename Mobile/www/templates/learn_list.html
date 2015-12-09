@@ -1,60 +1,44 @@
 <ion-view view-title="Invata" >
-    <ion-nav-buttons side="right" ng-hide="FeatureListCtrl.FilteredFeatures.length == 0">
+    <ion-nav-buttons side="right" ng-show="FeatureListCtrl.FilteredFeatures.length">
         <button class="button button-icon button-clear ion-eye enabledBlue spaced-right"
                 ng-click="FeatureListCtrl.UserChecked();"></button>
         <button class="button button-icon button-clear ion-eye-disabled enabledBlue spaced-right"
                 ng-click="FeatureListCtrl.UserUnchecked();"></button>
     </ion-nav-buttons>
 
-
+    <!--filter header-->
     <ion-header-bar class="bar-light bar-subheader">
         <input type="search"
                placeholder="Filtreaza tehnicile..."
                ng-model="FeatureListCtrl.FeatureFilter"
                ng-model-options="{ debounce: 1000 }"
-               ng-focus="searchFocused = true"
-               ng-blur="searchFocused = false"
                ng-change="FeatureListCtrl.UpdateFilter()"
                class="full-width">
         <button ng-if="FeatureListCtrl.FeatureFilter.length"
-                class="button button-icon ion-android-close input-button"
+                class="button button-icon ion-backspace-outline input-button"
                 ng-click="FeatureListCtrl.ClearFilter()"></button>
     </ion-header-bar>
 
-
-    <!--<div class="bar bar-subheader bar-light">
-        <div class="item-icon-left"
-             ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
-            <i class="icon {{FeatureListCtrl.FeatureFilter == '' ? 'ion-funnel' : 'ion-backspace-outline enabledBlue'}} input-label"
-               ng-click="FeatureListCtrl.ClearFilter();"></i>
-            <input type="text"
-                   ng-class="{forecolorRed: FeatureListCtrl.FilteredFeatures.length==0}"
-                   ng-model="FeatureListCtrl.FeatureFilter"
-                   ng-model-options="{ debounce: 1000 }"
-                   ng-change="FeatureListCtrl.UpdateFilter()"
-                   placeholder="Tasteaza pentru a filtra lista" />
-        </div>
-    </div>-->
-
+    <!--list of techniques-->
     <ion-content class="has-subheader">
-        <ion-list class="techniqueList" ng-show="FeatureListCtrl.FailedToLoadFeatures == ''">
+        <ion-list class="techniqueList" ng-hide="::FeatureListCtrl.FailedToLoadFeatures.length">
             <ion-item class="item-remove-animate item-icon-left item-icon-right" 
                       ng-repeat="feature in FeatureListCtrl.FilteredFeatures"
                       type="item-text-wrap"
-                      href="#/app/learn/{{feature.Id}}">
+                      href="#/app/learn/{{::feature.Id}}">
 
                 <i class="icon ion-eye{{(feature.ToHide) ? '-disabled':''}} enabledBlue"
                    ng-click="FeatureListCtrl.HideFeature(feature);"
                    onclick="return false;"></i>
                 <div class="item-body font-footer">
-                    <span class="techniqueItem">{{feature.Book}}</span>
-                    <span class="font-header">{{feature.Japan}}</span>
-                    <span class="techniqueItem">{{feature.Ro}}</span>
+                    <span class="techniqueItem">{{::feature.Book}}</span>
+                    <span class="font-header">{{::feature.Japan}}</span>
+                    <span class="techniqueItem">{{::feature.Ro}}</span>
                 </div>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>
-        <h2 ng-show="FeatureListCtrl.FailedToLoadFeatures != ''">{{FeatureListCtrl.FailedToLoadFeatures}}</h2>
+        <h2 ng-show="::FeatureListCtrl.FailedToLoadFeatures.length">{{::FeatureListCtrl.FailedToLoadFeatures}}</h2>
     </ion-content>
 
 </ion-view>
