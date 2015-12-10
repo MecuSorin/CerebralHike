@@ -1,3 +1,6 @@
 .vs
 *.suo
 
+/Mobile/resources/splash.jpg
+/Mobile/resources/splash_old.png
+/Mobile/resources/splash_old2.png
