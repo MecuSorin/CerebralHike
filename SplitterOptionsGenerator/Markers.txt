@@ -59,3 +59,33 @@ Nika-Jo		Back	Tachi-Waza	Sukui-nage	Sapare si aruncare	49:11	49:15	49:28	49:41
 Nika-Jo		Back	Tachi-Waza	Gyaku-gote	Incheietura mainii inverse	49:52	49:56	50:10	50:22	50:25	50:37
 Nika-Jo		Back	Tachi-Waza	Kubi-nage	Aruncarea de la gat	50:47	50:51	51:02	51:10
 Nika-Jo		Back	Tachi-Waza	Hiji-kujiki	Dislocarea cotului	51:22	51:25	51:36	51:46
+Sanka-Jo		Front	Suwari-Waza	Tsuri-otoshi	Prindere si aruncare	08:26	08:32	08:47	10:21
+Sanka-Jo		Front	Suwari-Waza	Te-magura	Bratul ca o perna	10:38	10:43	10:58	11:54
+Sanka-Jo		Front	Suwari-Waza	Soto-gote	Exteriorul incheieturii mainii	12:09	12:14	12:24	12:35	12:41	12:50	12:53	12:59
+Sanka-Jo		Front	Suwari-Waza	Maki-zume	Infasurare si presare	13:22	13:28	13:43	14:06
+Sanka-Jo		Front	Suwari-Waza	Kobushi-gaeshi	Rasucirea pumnului	14:26	14:30	14:43	14:58	15:05	15:17
+Sanka-Jo		Front	Suwari-Waza	Kakae-kujiki	Infasurare sub brat si dislocare	15:36	15:41	15:54	16:12	16:16	16:26
+Sanka-Jo		Front	Suwari-Waza	Karami-zume	Presarea infasurata	16:51	16:58	17:11	17:36	17:46	18:06	18:17	18:39
+Sanka-Jo		Front	Suwari-Waza	Kiri-ha	Aripa care taie	18:57	19:01	19:19	19:33
+Sanka-Jo		Front	Suwari-Waza	Uchi-ude-gaeshi	Rasucirea bratului inspre interior	19:56	20:00	20:14	20:54
+Sanka-Jo		Front	Suwari-Waza	Gassho-dori	Prinderea mainilor impreunate	21:17	21:22	21:33	22:00
+Sanka-Jo		Front	Hanmi Handachi Waza	Maki-zume	Infasurare si presare	22:39	22:45	23:00	23:27	23:32	23:47
+Sanka-Jo		Front	Hanmi Handachi Waza	Hiji-kujiki	Dislocarea cotului	23:58	24:03	24:19	24:27
+Sanka-Jo		Front	Hanmi Handachi Waza	Kata-ha-gaeshi	Rasucirea pe o aripa	24:48	24:52	25:07	25:32	25:41	25:53
+Sanka-Jo		Front	Hanmi Handachi Waza	Ashi-jime	Strangularea piciorului	26:09	26:14	26:33	26:48	26:55	27:01	27:08	27:19
+Sanka-Jo		Front	Hanmi Handachi Waza	Waki-kujiki	Dislocarea cu lateralul corpului	27:34	27:37	27:51	28:05
+Sanka-Jo		Front	Tachi-Waza	Tsuri-otoshi	Prindere si aruncare	28:42	28:48	29:02	29:38	29:48	30:23	30:29	30:52
+Sanka-Jo		Front	Tachi-Waza	Soto-gote	Exteriorul incheieturii mainii	31:06	31:09	31:19	31:30	31:34	31:46
+Sanka-Jo		Front	Tachi-Waza	Maki-zume	Infasurare si presare	32:01	32:06	32:18	32:44
+Sanka-Jo		Front	Tachi-Waza	Waki-zume	Presare in lateralul corpului	32:56	33:02	33:13	33:40	33:45	34:13
+Sanka-Jo		Front	Tachi-Waza	Ganseki-otoshi	Aruncarea stancii	34:22	34:27	34:40	35:01	35:05	35:21
+Sanka-Jo		Front	Tachi-Waza	Kubi-wa	Inel la gat	35:33	35:37	35:49	36:04	36:07	36:25
+Sanka-Jo		Front	Tachi-Waza	Uchi-ude-gaeshi	Rasucirea bratului inspre interior	36:36	36:40	36:53	37:11
+Sanka-Jo		Front	Tachi-Waza	Shichi-ri-biki	Tragerea de sapte coti	37:26	37:34	37:48	38:17	38:22	38:33
+Sanka-Jo		Front	Tachi-Waza	Ippon-katsugi	Caratul unui brat pe umar	38:43	38:48	38:59	39:20	39:26	39:47
+Sanka-Jo		Front	Tachi-Waza	Shiho-nage	Aruncarea in patru directii	39:57	40:02	40:14	40:29	40:34	40:51	40:55	41:10	41:14	41:26	41:32	42:01
+Sanka-Jo		Back	Tachi-Waza	Maki-zume-otoshi	Infasurare, presare, aruncare	42:22	42:27	42:40	43:03
+Sanka-Jo		Back	Tachi-Waza	Ude-gaeshi	Rasucirea bratului	43:18	43:24	43:37	43:52	43:57	44:04
+Sanka-Jo		Back	Tachi-Waza	Waki-garami	Infasurarea pe lateral	44:16	44:21	44:33	44:47	44:52	45:02	45:05	45:15
+Sanka-Jo		Back	Tachi-Waza	Kiri-ha	Aripa care taie	45:27	45:33	45:44	46:01
+Sanka-Jo		Back	Tachi-Waza	Kata-ude-nage	Aruncarea dintr-un brat	46:14	46:18	46:26	46:40	46:43	46:53	46:58	47:04	47:07	47:14
