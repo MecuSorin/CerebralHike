@@ -5,30 +5,56 @@ module cerebralhike {
         public static Alias ="FeatureDetailController";
         public Feature: IFeature = null;
 
-        constructor(public downloadService: DownloadService, FeatureService: FeatureService, $stateParams) {
-            chLogger.log('Searching for feature with id:' + $stateParams.featureId);
-            this.Feature = FeatureService.GetFeature($stateParams.featureId);
+        constructor(public downloadService: DownloadService,
+            public FeatureService: FeatureService,
+            public $location: angular.ILocationService,
+            public $ionicHistory: ionic.navigation.IonicHistoryService,
+            $stateParams: angular.ui.IStateParams) {
+            chLogger.log('Searching for feature with id:' + $stateParams["featureId"]);
+            this.Feature = FeatureService.GetFeature($stateParams["featureId"]);
             chLogger.log("Using feature: " + this.Feature.Japan);
-            //this.ImageSrcMain = Utils.GetSafe(this.Feature.ThumbMainLocal, Utils.GetSafe(this.Feature.ThumbMainCloud, ApiVerbs.GetImagesRoot() + "funny.png"));
-            //this.ImageSrcExtra = Utils.GetSafe(this.Feature.ThumbExtraLocal, Utils.GetSafe(this.Feature.ThumbExtraCloud, ApiVerbs.GetImagesRoot() + "flow.png"));
-            this.ImageSrcMain =  ApiVerbs.GetImagesRoot() + "funny.png";
-            this.ImageSrcExtra = ApiVerbs.GetImagesRoot() + "flow.png";
+            this.IsNavigationAvailable = this.FeatureService.IsNavigationAvailable && Utils.ParseBoolean($stateParams["isCommingFromLearningListPage"]);
+            chLogger.log("Having navigation: " + this.IsNavigationAvailable);
         }
 
-        public ImageSrcMain: string;
-        public ImageSrcExtra: string;
+        public IsNavigationAvailable: boolean = false; 
 
         public PlayClipMain = () => {
             this.downloadService.GetClipSafe(this.Feature.ClipMainLocal, this.Feature.ClipMainCloud)
                 .then(clipLocation => Utils.PlayClip(clipLocation));
-        }
+        };
 
         public PlayClipExtra = () => {
             this.downloadService.GetClipSafe(this.Feature.ClipExtraLocal, this.Feature.ClipExtraCloud)
                 .then(clipLocation => Utils.PlayClip(clipLocation));
-        }
+        };
 
+        public GoNext = () => {
+            if (!this.IsNavigationAvailable) {
+                chLogger.log("Navigation unavailable");
+                return;
+            }
+            var nextFeature = this.FeatureService.GetNextFeature(this.Feature);
+            this.NavigateToFeature(nextFeature);
+        };
+
+        public GoPrevious = () => {
+            if (!this.IsNavigationAvailable) {
+                chLogger.log("Navigation unavailable");
+                return;
+            }
+            var previousFeature = this.FeatureService.GetPreviousFeature(this.Feature);
+            this.NavigateToFeature(previousFeature);
+        };
         
+        private NavigateToFeature = (feature: IFeature) => {
+            chLogger.log("Changing state to next featureId: " + feature.Id);
+            var featurePath = FeatureListController.GetLearnFeatureAppPath(feature, true, false);
+            chLogger.log('Loading path: ' + featurePath);
+
+            this.$ionicHistory.currentView(this.$ionicHistory.backView());
+            this.$location.path(featurePath);
+        }
     }
     //https://github.com/moust/cordova-plugin-videoplayer
     //https://github.com/dawsonloudon/VideoPlayer

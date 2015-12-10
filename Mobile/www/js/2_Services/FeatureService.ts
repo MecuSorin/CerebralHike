@@ -7,62 +7,35 @@ module cerebralhike {
         constructor(public downloadService: DownloadService, public $q: angular.Enhanced.IQService)
 		{ }
 
+        public FilteredFeatures: IFeature[] = [];
+        public IsNavigationAvailable: boolean = false;
+
+        public GetNextFeature = (feature: IFeature): IFeature => {
+            return this.GetFeatureFromFilteredFeaturesListWithOffsetFrom(feature, 1);
+        };
+       
+        public GetPreviousFeature = (feature: IFeature): IFeature => {
+            return this.GetFeatureFromFilteredFeaturesListWithOffsetFrom(feature, -1);
+        };
+        
+        private GetFeatureFromFilteredFeaturesListWithOffsetFrom = (referenceFeature: IFeature, offset: number): IFeature => {
+            if (angular.isUndefined(this.FilteredFeatures) || 2 > this.FilteredFeatures.length) {
+                chLogger.log("Cannot navigate from feature " + feature.Japan);
+                return feature;
+            }
+
+            for (var i = 0, lngth = this.FilteredFeatures.length; i < lngth; i++) {
+                var feature = this.FilteredFeatures[i];
+                if (feature.Id === referenceFeature.Id) {
+                    return this.FilteredFeatures[(lngth + i + offset) % lngth];
+                }
+            }
+        };
+
         public LoadFeatures = (): angular.IPromise<IFeature[]> => {
             return this.downloadService.LoadLegend()
                 .then(n=> this.$q.when(this.downloadService.Files));
-        }
-
-        //public Features: IFeature[] = null;
-
-        //public LoadFeatures(): angular.IPromise<void> {
-        //    if (this.Features) {
-        //        return this.$q.when();
-        //        chLogger.log("Features is populated already");
-        //    }
-        //    var deferred = this.$q.defer<void>();
-        //    var featureProviders = [this.apiFactory.GetFeaturesList, this.apiFactory.GetFeaturesList1,
-        //        this.apiFactory.GetFeaturesList2, this.apiFactory.GetFeaturesList3,
-        //        this.apiFactory.GetFeaturesList4,
-        //        this.apiFactory.GetFeaturesList5, this.apiFactory.GetFeaturesList6];
-        //    var validLink = false;
-        //    var fpIndex = 0;
-        //    var result;
-        //    while (!validLink && fpIndex < featureProviders.length) {
-        //        var fp = featureProviders[fpIndex++];
-        //        var promise = fp();
-        //        promise.then(a=> {
-        //            validLink = true;
-        //            chLogger.log("ooooooooooooooooooooooooJackpot");
-        //        });
-        //    }
-            
-        //    this.Features = [];
-        //    return this.$q.when();
-        //}
-
-
-        //public LoadFeatures(): angular.IPromise<void> {
-        //    if (this.Features) {
-        //        return this.$q.when();
-        //    }
-        //    var deferred = this.$q.defer<void>();
-        //    this.apiFactory.GetFeaturesList()
-        //        .then(features=> {
-
-        //            throw 'Not implemented';
-        //            //this.Features = features;
-        //            //var videoPathComposer = this.apiFactory.GetVideoPathComposer();
-        //            //var featureUpdater = (feature: IFeature, index:number) => {
-        //            //    feature.Id = index;
-        //            //    feature.ClipMain = videoPathComposer(feature.ClipMain);
-        //            //    feature.ClipExtra = videoPathComposer(feature.ClipExtra);
-        //            }
-        //            this.Features.forEach((feature, index) => featureUpdater(feature, index + 1));
-        //            deferred.resolve();
-        //        })
-        //        .catch(reason=> deferred.reject(reason));
-        //    return deferred.promise;
-        //}
+        };
 
         public GetFeature = (featureId: string): IFeature => {
             chLogger.log("Searching for feature with id: " + featureId);
@@ -75,7 +48,22 @@ module cerebralhike {
                 }
             }
             throw "Couldn't find feature with id: " + featureId;
-        }
+        };
+
+        public UserSwitchedToHideTo = (value: boolean) => {
+            if (0 == this.FilteredFeatures.length) {
+                return;
+            }
+            angular.forEach(this.FilteredFeatures, feature=> feature.ToHide = value);
+            chLogger.log("Updated ToHide to " + value + " for " + this.FilteredFeatures.length + " techniques");
+            this.downloadService.SaveLocalLegend();
+        };
+
+        public UpdateFilteredFeatures = (filteredFeatures: IFeature[], logMessage: string) => {
+            this.FilteredFeatures = filteredFeatures;
+            chLogger.log(logMessage);
+            this.IsNavigationAvailable = (angular.isDefined(this.FilteredFeatures) && 1 < this.FilteredFeatures.length);
+        };
 	}
 
 	cerebralhikeServices.service(FeatureService.Alias, FeatureService);

@@ -2,7 +2,7 @@
 
 declare var cerebralhikeApp: angular.IModule;
 declare var VideoPlayer: any;
-declare var ionic: any;
+declare var ionic: IonicStatic;
 
 //declare var bluetoothSerial: blueclient.mocks.IBluetoothSerialMock;
 //declare var myVeryOwnDebuggingSpace: any;
@@ -12,6 +12,11 @@ declare module cerebralhike.mocks {
 
 }
 
+declare module angular {
+    interface ILocationService {
+        replace(path: string): ILocationService;
+    }
+}
 
 
 declare module angular.Enhanced {
@@ -19,6 +24,45 @@ declare module angular.Enhanced {
         Reject<Tp>(reason?: any): angular.IPromise<Tp>; //|Tp nu mai merge ???
     }
 }
+
+declare module ionic.navigation {
+    interface IonicHistoryService {
+        currentView<T>(view: T): T;
+    }
+}
+
+declare module ngCordova {
+
+    interface RemovedItem<T> {
+        success: boolean;
+        fileRemoved: T;
+    }
+
+    interface IFile {
+        getFreeDiskSpace(): angular.IPromise<number>;
+        checkDir(path: string, dir: string): angular.IPromise<Entry>;   //
+        checkFile(path: string, fileName: string): angular.IPromise<Entry>; //
+        createDir(path: string, dirName: string, replaceBool: boolean): angular.IPromise<DirectoryEntry>;
+        createFile(path: string, fileName: string, replaceBool: boolean): angular.IPromise<FileEntry>;
+        removeDir(path: string, dir: string): angular.IPromise<RemovedItem<DirectoryEntry>>;
+        removeFile(path: string, fileName: string): angular.IPromise<RemovedItem<FileEntry>>;
+        removeRecursively(path: string, dir: string): angular.IPromise<RemovedItem<DirectoryEntry>>;
+        writeFile(path: string, fileName: string, text: string, replaceBool: boolean): angular.IPromise<ProgressEvent>;
+        writeExistingFile(path: string, fileName: string, text: string): angular.IPromise<ProgressEvent>;
+        readAsText(path: string, fileName: string): angular.IPromise<string>; //?
+        readAsDataURL(path: string, fileName: string): angular.IPromise<string>; //?
+    }
+
+    interface IFileTransfer {
+        download(source: string, filePath: string, options: any, trustAllHosts: boolean): angular.IPromise<FileEntry>;
+    }
+
+    interface INetworkService {
+        getNetwork(): Connection;
+        isOnline(): boolean;
+    }
+}
+
 
 declare module cerebralhike {
 	interface IIdentified {
@@ -85,38 +129,5 @@ declare module cerebralhike {
     {
         Filter: string;
         myFilteredFeatures: IFeature[]
-    }
-}
-
-
-declare module ngCordova {
-
-    interface RemovedItem<T> {
-        success: boolean;
-        fileRemoved: T;
-    }
-
-    interface IFile {
-        getFreeDiskSpace(): angular.IPromise<number>;
-        checkDir(path: string, dir: string): angular.IPromise<Entry>;   //
-        checkFile(path: string, fileName: string): angular.IPromise<Entry>; //
-        createDir(path: string, dirName: string, replaceBool: boolean): angular.IPromise<DirectoryEntry>;
-        createFile(path: string, fileName: string, replaceBool: boolean): angular.IPromise<FileEntry>;
-        removeDir(path: string, dir: string): angular.IPromise<RemovedItem<DirectoryEntry>>;
-        removeFile(path: string, fileName: string): angular.IPromise<RemovedItem<FileEntry>>;
-        removeRecursively(path: string, dir: string): angular.IPromise<RemovedItem<DirectoryEntry>>;
-        writeFile(path: string, fileName: string, text: string, replaceBool: boolean): angular.IPromise<ProgressEvent>;
-        writeExistingFile(path: string, fileName: string, text: string): angular.IPromise<ProgressEvent>;
-        readAsText(path: string, fileName: string): angular.IPromise<string>; //?
-        readAsDataURL(path: string, fileName: string): angular.IPromise<string>; //?
-    }
-
-    interface IFileTransfer {
-        download(source: string, filePath: string, options: any, trustAllHosts: boolean): angular.IPromise<FileEntry>;
-    }
-
-    interface INetworkService {
-        getNetwork(): Connection;
-        isOnline(): boolean;
     }
 }

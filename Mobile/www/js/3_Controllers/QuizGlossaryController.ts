@@ -42,7 +42,7 @@ module cerebralhike {
 
         public NavigateToFeature = () => {
             if (!this.QuestionSource) return;
-            var featurePath = FeatureListController.GetLearnFeatureAppPath(this.QuestionSource);
+            var featurePath = FeatureListController.GetLearnFeatureAppPath(this.QuestionSource, false);
             chLogger.log('Loading path: ' + featurePath);
             this.$location.path(featurePath);
         }

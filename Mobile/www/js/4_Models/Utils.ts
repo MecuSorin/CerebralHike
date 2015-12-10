@@ -127,5 +127,9 @@ module cerebralhike {
             }
             return hash;
         }
+
+        public static ParseBoolean(text: string): boolean {
+            return text === "true";
+        }
     }
 } 

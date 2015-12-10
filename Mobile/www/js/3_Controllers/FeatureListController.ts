@@ -3,9 +3,10 @@
 module cerebralhike {
 	export class FeatureListController {
         public static Alias ="FeatureListController";
-        public FilteredFeatures: IFeature[] = [];
-        public Features :IFeature[] = [];
+
+        public Features: IFeature[] = [];
         public FailedToLoadFeatures: string = "Loading ...";
+
         constructor(public $scope: IFilteredScope, public FeatureService: FeatureService, public filterFilter: angular.IFilterFunc) {
             FeatureService.LoadFeatures()
                 .then(()=>this.ShowFeatures())
@@ -17,8 +18,8 @@ module cerebralhike {
 
         public UpdateFilter = () => {
             try {
-                this.FilteredFeatures = this.filterFilter(this.Features, this.FeatureFilter);
-                chLogger.log("Showing " + this.FilteredFeatures.length + "/" + this.Features.length + " filtered features by [" + this.FeatureFilter + "]");
+                var logMessage = "Showing " + this.FeatureService.FilteredFeatures.length + "/" + this.Features.length + " filtered features by [" + this.FeatureFilter + "]";
+                this.FeatureService.UpdateFilteredFeatures(this.filterFilter(this.Features, this.FeatureFilter), logMessage);
             }
             catch (err) {
                 chLogger.log(err);
@@ -59,8 +60,8 @@ module cerebralhike {
             this.FeatureService.downloadService.SaveLocalLegend();
         }
 
-        public static GetLearnFeatureAppPath(feature: IFeature, appendRoot?: boolean): string {
-            return ((appendRoot) ? '#' : '') + '/app/learn/' + feature.Id;
+        public static GetLearnFeatureAppPath(feature: IFeature, allowNextPreviousNavigation: boolean, appendRoot?: boolean): string {
+            return ((appendRoot) ? '#' : '') + '/app/learn/' + feature.Id + '/' + allowNextPreviousNavigation;
         }
 
         public ClearFilter = () => {
@@ -69,21 +70,14 @@ module cerebralhike {
         };
 
         public UserChecked = () => {
-            this.UserSwitchedToHideTo(false);
+            this.FeatureService.UserSwitchedToHideTo(false);
         }
 
         public UserUnchecked = () => {
-            this.UserSwitchedToHideTo(true);
+            this.FeatureService.UserSwitchedToHideTo(true);
         }
 
-        private UserSwitchedToHideTo = (value: boolean) => {
-            if (0 == this.FilteredFeatures.length) {
-                return;
-            }
-            angular.forEach(this.FilteredFeatures, feature=> feature.ToHide = value);
-            chLogger.log("Updated ToHide to "+value+" for " + this.FilteredFeatures.length + " techniques");
-            this.FeatureService.downloadService.SaveLocalLegend();
-        }
+     
 	}
 
 	cerebralhikeControllers.controller(FeatureListController.Alias, FeatureListController);

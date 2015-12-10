@@ -39,7 +39,10 @@ cerebralhikeApp
             }
         })
         .state('app.learn-feature', {
-            url: '/learn/:featureId',
+            url: '/learn/:featureId/:isCommingFromLearningListPage',
+            params: {
+                isCommingFromLearningListPage: false
+            },
             views: {
                 'menuContent': {
                     templateUrl: 'templates/learn_feature.html',
