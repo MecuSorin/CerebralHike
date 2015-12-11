@@ -189,3 +189,25 @@ span.font-header {
 .card-slim-margins {
     margin: 9px 50px;
 }
+
+.nav-bar-container {
+    /*display: inline-block;*/
+}
+
+.nav-bar-container button {
+    color: #11c1f3 !important; 
+}
+
+.nav-bar-my-container button,
+.nav-bar-my-container span {
+    margin-right: 2em;
+    display: inline !important;
+}
+
+.icon-mirrored {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}

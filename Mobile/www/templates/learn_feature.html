@@ -5,8 +5,9 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{::FeatureDetailCtrl.Feature.Japan}}" style="background-color: azure;">
-    <ion-nav-buttons side="right">
-        <div ng-show="FeatureDetailCtrl.IsNavigationAvailable">
+    <ion-nav-buttons side="secondary">
+        <div ng-show="FeatureDetailCtrl.IsNavigationAvailable" 
+             class="nav-bar-my-container">
             <button class="button button-icon button-clear ion-reply enabledBlue spaced-right"
                     ng-click="FeatureDetailCtrl.GoPrevious();"></button>
             <button class="button button-icon button-clear ion-forward enabledBlue spaced-right"

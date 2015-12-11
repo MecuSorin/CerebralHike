@@ -1,7 +1,10 @@
 <ion-view view-title="Teste tehnici">
-    <ion-nav-buttons side="right">
-        {{QuizTechniquesCtrl.scoreService.CorrectAnswers}}/{{QuizTechniquesCtrl.scoreService.QuestionsAnswered}}
+    <ion-nav-buttons side="secondary">
+        <div class="nav-bar-my-container">
+            {{QuizTechniquesCtrl.scoreService.CorrectAnswers}} / {{QuizTechniquesCtrl.scoreService.QuestionsAnswered}}
+        </div>
     </ion-nav-buttons>
+
     <ion-content>
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              width="146px" height="129px" viewBox="0 0 146 129" enable-background="new 0 0 146 129" xml:space="preserve"

@@ -1,9 +1,10 @@
 <ion-view view-title="Teste glosar">
     <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-chatbubbles"
-                ng-class="{enabledBlue: QuizJapaneseCtrl.IsJapanQuestion, disabledGray: !QuizJapaneseCtrl.IsJapanQuestion}"
-                ng-click="QuizJapaneseCtrl.IsJapanQuestion = !QuizJapaneseCtrl.IsJapanQuestion;"></button>
-        {{QuizJapaneseCtrl.scoreService.CorrectAnswers}}/{{QuizJapaneseCtrl.scoreService.QuestionsAnswered}}
+        <div class="nav-bar-my-container">
+            <button class="button button-icon button-clear {{QuizJapaneseCtrl.IsJapanQuestion ? 'ion-ios-chatboxes' : 'ion-ios-chatboxes-outline' }}"
+                    ng-click="QuizJapaneseCtrl.IsJapanQuestion = !QuizJapaneseCtrl.IsJapanQuestion;"></button>
+            <span>{{QuizJapaneseCtrl.scoreService.CorrectAnswers}} / {{QuizJapaneseCtrl.scoreService.QuestionsAnswered}}</span>
+        </div>
     </ion-nav-buttons>
     
     <ion-content>
