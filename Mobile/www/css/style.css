@@ -160,11 +160,11 @@ span.font-header {
   bottom: 46px; 
 }
 
-.has-tall-subheader {
+.has-subheader-tall {
     top: 122px;
 }
 
-.bar-subheader.tall-subheader {
+.bar-subheader.subheader-tall {
   height: 78px; 
 }
 

@@ -1,7 +1,7 @@
 <ion-view view-title="Management fisiere">
 
     <!--download button-->
-    <ion-header-bar class="bar-light bar-subheader tall-subheader">
+    <ion-header-bar class="bar-light bar-subheader subheader-tall">
         <div class="card card-slim-margins">
             <ion-item class="item-icon-left" ng-click="DownloadCtrl.DownloadFiles()">
                 <i class="icon ion-android-download enabledBlue"></i>
@@ -11,7 +11,7 @@
     </ion-header-bar>
 
     <!--list of resources-->
-    <ion-content class="has-subheader has-tall-subheader" >
+    <ion-content class="has-subheader has-subheader-tall" >
         <ion-list ng-show="DownloadCtrl.FailedToLoad == ''">
             <ion-item class="item item-icon-left item-icon-right" ng-repeat="file in DownloadCtrl.Files"
                       type="item-text-wrap">
