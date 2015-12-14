@@ -15,9 +15,22 @@ module cerebralhike {
             chLogger.log("Using feature: " + this.Feature.Japan);
             this.IsNavigationAvailable = this.FeatureService.IsNavigationAvailable && Utils.ParseBoolean($stateParams["isCommingFromLearningListPage"]);
             chLogger.log("Having navigation: " + this.IsNavigationAvailable);
+            if (Utils.CaseInsensitiveSameHead(this.Feature.Position, 'suwari')) {
+                this.PositionImage = "img/suwari_waza.png";
+                return;
+            }
+            if (Utils.CaseInsensitiveSameHead(this.Feature.Position, 'hanmi')) {
+                this.PositionImage = "img/hanmi_handachi.png";
+                return;
+            }
+            if (Utils.CaseInsensitiveSameHead(this.Feature.Position, 'tachi')) {
+                this.PositionImage = "img/tachi_waza.png";
+                return;
+            }
         }
 
         public IsNavigationAvailable: boolean = false; 
+        public PositionImage: string = '';
 
         public PlayClipMain = () => {
             this.downloadService.GetClipSafe(this.Feature.ClipMainLocal, this.Feature.ClipMainCloud)

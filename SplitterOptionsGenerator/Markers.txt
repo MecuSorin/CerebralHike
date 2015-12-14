@@ -1,7 +1,7 @@
-Ikka-Jo		Front	Suwari-Waza	Ippon-dori	Prinderea unui brat	5:29	5:38	5:50	6:08
-Ikka-Jo		Front	Suwari-Waza	Gyaku-ude-dori	Prinderea inversa a bratului	6:23	6:30	6:40	6:51	6:57	7:10
-Ikka-Jo		Front	Suwari-Waza	Hiji-gaeshi	Rasucirea cotului	7:24	7:28	7:45	7:50
-Ikka-Jo		Front	Suwari-Waza	Kuruma-daoshi	Rasturnarea in roata	8:06	8:12	8:28	8:37
+Ikka-Jo	shomen_uchi	Front	Suwari-Waza	Ippon-dori	Prinderea unui brat	5:29	5:38	5:50	6:08
+Ikka-Jo	mune_dori	Front	Suwari-Waza	Gyaku-ude-dori	Prinderea inversa a bratului	6:23	6:30	6:40	6:51	6:57	7:10
+Ikka-Jo	mune_dori	Front	Suwari-Waza	Hiji-gaeshi	Rasucirea cotului	7:24	7:28	7:45	7:50
+Ikka-Jo	yokomen_uchi	Front	Suwari-Waza	Kuruma-daoshi	Rasturnarea in roata	8:06	8:12	8:28	8:37
 Ikka-Jo		Front	Suwari-Waza	Shime-gaeshi	Rasucire la strangulare	8:52	8:59	9:11	9:21	9:23	9:32
 Ikka-Jo		Front	Suwari-Waza	Daki-jime	Imbratisarea bratului la strangulare	9:47	9:52	10:07	10:17
 Ikka-Jo		Front	Suwari-Waza	Karami-nage	Aruncarea infasurata	10:33	10:39	10:54	11:08

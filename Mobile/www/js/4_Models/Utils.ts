@@ -131,5 +131,9 @@ module cerebralhike {
         public static ParseBoolean(text: string): boolean {
             return text === "true";
         }
+
+        public static CaseInsensitiveSameHead(text: string, sample: string): boolean {
+            return text.substr(0, sample.length).toLowerCase() === sample.toLowerCase();
+        }
     }
 } 

@@ -1,9 +1,9 @@
 <ion-view view-title="Teste glosar tehnici">
-    <ion-nav-buttons side="right">
+    <ion-nav-buttons side="secondary">
         <div class="nav-bar-my-container">
             <button class="button button-icon button-clear {{QuizGlossaryCtrl.IsJapanQuestion ? 'ion-ios-chatboxes' : 'ion-ios-chatboxes-outline' }}"
-                    ng-click="QuizGlossaryCtrl.IsJapanQuestion = !QuizGlossaryCtrl.IsJapanQuestion;"></button>
-            <span>{{QuizGlossaryCtrl.scoreService.CorrectAnswers}} / {{QuizGlossaryCtrl.scoreService.QuestionsAnswered}}</span>
+                    ng-click="QuizGlossaryCtrl.IsJapanQuestion = !QuizGlossaryCtrl.IsJapanQuestion;">
+            </button>{{QuizGlossaryCtrl.scoreService.CorrectAnswers}}/{{QuizGlossaryCtrl.scoreService.QuestionsAnswered}}
         </div>
     </ion-nav-buttons>
     
