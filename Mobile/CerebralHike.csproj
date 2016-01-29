@@ -78,6 +78,7 @@
     <Content Include="www\lib\ngCordova\dist\ng-cordova.js" />
     <Content Include="www\lib\ngCordova\dist\ng-cordova.min.js" />
     <Content Include="www\templates\achievement.html" />
+    <Content Include="www\templates\links.html" />
     <Content Include="www\templates\log.html" />
     <Content Include="www\templates\quiz_japanese.html" />
     <Content Include="www\templates\quiz_glossary.html" />
@@ -212,10 +213,12 @@
       <DependentUpon>Version.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="www\js\2_Services\ApiFactory.ts" />
+    <TypeScriptCompile Include="www\js\2_Services\LinksService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ScoreService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\ErrorsService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\DownloadService.ts" />
     <TypeScriptCompile Include="www\js\2_Services\FeatureService.ts" />
+    <TypeScriptCompile Include="www\js\3_Controllers\LinksController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\MenuController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\AchievementController.ts" />
     <TypeScriptCompile Include="www\js\3_Controllers\QuizBaseController.ts" />

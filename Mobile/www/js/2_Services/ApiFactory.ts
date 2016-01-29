@@ -10,6 +10,7 @@ module cerebralhike {
         private static images = "img/";
         public static FeaturesList = "legend.json";
         public static LegendSource = "https://www.dropbox.com/s/b6nglf3fo770auy/legend.json?dl=1";
+        public static LinksSource = "https://www.dropbox.com/s/7geucpteg7xl33l/Links.json?dl=1";
         public static LatestBuild = "https://www.dropbox.com/s/d983ozfk63ug1en/CerebralHikeApp.apk?dl=1";
         public static GetRoot(): string {
             var url = ApiVerbs.root;
@@ -82,6 +83,9 @@ module cerebralhike {
             return this.GetResponse<IFeature[]>(filePath);
         }
 
+        public GetLinksList = (): angular.IPromise<ILink[]> => {
+            return this.GetResponse<ILink[]>(ApiVerbs.LinksSource);
+        }
 
         public GetFeaturesList = (): angular.IPromise<IFeature[]> => {
             return this.GetResponse<IFeature[]>(ApiVerbs.GetRoot()+"legend.json");

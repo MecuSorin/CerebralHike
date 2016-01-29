@@ -1,0 +1,12 @@
+<ion-view view-title="Invata" >
+    <!--list of techniques-->
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="link in LinksCtrl.LinksService.Links"
+                      type="item-text-wrap"
+                      ng-click="LinksCtrl.ShowVideo(link);">
+                {{link.Text}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

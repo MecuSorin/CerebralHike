@@ -104,7 +104,15 @@ cerebralhikeApp
                 }
             }
         })
-
+        .state('app.links', {
+            url: '/links',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/links.html',
+                    controller: 'LinksController as LinksCtrl'
+                }
+            }
+        })
     ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/quizglossary');

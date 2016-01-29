@@ -69,6 +69,11 @@ declare module cerebralhike {
 		Id: string;
 	}
 
+    interface ILink {
+        Text: string;
+        Link: string;
+    }
+
     interface IDictionaryEntry {
         Japan: string;
         Ro: string;
