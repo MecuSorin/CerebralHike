@@ -16,20 +16,20 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-file",
-    "cordova-plugin-file-transfer",
-    "cordova-plugin-network-information",
-    "cordova-plugin-inappbrowser",
     {
       "locator": "https://github.com/MecuSorin/cordova-plugin-video.git",
       "id": "com.mecusorin.cordova.video"
-    }
+    },
+    "cordova-plugin-console",
+    "cordova-plugin-device",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-network-information",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-whitelist",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
     "android"
